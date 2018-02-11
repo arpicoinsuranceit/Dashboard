@@ -42,8 +42,8 @@ public class DashboardServiceImpl implements DashboardService {
 		AgentAchievement agentAchievement = targetActualDao.getAgentAchievement(dashboardPara, 4, 2017);
 		List<AgentAchievement> agentAchievements = targetActualDao.getAgentAchievements(dashboardPara, 2017);
 		
-		dashboardPara.setDashtype("BRANCH");
-		dashboardPara.setDashpara("BOR");
+		dashboardPara.setDashtype("ZONE");
+		dashboardPara.setDashpara("EAST");
 		List<TargetCommitmentActual> targetCommitmentActualNOPList = targetCommitmentActualDao.getCurrentYearNOP(dashboardPara);        
 		List<TargetCommitmentActual> targetCommitmentActualGWPList = targetCommitmentActualDao.getCurrentYearGWP(dashboardPara);
 		List<TargetCommitmentActual> targetCommitmentActualMCFPList = targetCommitmentActualDao.getCurrentYearMCFP(dashboardPara);
