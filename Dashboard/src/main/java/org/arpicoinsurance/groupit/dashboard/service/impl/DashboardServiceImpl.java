@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional
 public class DashboardServiceImpl implements DashboardService {
 
 	@Autowired
@@ -40,6 +42,8 @@ public class DashboardServiceImpl implements DashboardService {
 		AgentAchievement agentAchievement = targetActualDao.getAgentAchievement(dashboardPara, 4, 2017);
 		List<AgentAchievement> agentAchievements = targetActualDao.getAgentAchievements(dashboardPara, 2017);
 		
+		dashboardPara.setDashtype("BRANCH");
+		dashboardPara.setDashpara("HOR");
 		List<TargetCommitmentActual> targetCommitmentActualNOPList = targetCommitmentActualDao.getCurrentYearNOP(dashboardPara);        
 		
 		MainRespDto mainRespDto = new MainRespDto();
@@ -331,11 +335,8 @@ public class DashboardServiceImpl implements DashboardService {
 		ArrayList<NameValuePair> monthC = new ArrayList<>();
 		
 		for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualNOPList) {
+			
 			if(targetCommitmentActual.getMonth() == 1){
-				NameValuePair janA = new NameValuePair();
-				janA.setName("Jan.");
-				janA.setValue(targetCommitmentActual.getActual().intValue());
-				monthA.add(janA);
 				
 				NameValuePair janT = new NameValuePair();
 				janT.setName("Jan.");
@@ -346,6 +347,12 @@ public class DashboardServiceImpl implements DashboardService {
 				janC.setName("Jan.");
 				janC.setValue(targetCommitmentActual.getCommitment().intValue());
 				monthC.add(janC);
+				
+				NameValuePair janA = new NameValuePair();
+				janA.setName("Jan.");
+				janA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(janA);
+				
 			}
 		}
 
