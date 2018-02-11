@@ -1,40 +1,63 @@
 package org.arpicoinsurance.groupit.dashboard.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.arpicoinsurance.groupit.dashboard.dao.DashboardTypeDao;
+import org.arpicoinsurance.groupit.dashboard.dao.TargetActualDao;
+import org.arpicoinsurance.groupit.dashboard.dao.TargetCommitmentActualDao;
+import org.arpicoinsurance.groupit.dashboard.dto.AgentAchievement;
+import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 import org.arpicoinsurance.groupit.dashboard.dto.DevPolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.MainRespDto;
 import org.arpicoinsurance.groupit.dashboard.dto.MonthlyTarget;
 import org.arpicoinsurance.groupit.dashboard.dto.NameSeriasPair;
 import org.arpicoinsurance.groupit.dashboard.dto.NameValuePair;
 import org.arpicoinsurance.groupit.dashboard.dto.PendingPol;
+import org.arpicoinsurance.groupit.dashboard.dto.TargetCommitmentActual;
 import org.arpicoinsurance.groupit.dashboard.dto.Top3;
 import org.arpicoinsurance.groupit.dashboard.service.DashboardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@Transactional
 public class DashboardServiceImpl implements DashboardService {
 
+	@Autowired
+	TargetActualDao targetActualDao;
+
+	@Autowired
+	DashboardTypeDao dashboardTypeDao;
+	
+	@Autowired
+	TargetCommitmentActualDao targetCommitmentActualDao;
+	
 	@Override
 	public MainRespDto getDashboard(Integer id) throws Exception {
+		DashboardPara dashboardPara = dashboardTypeDao.getDashboardPara("3857");
+		dashboardPara.setDashyear(2017);;
 
+		AgentAchievement agentAchievement = targetActualDao.getAgentAchievement(dashboardPara, 4, 2017);
+		List<AgentAchievement> agentAchievements = targetActualDao.getAgentAchievements(dashboardPara, 2017);
+		
+		List<TargetCommitmentActual> targetCommitmentActualNOPList = targetCommitmentActualDao.getCurrentYearNOP(dashboardPara);        
+		
 		MainRespDto mainRespDto = new MainRespDto();
 
 		MonthlyTarget monthlyTarget = new MonthlyTarget();
 
-		monthlyTarget.setActual(150000);
-		monthlyTarget.setTarget(200000);
-		monthlyTarget.setTargetExpand(250000);
+		monthlyTarget.setActual(agentAchievement.getTrgach().intValue());
+		monthlyTarget.setTarget(agentAchievement.getTrgamt().intValue());
+		Double targetExpand = agentAchievement.getTrgamt()+(agentAchievement.getTrgamt()/3);
+		monthlyTarget.setTargetExpand(targetExpand.intValue());
 		mainRespDto.setMonthlyTarget(monthlyTarget);
 
-		mainRespDto.setYearlyTarget(getYearlyValues());
-		mainRespDto.setNop(getNOP());
-		mainRespDto.setGwp(getNOP());
-		mainRespDto.setMcfp(getNOP());
-		mainRespDto.setRiny1(getNOP());
-		mainRespDto.setFyp(getNOP());
+		mainRespDto.setYearlyTarget(getYearlyValues(agentAchievement,agentAchievements));
+		mainRespDto.setNop(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
+		mainRespDto.setGwp(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
+		mainRespDto.setMcfp(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
+		mainRespDto.setRiny1(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
+		mainRespDto.setFyp(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
 		mainRespDto.setIc(getTop3());
 		mainRespDto.setUl(getTop3());
 		mainRespDto.setRegion(getTop3());
@@ -44,7 +67,7 @@ public class DashboardServiceImpl implements DashboardService {
 		mainRespDto.setPendingPolList(getPendingPol());
 		return mainRespDto;
 	}
-
+	
 	private ArrayList<PendingPol> getPendingPol() {
 		ArrayList<PendingPol> arrayList=new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
@@ -100,173 +123,203 @@ public class DashboardServiceImpl implements DashboardService {
 		return arrayList;
 	}
 
-	private ArrayList<NameSeriasPair> getYearlyValues() {
+	private ArrayList<NameSeriasPair> getYearlyValues(AgentAchievement agentAchievement,List<AgentAchievement> achievements) {
 		ArrayList<NameSeriasPair> yearlyValues = new ArrayList<>();
 
-		NameSeriasPair jan = new NameSeriasPair();
+		for (AgentAchievement achievement : achievements) {
+			
+			if(achievement.getMonth() == 1){
+				
+				NameSeriasPair jan = new NameSeriasPair();
 
-		ArrayList<NameValuePair> janVal = new ArrayList<>();
+				ArrayList<NameValuePair> janVal = new ArrayList<>();
 
-		NameValuePair janT = new NameValuePair();
-		janT.setName("Target");
-		janT.setValue(250000);
-		janVal.add(janT);
-		NameValuePair janA = new NameValuePair();
-		janA.setName("Actual");
-		janA.setValue(225000);
-		janVal.add(janA);
+				NameValuePair janT = new NameValuePair();
+				janT.setName("Target");
+				janT.setValue(achievement.getTrgamt().intValue());
+				janVal.add(janT);
+				NameValuePair janA = new NameValuePair();
+				janA.setName("Actual");
+				janA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				janVal.add(janA);
 
-		jan.setName("Jan.");
-		jan.setSeries(janVal);
+				jan.setName("Jan.");
+				jan.setSeries(janVal);
 
-		yearlyValues.add(jan);
-
-		NameSeriasPair feb = new NameSeriasPair();
-		ArrayList<NameValuePair> febVal = new ArrayList<>();
-		NameValuePair febT = new NameValuePair();
-		febT.setName("Target");
-		febT.setValue(150000);
-		febVal.add(febT);
-		NameValuePair febA = new NameValuePair();
-		febA.setName("Actual");
-		febA.setValue(225000);
-		febVal.add(febA);
-		feb.setName("Feb.");
-		feb.setSeries(febVal);
-		yearlyValues.add(feb);
-
-		NameSeriasPair mar = new NameSeriasPair();
-		ArrayList<NameValuePair> marVal = new ArrayList<>();
-		NameValuePair marT = new NameValuePair();
-		marT.setName("Target");
-		marT.setValue(175000);
-		marVal.add(marT);
-		NameValuePair marA = new NameValuePair();
-		marA.setName("Actual");
-		marA.setValue(150000);
-		marVal.add(marA);
-		mar.setName("Mar.");
-		mar.setSeries(marVal);
-		yearlyValues.add(mar);
-
-		NameSeriasPair apr = new NameSeriasPair();
-		ArrayList<NameValuePair> aprVal = new ArrayList<>();
-		NameValuePair aprT = new NameValuePair();
-		aprT.setName("Target");
-		aprT.setValue(180000);
-		aprVal.add(aprT);
-		NameValuePair aprA = new NameValuePair();
-		aprA.setName("Actual");
-		aprA.setValue(170000);
-		aprVal.add(aprA);
-		apr.setName("Apr.");
-		apr.setSeries(aprVal);
-		yearlyValues.add(apr);
-
-		NameSeriasPair may = new NameSeriasPair();
-		ArrayList<NameValuePair> mayVal = new ArrayList<>();
-		NameValuePair mayT = new NameValuePair();
-		mayT.setName("Target");
-		mayT.setValue(145000);
-		mayVal.add(mayT);
-		NameValuePair mayA = new NameValuePair();
-		mayA.setName("Actual");
-		mayA.setValue(150000);
-		mayVal.add(mayA);
-		may.setName("May");
-		may.setSeries(mayVal);
-		yearlyValues.add(may);
-
-		NameSeriasPair jun = new NameSeriasPair();
-		ArrayList<NameValuePair> junVal = new ArrayList<>();
-		NameValuePair junT = new NameValuePair();
-		junT.setName("Target");
-		junT.setValue(180000);
-		junVal.add(junT);
-		NameValuePair junA = new NameValuePair();
-		junA.setName("Actual");
-		junA.setValue(130000);
-		junVal.add(junA);
-		jun.setName("Jun.");
-		jun.setSeries(junVal);
-		yearlyValues.add(jun);
-
-		NameSeriasPair Jul = new NameSeriasPair();
-		ArrayList<NameValuePair> JulVal = new ArrayList<>();
-		NameValuePair JulT = new NameValuePair();
-		JulT.setName("Target");
-		JulT.setValue(125000);
-		JulVal.add(JulT);
-		NameValuePair JulA = new NameValuePair();
-		JulA.setName("Actual");
-		JulA.setValue(150000);
-		JulVal.add(JulA);
-		Jul.setName("Jul.");
-		Jul.setSeries(JulVal);
-		yearlyValues.add(Jul);
-
-		NameSeriasPair aug = new NameSeriasPair();
-		ArrayList<NameValuePair> augVal = new ArrayList<>();
-		NameValuePair augT = new NameValuePair();
-		augT.setName("Target");
-		augT.setValue(250000);
-		augVal.add(augT);
-		NameValuePair augA = new NameValuePair();
-		augA.setName("Actual");
-		augA.setValue(225000);
-		augVal.add(augA);
-		aug.setName("Aug.");
-		aug.setSeries(augVal);
-		yearlyValues.add(aug);
-
-		NameSeriasPair sep = new NameSeriasPair();
-		ArrayList<NameValuePair> sepVal = new ArrayList<>();
-		NameValuePair sepT = new NameValuePair();
-		sepT.setName("Target");
-		sepT.setValue(250000);
-		sepVal.add(sepT);
-		NameValuePair sepA = new NameValuePair();
-		sepA.setName("Actual");
-		sepA.setValue(147000);
-		sepVal.add(sepA);
-		sep.setName("Sep.");
-		sep.setSeries(sepVal);
-		yearlyValues.add(sep);
-
-		NameSeriasPair oct = new NameSeriasPair();
-		ArrayList<NameValuePair> octVal = new ArrayList<>();
-		NameValuePair octT = new NameValuePair();
-		octT.setName("Target");
-		octT.setValue(150000);
-		octVal.add(octT);
-		oct.setName("Oct.");
-		oct.setSeries(octVal);
-		yearlyValues.add(oct);
-
-		NameSeriasPair nov = new NameSeriasPair();
-		ArrayList<NameValuePair> novVal = new ArrayList<>();
-		NameValuePair novT = new NameValuePair();
-		novT.setName("Target");
-		novT.setValue(200000);
-		novVal.add(novT);
-		nov.setName("Nov.");
-		nov.setSeries(novVal);
-		yearlyValues.add(nov);
-
-		NameSeriasPair dec = new NameSeriasPair();
-		ArrayList<NameValuePair> decVal = new ArrayList<>();
-		NameValuePair decT = new NameValuePair();
-		decT.setName("Target");
-		decT.setValue(170000);
-		decVal.add(decT);
-		dec.setName("Dec.");
-		dec.setSeries(decVal);
-		yearlyValues.add(dec);
-
+				yearlyValues.add(jan);
+				
+			} else if(achievement.getMonth() == 2){
+				NameSeriasPair feb = new NameSeriasPair();
+				ArrayList<NameValuePair> febVal = new ArrayList<>();
+				NameValuePair febT = new NameValuePair();
+				febT.setName("Target");
+				febT.setValue(achievement.getTrgamt().intValue());
+				febVal.add(febT);
+				NameValuePair febA = new NameValuePair();
+				febA.setName("Actual");
+				febA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				febVal.add(febA);
+				feb.setName("Feb.");
+				feb.setSeries(febVal);
+				yearlyValues.add(feb);
+				
+			} else if(achievement.getMonth() == 3){
+				NameSeriasPair mar = new NameSeriasPair();
+				ArrayList<NameValuePair> marVal = new ArrayList<>();
+				NameValuePair marT = new NameValuePair();
+				marT.setName("Target");
+				marT.setValue(achievement.getTrgamt().intValue());
+				marVal.add(marT);
+				NameValuePair marA = new NameValuePair();
+				marA.setName("Actual");
+				marA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				marVal.add(marA);
+				mar.setName("Mar.");
+				mar.setSeries(marVal);
+				yearlyValues.add(mar);
+				
+			} else if(achievement.getMonth() == 4){
+				NameSeriasPair apr = new NameSeriasPair();
+				ArrayList<NameValuePair> aprVal = new ArrayList<>();
+				NameValuePair aprT = new NameValuePair();
+				aprT.setName("Target");
+				aprT.setValue(achievement.getTrgamt().intValue());
+				aprVal.add(aprT);
+				NameValuePair aprA = new NameValuePair();
+				aprA.setName("Actual");
+				aprA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				aprVal.add(aprA);
+				apr.setName("Apr.");
+				apr.setSeries(aprVal);
+				yearlyValues.add(apr);
+				
+			} else if(achievement.getMonth() == 5){
+				NameSeriasPair may = new NameSeriasPair();
+				ArrayList<NameValuePair> mayVal = new ArrayList<>();
+				NameValuePair mayT = new NameValuePair();
+				mayT.setName("Target");
+				mayT.setValue(achievement.getTrgamt().intValue());
+				mayVal.add(mayT);
+				NameValuePair mayA = new NameValuePair();
+				mayA.setName("Actual");
+				mayA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				mayVal.add(mayA);
+				may.setName("May");
+				may.setSeries(mayVal);
+				yearlyValues.add(may);
+				
+			} else if(achievement.getMonth() == 6){
+				NameSeriasPair jun = new NameSeriasPair();
+				ArrayList<NameValuePair> junVal = new ArrayList<>();
+				NameValuePair junT = new NameValuePair();
+				junT.setName("Target");
+				junT.setValue(achievement.getTrgamt().intValue());
+				junVal.add(junT);
+				NameValuePair junA = new NameValuePair();
+				junA.setName("Actual");
+				junA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				junVal.add(junA);
+				jun.setName("Jun.");
+				jun.setSeries(junVal);
+				yearlyValues.add(jun);
+				
+			} else if(achievement.getMonth() == 7){
+				NameSeriasPair Jul = new NameSeriasPair();
+				ArrayList<NameValuePair> JulVal = new ArrayList<>();
+				NameValuePair JulT = new NameValuePair();
+				JulT.setName("Target");
+				JulT.setValue(achievement.getTrgamt().intValue());
+				JulVal.add(JulT);
+				NameValuePair JulA = new NameValuePair();
+				JulA.setName("Actual");
+				JulA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				JulVal.add(JulA);
+				Jul.setName("Jul.");
+				Jul.setSeries(JulVal);
+				yearlyValues.add(Jul);
+				
+			} else if(achievement.getMonth() == 8){
+				NameSeriasPair aug = new NameSeriasPair();
+				ArrayList<NameValuePair> augVal = new ArrayList<>();
+				NameValuePair augT = new NameValuePair();
+				augT.setName("Target");
+				augT.setValue(achievement.getTrgamt().intValue());
+				augVal.add(augT);
+				NameValuePair augA = new NameValuePair();
+				augA.setName("Actual");
+				augA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				augVal.add(augA);
+				aug.setName("Aug.");
+				aug.setSeries(augVal);
+				yearlyValues.add(aug);
+				
+			} else if(achievement.getMonth() == 9){
+				NameSeriasPair sep = new NameSeriasPair();
+				ArrayList<NameValuePair> sepVal = new ArrayList<>();
+				NameValuePair sepT = new NameValuePair();
+				sepT.setName("Target");
+				sepT.setValue(achievement.getTrgamt().intValue());
+				sepVal.add(sepT);
+				NameValuePair sepA = new NameValuePair();
+				sepA.setName("Actual");
+				sepA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				sepVal.add(sepA);
+				sep.setName("Sep.");
+				sep.setSeries(sepVal);
+				yearlyValues.add(sep);
+				
+			} else if(achievement.getMonth() == 10){
+				NameSeriasPair oct = new NameSeriasPair();
+				ArrayList<NameValuePair> octVal = new ArrayList<>();
+				NameValuePair octT = new NameValuePair();
+				octT.setName("Target");
+				octT.setValue(achievement.getTrgamt().intValue());
+				octVal.add(octT);
+				NameValuePair octA = new NameValuePair();
+				octA.setName("Actual");
+				octA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				octVal.add(octA);
+				oct.setName("Oct.");
+				oct.setSeries(octVal);
+				yearlyValues.add(oct);
+				
+			} else if(achievement.getMonth() == 11){
+				NameSeriasPair nov = new NameSeriasPair();
+				ArrayList<NameValuePair> novVal = new ArrayList<>();
+				NameValuePair novT = new NameValuePair();
+				novT.setName("Target");
+				novT.setValue(achievement.getTrgamt().intValue());
+				novVal.add(novT);
+				NameValuePair novA = new NameValuePair();
+				novA.setName("Actual");
+				novA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				novVal.add(novA);
+				nov.setName("Nov.");
+				nov.setSeries(novVal);
+				yearlyValues.add(nov);
+				
+			} else if(achievement.getMonth() == 12){
+				NameSeriasPair dec = new NameSeriasPair();
+				ArrayList<NameValuePair> decVal = new ArrayList<>();
+				NameValuePair decT = new NameValuePair();
+				decT.setName("Target");
+				decT.setValue(achievement.getTrgamt().intValue());
+				decVal.add(decT);
+				NameValuePair decA = new NameValuePair();
+				decA.setName("Actual");
+				decA.setValue(agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue());
+				decVal.add(decA);
+				dec.setName("Dec.");
+				dec.setSeries(decVal);
+				yearlyValues.add(dec);
+				
+			}
+		}
+		
 		return yearlyValues;
 	}
 
-	private ArrayList<NameSeriasPair> getNOP() {
+	private ArrayList<NameSeriasPair> processTargetCommitmentActualChart(List<TargetCommitmentActual> targetCommitmentActualNOPList) {
 		ArrayList<NameSeriasPair> yearlyValues = new ArrayList<>();
 
 		NameSeriasPair actual = new NameSeriasPair();
@@ -274,11 +327,29 @@ public class DashboardServiceImpl implements DashboardService {
 		NameSeriasPair commitment = new NameSeriasPair();
 
 		ArrayList<NameValuePair> monthA = new ArrayList<>();
+		ArrayList<NameValuePair> monthT = new ArrayList<>();
+		ArrayList<NameValuePair> monthC = new ArrayList<>();
+		
+		for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualNOPList) {
+			if(targetCommitmentActual.getMonth() == 1){
+				NameValuePair janA = new NameValuePair();
+				janA.setName("Jan.");
+				janA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(janA);
+				
+				NameValuePair janT = new NameValuePair();
+				janT.setName("Jan.");
+				janT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(janT);
+				
+				NameValuePair janC = new NameValuePair();
+				janC.setName("Jan.");
+				janC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(janC);
+			}
+		}
 
-		NameValuePair janA = new NameValuePair();
-		janA.setName("Jan.");
-		janA.setValue(213000);
-		monthA.add(janA);
+		
 		NameValuePair febA = new NameValuePair();
 		febA.setName("Feb.");
 		febA.setValue(234000);
@@ -324,12 +395,9 @@ public class DashboardServiceImpl implements DashboardService {
 		decA.setValue(145000);
 		monthA.add(decA);
 
-		ArrayList<NameValuePair> monthT = new ArrayList<>();
+		
 
-		NameValuePair janT = new NameValuePair();
-		janT.setName("Jan.");
-		janT.setValue(248000);
-		monthT.add(janT);
+		
 		NameValuePair febT = new NameValuePair();
 		febT.setName("Feb.");
 		febT.setValue(249000);
@@ -375,12 +443,9 @@ public class DashboardServiceImpl implements DashboardService {
 		decT.setValue(145000);
 		monthT.add(decT);
 		
-		ArrayList<NameValuePair> monthC = new ArrayList<>();
+		
 
-		NameValuePair janC = new NameValuePair();
-		janC.setName("Jan.");
-		janC.setValue(145000);
-		monthC.add(janC);
+		
 		NameValuePair febC = new NameValuePair();
 		febC.setName("Feb.");
 		febC.setValue(189000);
