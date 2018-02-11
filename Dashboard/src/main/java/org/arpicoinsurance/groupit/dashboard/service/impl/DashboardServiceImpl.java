@@ -43,8 +43,12 @@ public class DashboardServiceImpl implements DashboardService {
 		List<AgentAchievement> agentAchievements = targetActualDao.getAgentAchievements(dashboardPara, 2017);
 		
 		dashboardPara.setDashtype("BRANCH");
-		dashboardPara.setDashpara("HOR");
+		dashboardPara.setDashpara("BOR");
 		List<TargetCommitmentActual> targetCommitmentActualNOPList = targetCommitmentActualDao.getCurrentYearNOP(dashboardPara);        
+		List<TargetCommitmentActual> targetCommitmentActualGWPList = targetCommitmentActualDao.getCurrentYearGWP(dashboardPara);
+		List<TargetCommitmentActual> targetCommitmentActualMCFPList = targetCommitmentActualDao.getCurrentYearMCFP(dashboardPara);
+		List<TargetCommitmentActual> targetCommitmentActualFYPAchList = targetCommitmentActualDao.getCurrentYearFYPAch(dashboardPara);
+		List<TargetCommitmentActual> targetCommitmentActualRTNY1List = targetCommitmentActualDao.getCurrentYearRTNY1(dashboardPara);
 		
 		MainRespDto mainRespDto = new MainRespDto();
 
@@ -58,10 +62,10 @@ public class DashboardServiceImpl implements DashboardService {
 
 		mainRespDto.setYearlyTarget(getYearlyValues(agentAchievement,agentAchievements));
 		mainRespDto.setNop(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
-		mainRespDto.setGwp(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
-		mainRespDto.setMcfp(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
-		mainRespDto.setRiny1(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
-		mainRespDto.setFyp(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
+		mainRespDto.setGwp(processTargetCommitmentActualChart(targetCommitmentActualGWPList));
+		mainRespDto.setMcfp(processTargetCommitmentActualChart(targetCommitmentActualMCFPList));
+		mainRespDto.setRiny1(processCommitmentActualChart(targetCommitmentActualRTNY1List));
+		mainRespDto.setFyp(processTargetCommitmentActualChart(targetCommitmentActualFYPAchList));
 		mainRespDto.setIc(getTop3());
 		mainRespDto.setUl(getTop3());
 		mainRespDto.setRegion(getTop3());
@@ -353,151 +357,196 @@ public class DashboardServiceImpl implements DashboardService {
 				janA.setValue(targetCommitmentActual.getActual().intValue());
 				monthA.add(janA);
 				
+			} if(targetCommitmentActual.getMonth() == 2){
+				
+				NameValuePair febT = new NameValuePair();
+				febT.setName("Feb.");
+				febT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(febT);
+
+				NameValuePair febC = new NameValuePair();
+				febC.setName("Feb.");
+				febC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(febC);
+				
+				NameValuePair febA = new NameValuePair();
+				febA.setName("Feb.");
+				febA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(febA);
+				
+			} if(targetCommitmentActual.getMonth() == 3){
+
+				NameValuePair marT = new NameValuePair();
+				marT.setName("Mar.");
+				marT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(marT);
+
+				NameValuePair marC = new NameValuePair();
+				marC.setName("Mar.");
+				marC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(marC);
+				
+				NameValuePair marA = new NameValuePair();
+				marA.setName("Mar.");
+				marA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(marA);
+				
+			} if(targetCommitmentActual.getMonth() == 4){
+
+				NameValuePair aprT = new NameValuePair();
+				aprT.setName("Apr.");
+				aprT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(aprT);
+
+				NameValuePair aprC = new NameValuePair();
+				aprC.setName("Apr.");
+				aprC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(aprC);
+				
+				NameValuePair aprA = new NameValuePair();
+				aprA.setName("Apr.");
+				aprA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(aprA);
+				
+			} if(targetCommitmentActual.getMonth() == 5){
+
+				NameValuePair mayT = new NameValuePair();
+				mayT.setName("May.");
+				mayT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(mayT);
+
+				NameValuePair mayC = new NameValuePair();
+				mayC.setName("May.");
+				mayC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(mayC);
+				
+				NameValuePair mayA = new NameValuePair();
+				mayA.setName("May.");
+				mayA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(mayA);
+				
+			} if(targetCommitmentActual.getMonth() == 6){
+
+				NameValuePair junT = new NameValuePair();
+				junT.setName("Jun.");
+				junT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(junT);
+
+				NameValuePair junC = new NameValuePair();
+				junC.setName("Jun.");
+				junC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(junC);
+				
+				NameValuePair junA = new NameValuePair();
+				junA.setName("Jun.");
+				junA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(junA);
+				
+			} if(targetCommitmentActual.getMonth() == 7){
+
+				NameValuePair julT = new NameValuePair();
+				julT.setName("Jul.");
+				julT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(julT);
+
+				NameValuePair julC = new NameValuePair();
+				julC.setName("Jul.");
+				julC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(julC);
+				
+				NameValuePair julA = new NameValuePair();
+				julA.setName("Jul.");
+				julA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(julA);
+				
+			} if(targetCommitmentActual.getMonth() == 8){
+
+				NameValuePair augT = new NameValuePair();
+				augT.setName("Aug.");
+				augT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(augT);
+
+				NameValuePair augC = new NameValuePair();
+				augC.setName("Aug.");
+				augC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(augC);
+				
+				NameValuePair augA = new NameValuePair();
+				augA.setName("Aug.");
+				augA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(augA);
+				
+			} if(targetCommitmentActual.getMonth() == 9){
+
+				NameValuePair sepT = new NameValuePair();
+				sepT.setName("Sep.");
+				sepT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(sepT);
+
+				NameValuePair sepC = new NameValuePair();
+				sepC.setName("Sep.");
+				sepC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(sepC);
+				
+				NameValuePair sepA = new NameValuePair();
+				sepA.setName("Sep.");
+				sepA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(sepA);
+				
+			} if(targetCommitmentActual.getMonth() == 10){
+				
+				NameValuePair octT = new NameValuePair();
+				octT.setName("Oct.");
+				octT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(octT);
+
+				NameValuePair octC = new NameValuePair();
+				octC.setName("Oct.");
+				octC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(octC);
+				
+				NameValuePair octA = new NameValuePair();
+				octA.setName("Oct.");
+				octA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(octA);
+				
+			} if(targetCommitmentActual.getMonth() == 11){
+
+				NameValuePair novT = new NameValuePair();
+				novT.setName("Nov.");
+				novT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(novT);
+
+				NameValuePair novC = new NameValuePair();
+				novC.setName("Nov.");
+				novC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(novC);
+				
+				NameValuePair novA = new NameValuePair();
+				novA.setName("Nov.");
+				novA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(novA);
+				
+			} if(targetCommitmentActual.getMonth() == 12){
+
+				NameValuePair decT = new NameValuePair();
+				decT.setName("Dec.");
+				decT.setValue(targetCommitmentActual.getTarget().intValue());
+				monthT.add(decT);
+
+				NameValuePair decC = new NameValuePair();
+				decC.setName("Dec.");
+				decC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(decC);
+				
+				NameValuePair decA = new NameValuePair();
+				decA.setName("Dec.");
+				decA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(decA);
+				
 			}
 		}
-
 		
-		NameValuePair febA = new NameValuePair();
-		febA.setName("Feb.");
-		febA.setValue(234000);
-		monthA.add(febA);
-		NameValuePair marA = new NameValuePair();
-		marA.setName("Mar.");
-		marA.setValue(246000);
-		monthA.add(marA);
-		NameValuePair aprA = new NameValuePair();
-		aprA.setName("Apr.");
-		aprA.setValue(246000);
-		monthA.add(aprA);
-		NameValuePair mayA = new NameValuePair();
-		mayA.setName("May.");
-		mayA.setValue(254000);
-		monthA.add(mayA);
-		NameValuePair junA = new NameValuePair();
-		junA.setName("Jun.");
-		junA.setValue(148000);
-		monthA.add(junA);
-		NameValuePair julA = new NameValuePair();
-		julA.setName("Jul.");
-		julA.setValue(147000);
-		monthA.add(julA);
-		NameValuePair augA = new NameValuePair();
-		augA.setName("Aug.");
-		augA.setValue(123000);
-		monthA.add(augA);
-		NameValuePair sepA = new NameValuePair();
-		sepA.setName("Sep.");
-		sepA.setValue(145000);
-		monthA.add(sepA);
-		NameValuePair octA = new NameValuePair();
-		octA.setName("Oct.");
-		octA.setValue(155000);
-		monthA.add(octA);
-		NameValuePair novA = new NameValuePair();
-		novA.setName("Nov.");
-		novA.setValue(165000);
-		monthA.add(novA);
-		NameValuePair decA = new NameValuePair();
-		decA.setName("Dec.");
-		decA.setValue(145000);
-		monthA.add(decA);
-
-		
-
-		
-		NameValuePair febT = new NameValuePair();
-		febT.setName("Feb.");
-		febT.setValue(249000);
-		monthT.add(febT);
-		NameValuePair marT = new NameValuePair();
-		marT.setName("Mar.");
-		marT.setValue(269000);
-		monthT.add(marT);
-		NameValuePair aprT = new NameValuePair();
-		aprT.setName("Apr.");
-		aprT.setValue(247000);
-		monthT.add(aprT);
-		NameValuePair mayT = new NameValuePair();
-		mayT.setName("May.");
-		mayT.setValue(259000);
-		monthT.add(mayT);
-		NameValuePair junT = new NameValuePair();
-		junT.setName("Jun.");
-		junT.setValue(258000);
-		monthT.add(junT);
-		NameValuePair julT = new NameValuePair();
-		julT.setName("Jul.");
-		julT.setValue(257000);
-		monthT.add(julT);
-		NameValuePair augT = new NameValuePair();
-		augT.setName("Aug.");
-		augT.setValue(213000);
-		monthT.add(augT);
-		NameValuePair sepT = new NameValuePair();
-		sepT.setName("Sep.");
-		sepT.setValue(123000);
-		monthT.add(sepT);
-		NameValuePair octT = new NameValuePair();
-		octT.setName("Oct.");
-		octT.setValue(321000);
-		monthT.add(octT);
-		NameValuePair novT = new NameValuePair();
-		novT.setName("Nov.");
-		novT.setValue(456000);
-		monthT.add(novT);
-		NameValuePair decT = new NameValuePair();
-		decT.setName("Dec.");
-		decT.setValue(145000);
-		monthT.add(decT);
-		
-		
-
-		
-		NameValuePair febC = new NameValuePair();
-		febC.setName("Feb.");
-		febC.setValue(189000);
-		monthC.add(febC);
-		NameValuePair marC = new NameValuePair();
-		marC.setName("Mar.");
-		marC.setValue(155000);
-		monthC.add(marC);
-		NameValuePair aprC = new NameValuePair();
-		aprC.setName("Apr.");
-		aprC.setValue(320000);
-		monthC.add(aprC);
-		NameValuePair mayC = new NameValuePair();
-		mayC.setName("May.");
-		mayC.setValue(146000);
-		monthC.add(mayC);
-		NameValuePair junC = new NameValuePair();
-		junC.setName("Jun.");
-		junC.setValue(152000);
-		monthC.add(junC);
-		NameValuePair julC = new NameValuePair();
-		julC.setName("Jul.");
-		julC.setValue(120000);
-		monthC.add(julC);
-		NameValuePair augC = new NameValuePair();
-		augC.setName("Aug.");
-		augC.setValue(145000);
-		monthC.add(augC);
-		NameValuePair sepC = new NameValuePair();
-		sepC.setName("Sep.");
-		sepC.setValue(250000);
-		monthC.add(sepC);
-		NameValuePair octC = new NameValuePair();
-		octC.setName("Oct.");
-		octC.setValue(180000);
-		monthC.add(octC);
-		NameValuePair novC = new NameValuePair();
-		novC.setName("Nov.");
-		novC.setValue(140000);
-		monthC.add(novC);
-		NameValuePair decC = new NameValuePair();
-		decC.setName("Dec.");
-		decC.setValue(150000);
-		monthC.add(decC);
-
 		actual.setName("Actual");
 		actual.setSeries(monthA);
 		target.setName("Target");
@@ -505,9 +554,178 @@ public class DashboardServiceImpl implements DashboardService {
 		commitment.setName("Commitment");
 		commitment.setSeries(monthC);
 
-		yearlyValues.add(actual);
 		yearlyValues.add(target);
 		yearlyValues.add(commitment);
+		yearlyValues.add(actual);
+
+		return yearlyValues;
+	}
+	
+	private ArrayList<NameSeriasPair> processCommitmentActualChart(List<TargetCommitmentActual> targetCommitmentActualNOPList) {
+		ArrayList<NameSeriasPair> yearlyValues = new ArrayList<>();
+
+		NameSeriasPair actual = new NameSeriasPair();
+		NameSeriasPair commitment = new NameSeriasPair();
+
+		ArrayList<NameValuePair> monthA = new ArrayList<>();
+		ArrayList<NameValuePair> monthC = new ArrayList<>();
+		
+		for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualNOPList) {
+			
+			if(targetCommitmentActual.getMonth() == 1){
+				
+				NameValuePair janC = new NameValuePair();
+				janC.setName("Jan.");
+				janC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(janC);
+				
+				NameValuePair janA = new NameValuePair();
+				janA.setName("Jan.");
+				janA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(janA);
+				
+			} if(targetCommitmentActual.getMonth() == 2){
+				
+				NameValuePair febC = new NameValuePair();
+				febC.setName("Feb.");
+				febC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(febC);
+				
+				NameValuePair febA = new NameValuePair();
+				febA.setName("Feb.");
+				febA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(febA);
+				
+			} if(targetCommitmentActual.getMonth() == 3){
+
+				NameValuePair marC = new NameValuePair();
+				marC.setName("Mar.");
+				marC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(marC);
+				
+				NameValuePair marA = new NameValuePair();
+				marA.setName("Mar.");
+				marA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(marA);
+				
+			} if(targetCommitmentActual.getMonth() == 4){
+
+				NameValuePair aprC = new NameValuePair();
+				aprC.setName("Apr.");
+				aprC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(aprC);
+				
+				NameValuePair aprA = new NameValuePair();
+				aprA.setName("Apr.");
+				aprA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(aprA);
+				
+			} if(targetCommitmentActual.getMonth() == 5){
+
+				NameValuePair mayC = new NameValuePair();
+				mayC.setName("May.");
+				mayC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(mayC);
+				
+				NameValuePair mayA = new NameValuePair();
+				mayA.setName("May.");
+				mayA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(mayA);
+				
+			} if(targetCommitmentActual.getMonth() == 6){
+
+				NameValuePair junC = new NameValuePair();
+				junC.setName("Jun.");
+				junC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(junC);
+				
+				NameValuePair junA = new NameValuePair();
+				junA.setName("Jun.");
+				junA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(junA);
+				
+			} if(targetCommitmentActual.getMonth() == 7){
+
+				NameValuePair julC = new NameValuePair();
+				julC.setName("Jul.");
+				julC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(julC);
+				
+				NameValuePair julA = new NameValuePair();
+				julA.setName("Jul.");
+				julA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(julA);
+				
+			} if(targetCommitmentActual.getMonth() == 8){
+
+				NameValuePair augC = new NameValuePair();
+				augC.setName("Aug.");
+				augC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(augC);
+				
+				NameValuePair augA = new NameValuePair();
+				augA.setName("Aug.");
+				augA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(augA);
+				
+			} if(targetCommitmentActual.getMonth() == 9){
+
+				NameValuePair sepC = new NameValuePair();
+				sepC.setName("Sep.");
+				sepC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(sepC);
+				
+				NameValuePair sepA = new NameValuePair();
+				sepA.setName("Sep.");
+				sepA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(sepA);
+				
+			} if(targetCommitmentActual.getMonth() == 10){
+				
+				NameValuePair octC = new NameValuePair();
+				octC.setName("Oct.");
+				octC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(octC);
+				
+				NameValuePair octA = new NameValuePair();
+				octA.setName("Oct.");
+				octA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(octA);
+				
+			} if(targetCommitmentActual.getMonth() == 11){
+
+				NameValuePair novC = new NameValuePair();
+				novC.setName("Nov.");
+				novC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(novC);
+				
+				NameValuePair novA = new NameValuePair();
+				novA.setName("Nov.");
+				novA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(novA);
+				
+			} if(targetCommitmentActual.getMonth() == 12){
+
+				NameValuePair decC = new NameValuePair();
+				decC.setName("Dec.");
+				decC.setValue(targetCommitmentActual.getCommitment().intValue());
+				monthC.add(decC);
+				
+				NameValuePair decA = new NameValuePair();
+				decA.setName("Dec.");
+				decA.setValue(targetCommitmentActual.getActual().intValue());
+				monthA.add(decA);
+				
+			}
+		}
+		
+		actual.setName("Actual");
+		actual.setSeries(monthA);
+		commitment.setName("Commitment");
+		commitment.setSeries(monthC);
+
+		yearlyValues.add(commitment);
+		yearlyValues.add(actual);
 
 		return yearlyValues;
 	}
