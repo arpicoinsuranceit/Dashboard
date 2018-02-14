@@ -1,7 +1,7 @@
 package org.arpicoinsurance.groupit.dashboard.dto;
 
 public class MonthlyTarget {
-	private Integer actual;
+	private Integer actual = 0;
 	private Integer target;
 	private Integer targetExpand;
 	

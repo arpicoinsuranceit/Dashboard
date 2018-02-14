@@ -68,6 +68,18 @@ public class DashboardServiceImpl implements DashboardService {
 		mainRespDto.setMcfp(processTargetCommitmentActualChart(targetCommitmentActualMCFPList));
 		mainRespDto.setRiny1(processCommitmentActualChart(targetCommitmentActualRTNY1List));
 		mainRespDto.setFyp(processTargetCommitmentActualChart(targetCommitmentActualFYPAchList));
+		
+		
+		///////////////////Need to implement/////////////////////////////////////
+		
+		mainRespDto.setNopC(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
+		mainRespDto.setGwpC(processTargetCommitmentActualChart(targetCommitmentActualGWPList));
+		mainRespDto.setMcfpC(processTargetCommitmentActualChart(targetCommitmentActualMCFPList));
+		mainRespDto.setFypC(processTargetCommitmentActualChart(targetCommitmentActualFYPAchList));
+		mainRespDto.setPolicySummery(new ArrayList<>());
+		
+		////////////////////////////////////////////////////////
+		
 		mainRespDto.setIc(getTop3());
 		mainRespDto.setUl(getTop3());
 		mainRespDto.setRegion(getTop3());

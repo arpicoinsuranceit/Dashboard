@@ -3,22 +3,40 @@ package org.arpicoinsurance.groupit.dashboard.dto;
 import java.util.ArrayList;
 
 public class MainRespDto {
-	private MonthlyTarget monthlyTarget;
-	private ArrayList<NameSeriasPair> yearlyTarget;
-	private ArrayList<NameSeriasPair> nop;
-	private ArrayList<NameSeriasPair> mcfp;
-	private ArrayList<NameSeriasPair> fyp;
-	private ArrayList<NameSeriasPair> gwp;
-	private ArrayList<NameSeriasPair> riny1;
-
-	private ArrayList<Top3> ic;
-	private ArrayList<Top3> ul;
-	private ArrayList<Top3> branch;
-	private ArrayList<Top3> region;
-	private ArrayList<Top3> zone;
+	private MonthlyTarget monthlyTarget = new MonthlyTarget(); // dashbard ic
+	private ArrayList<NameSeriasPair> yearlyTarget;// dashbard ic
+	private ArrayList<NameSeriasPair> YearlyTargetCF;// dashbard ic
 	
-	private ArrayList<PendingPol> pendingPolList;
-	private ArrayList<DevPolicies> devPolicieList;
+	private MonthlyTarget monthlyTargetGWP;// dashbard ul
+	private MonthlyTarget monthlyTargetMCFP;// dashbard ul
+	private MonthlyTarget monthlyTargetFYP;// dashbard ul
+	private MonthlyTarget monthlyTargetNOP;// dashbard ul
+	
+	
+	private ArrayList<NameSeriasPair> extra; // still not decided what data will put this array..... Dashboard IC 
+	
+	
+	private ArrayList<NameSeriasPair> nop; // dashbard ul
+	private ArrayList<NameSeriasPair> mcfp; // dashbard ul
+	private ArrayList<NameSeriasPair> fyp; // dashbard ul
+	private ArrayList<NameSeriasPair> gwp; // dashbard ul
+	private ArrayList<NameSeriasPair> riny1; // dashbard ul
+
+	private ArrayList<NameSeriasPair> nopC; // dashbard ul
+	private ArrayList<NameSeriasPair> mcfpC; // dashbard ul
+	private ArrayList<NameSeriasPair> fypC; // dashbard ul
+	private ArrayList<NameSeriasPair> gwpC; // dashbard ul
+	
+	private ArrayList<Top3> ic; //  all
+	private ArrayList<Top3> ul; //  all
+	private ArrayList<Top3> branch; //  all
+	private ArrayList<Top3> region; //  all
+	private ArrayList<Top3> zone; //  all
+	
+	private ArrayList<NameValuePair> policySummery; 
+	
+	private ArrayList<PendingPol> pendingPolList; //   all
+	private ArrayList<DevPolicies> devPolicieList; //   all
 	
 	public MonthlyTarget getMonthlyTarget() {
 		return monthlyTarget;
@@ -96,6 +114,38 @@ public class MainRespDto {
 		return branch;
 	}
 
+	public ArrayList<NameSeriasPair> getNopC() {
+		return nopC;
+	}
+
+	public void setNopC(ArrayList<NameSeriasPair> nopC) {
+		this.nopC = nopC;
+	}
+
+	public ArrayList<NameSeriasPair> getMcfpC() {
+		return mcfpC;
+	}
+
+	public void setMcfpC(ArrayList<NameSeriasPair> mcfpC) {
+		this.mcfpC = mcfpC;
+	}
+
+	public ArrayList<NameSeriasPair> getFypC() {
+		return fypC;
+	}
+
+	public void setFypC(ArrayList<NameSeriasPair> fypC) {
+		this.fypC = fypC;
+	}
+
+	public ArrayList<NameSeriasPair> getGwpC() {
+		return gwpC;
+	}
+
+	public void setGwpC(ArrayList<NameSeriasPair> gwpC) {
+		this.gwpC = gwpC;
+	}
+
 	public void setBranch(ArrayList<Top3> branch) {
 		this.branch = branch;
 	}
@@ -130,6 +180,62 @@ public class MainRespDto {
 
 	public void setDevPolicieList(ArrayList<DevPolicies> devPolicieList) {
 		this.devPolicieList = devPolicieList;
+	}
+
+	public ArrayList<NameValuePair> getPolicySummery() {
+		return policySummery;
+	}
+
+	public void setPolicySummery(ArrayList<NameValuePair> policySummery) {
+		this.policySummery = policySummery;
+	}
+
+	public ArrayList<NameSeriasPair> getYearlyTargetCF() {
+		return YearlyTargetCF;
+	}
+
+	public void setYearlyTargetCF(ArrayList<NameSeriasPair> yearlyTargetCF) {
+		YearlyTargetCF = yearlyTargetCF;
+	}
+
+	public ArrayList<NameSeriasPair> getExtra() {
+		return extra;
+	}
+
+	public void setExtra(ArrayList<NameSeriasPair> extra) {
+		this.extra = extra;
+	}
+
+	public MonthlyTarget getMonthlyTargetGWP() {
+		return monthlyTargetGWP;
+	}
+
+	public void setMonthlyTargetGWP(MonthlyTarget monthlyTargetGWP) {
+		this.monthlyTargetGWP = monthlyTargetGWP;
+	}
+
+	public MonthlyTarget getMonthlyTargetMCFP() {
+		return monthlyTargetMCFP;
+	}
+
+	public void setMonthlyTargetMCFP(MonthlyTarget monthlyTargetMCFP) {
+		this.monthlyTargetMCFP = monthlyTargetMCFP;
+	}
+
+	public MonthlyTarget getMonthlyTargetFYP() {
+		return monthlyTargetFYP;
+	}
+
+	public void setMonthlyTargetFYP(MonthlyTarget monthlyTargetFYP) {
+		this.monthlyTargetFYP = monthlyTargetFYP;
+	}
+
+	public MonthlyTarget getMonthlyTargetNOP() {
+		return monthlyTargetNOP;
+	}
+
+	public void setMonthlyTargetNOP(MonthlyTarget monthlyTargetNOP) {
+		this.monthlyTargetNOP = monthlyTargetNOP;
 	}
 
 }
