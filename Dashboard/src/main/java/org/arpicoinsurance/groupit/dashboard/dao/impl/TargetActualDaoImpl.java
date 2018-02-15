@@ -2,9 +2,9 @@ package org.arpicoinsurance.groupit.dashboard.dao.impl;
 
 import java.util.List;
 import org.arpicoinsurance.groupit.dashboard.dao.TargetActualDao;
+import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.AgentAchievementRowMapper;
 import org.arpicoinsurance.groupit.dashboard.dto.AgentAchievement;
 import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
-import org.arpicoinsurance.groupit.dashboard.dto.rowmapper.AgentAchievementRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

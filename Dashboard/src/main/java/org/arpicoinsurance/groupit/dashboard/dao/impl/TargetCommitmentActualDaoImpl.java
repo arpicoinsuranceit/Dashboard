@@ -3,9 +3,9 @@ package org.arpicoinsurance.groupit.dashboard.dao.impl;
 import java.util.List;
 
 import org.arpicoinsurance.groupit.dashboard.dao.TargetCommitmentActualDao;
+import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.TargetCommitmentActualRowMapper;
 import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 import org.arpicoinsurance.groupit.dashboard.dto.TargetCommitmentActual;
-import org.arpicoinsurance.groupit.dashboard.dto.rowmapper.TargetCommitmentActualRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

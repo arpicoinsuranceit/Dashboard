@@ -60,8 +60,9 @@ public class DashboardServiceImpl implements DashboardService {
 		monthlyTarget.setTarget(agentAchievement.getTrgamt().intValue());
 		Double targetExpand = agentAchievement.getTrgamt()+(agentAchievement.getTrgamt()/3);
 		monthlyTarget.setTargetExpand(targetExpand.intValue());
-		mainRespDto.setMonthlyTarget(monthlyTarget);
 
+		
+		
 		mainRespDto.setYearlyTarget(getYearlyValues(agentAchievement,agentAchievements));
 		mainRespDto.setNop(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
 		mainRespDto.setGwp(processTargetCommitmentActualChart(targetCommitmentActualGWPList));
@@ -72,11 +73,60 @@ public class DashboardServiceImpl implements DashboardService {
 		
 		///////////////////Need to implement/////////////////////////////////////
 		
+		mainRespDto.setMonthlyTarget(monthlyTarget);
+		mainRespDto.setMonthlyTargetFYP(monthlyTarget);
+		mainRespDto.setMonthlyTargetGWP(monthlyTarget);
+		mainRespDto.setMonthlyTargetMCFP(monthlyTarget);
+		mainRespDto.setMonthlyTargetNOP(monthlyTarget);
+		
 		mainRespDto.setNopC(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
 		mainRespDto.setGwpC(processTargetCommitmentActualChart(targetCommitmentActualGWPList));
 		mainRespDto.setMcfpC(processTargetCommitmentActualChart(targetCommitmentActualMCFPList));
 		mainRespDto.setFypC(processTargetCommitmentActualChart(targetCommitmentActualFYPAchList));
 		mainRespDto.setPolicySummery(new ArrayList<>());
+		
+		ArrayList<NameValuePair> arrayList=new ArrayList<>();
+		
+		NameValuePair nameValuePair1=new NameValuePair();
+		nameValuePair1.setName("Policy Enfored");
+		nameValuePair1.setValue(5);
+		
+		arrayList.add(nameValuePair1);
+		
+		
+		NameValuePair nameValuePair2=new NameValuePair();
+		nameValuePair2.setName("Amount");
+		nameValuePair2.setValue(5000);
+		
+		arrayList.add(nameValuePair2);
+		
+		NameValuePair nameValuePair3=new NameValuePair();
+		nameValuePair3.setName("Policy Lapsed");
+		nameValuePair3.setValue(5);
+		
+		arrayList.add(nameValuePair3);
+		
+		NameValuePair nameValuePair4=new NameValuePair();
+		nameValuePair4.setName("Amount");
+		nameValuePair4.setValue(50000);
+		
+		arrayList.add(nameValuePair4);
+		
+		
+		NameValuePair nameValuePair5=new NameValuePair();
+		nameValuePair5.setName("Policy Lapsed P.");
+		nameValuePair5.setValue(5);
+		
+		arrayList.add(nameValuePair5);
+		
+		
+		NameValuePair nameValuePair6=new NameValuePair();
+		nameValuePair6.setName("Amount");
+		nameValuePair6.setValue(5);
+		
+		arrayList.add(nameValuePair6);
+		
+		mainRespDto.setPolicySummery(arrayList);
 		
 		////////////////////////////////////////////////////////
 		

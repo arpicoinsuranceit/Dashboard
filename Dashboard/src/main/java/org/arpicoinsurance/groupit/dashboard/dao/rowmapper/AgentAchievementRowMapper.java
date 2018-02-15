@@ -1,4 +1,4 @@
-package org.arpicoinsurance.groupit.dashboard.dto.rowmapper;
+package org.arpicoinsurance.groupit.dashboard.dao.rowmapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
