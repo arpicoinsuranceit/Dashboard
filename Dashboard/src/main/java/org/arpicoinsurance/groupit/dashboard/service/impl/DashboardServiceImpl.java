@@ -35,7 +35,7 @@ public class DashboardServiceImpl implements DashboardService {
 	TargetCommitmentActualDao targetCommitmentActualDao;
 	
 	@Override
-	public MainRespDto getDashboard(Integer id) throws Exception {
+	public MainRespDto getDashboard(String id) throws Exception {
 		DashboardPara dashboardPara = dashboardTypeDao.getDashboardPara("3857");
 		dashboardPara.setDashyear(2017);
 

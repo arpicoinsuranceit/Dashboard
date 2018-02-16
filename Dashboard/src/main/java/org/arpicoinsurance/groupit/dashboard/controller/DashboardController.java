@@ -20,7 +20,7 @@ public class DashboardController {
 	private DashboardService dashboardService;
 	
 	@RequestMapping(value = "/dashboard/{id}", method = RequestMethod.GET)
-	public MainRespDto loadDashboardData(@PathVariable Integer id) {
+	public MainRespDto loadDashboardData(@PathVariable String id) {
 		MainRespDto mainRespDto = null;
 		try {
 			mainRespDto = dashboardService.getDashboard(id);
@@ -30,6 +30,13 @@ public class DashboardController {
 		}
 		
 		return mainRespDto;
+	}
+	
+	@RequestMapping(value = "/dashboardtype/{code}", method = RequestMethod.GET)
+	public String loadDashboardType(@PathVariable String code) {
+		
+		System.out.println(code);
+		return "lvl1";
 	}
 
 }
