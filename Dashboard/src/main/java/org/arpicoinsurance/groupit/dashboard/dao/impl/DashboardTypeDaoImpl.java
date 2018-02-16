@@ -16,7 +16,22 @@ public class DashboardTypeDaoImpl implements DashboardTypeDao {
 	
 	@Override
 	public DashboardPara getDashboardPara(String userCode) throws Exception {
-		return jdbcTemplate.queryForObject("select case when alsnam='agncod' then 'IC' when alsnam='unlcod' then 'UNL' when alsnam='loccod' then 'BRANCH' when alsnam='rgncod' then 'REGION' when alsnam='zoncod' then 'ZONE' end dashtype,if(frmval='AAA' and tovalu='ZZZ',vlsta,frmval) dashpara from smaccesscontrol where sbucod=? and userid=? ", new Object[] { "450",userCode}, new DashboardParaRowMapper());
+		return jdbcTemplate.queryForObject("SELECT  " +
+				"    CASE " +
+				"        WHEN ac.alsnam = 'agncod' THEN 'IC' " +
+				"        WHEN ac.alsnam = 'unlcod' THEN 'UNL' " +
+				"        WHEN ac.alsnam = 'loccod' THEN 'BRANCH' " +
+				"        WHEN ac.alsnam = 'rgncod' THEN 'REGION' " +
+				"        WHEN ac.alsnam = 'zoncod' THEN 'ZONE' " +
+				"    END usertype, " +
+				"    IF(ac.frmval = 'AAA' AND tovalu = 'ZZZ', " +
+				"        ac.vlsta, " +
+				"        ac.frmval) dashpara, " +
+				"    IF(ac.alsnam IN('agncod','unlcod'),(select IF(ag.appdat < DATE_ADD(now(), INTERVAL -1 YEAR) AND ac.alsnam = 'unlcod','DB2','DB1') from inagentmast ag where ag.sbucod=ac.sbucod and ag.agncod=ac.frmval),'DB2') dashtype    " +
+				"FROM " +
+				"    smaccesscontrol ac inner join rms_users u on ac.sbucod=u.SBU_CODE and ac.userid=u.USER_ID " +
+				"WHERE " +
+				"    ac.sbucod = ? AND ac.userid = ? ", new Object[] { "450",userCode}, new DashboardParaRowMapper());
 	}
 
 }
