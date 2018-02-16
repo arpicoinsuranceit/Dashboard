@@ -3,6 +3,7 @@ package org.arpicoinsurance.groupit.dashboard.controller;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 import org.arpicoinsurance.groupit.dashboard.dto.MainRespDto;
 import org.arpicoinsurance.groupit.dashboard.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,19 @@ public class DashboardController {
 		}
 		
 		return mainRespDto;
+	}
+	
+	@RequestMapping(value = "/getdashboardpara/{userid}", method = RequestMethod.GET)
+	public DashboardPara getDashboardData(@PathVariable String userid) {
+		DashboardPara dashboardPara = null;
+		try {
+			dashboardPara = dashboardService.getDashboardPara(userid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dashboardPara;
 	}
 
 }

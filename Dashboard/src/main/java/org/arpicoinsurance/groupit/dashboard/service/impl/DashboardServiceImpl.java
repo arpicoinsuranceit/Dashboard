@@ -39,9 +39,8 @@ public class DashboardServiceImpl implements DashboardService {
 		DashboardPara dashboardPara = dashboardTypeDao.getDashboardPara("3857");
 		dashboardPara.setDashyear(2017);
 
-		AgentAchievement agentAchievement = targetActualDao.getAgentAchievement(dashboardPara, 4, 2017);
+		AgentAchievement agentAchievement = targetActualDao.getAgentAchievement(dashboardPara, 12, 2017);
 		List<AgentAchievement> agentAchievements = targetActualDao.getAgentAchievements(dashboardPara, 2017);
-		
 		
 		
 		dashboardPara.setDashtype("BRANCH");
@@ -64,11 +63,15 @@ public class DashboardServiceImpl implements DashboardService {
 		
 		
 		mainRespDto.setYearlyTarget(getYearlyValues(agentAchievement,agentAchievements));
+		
 		mainRespDto.setNop(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
 		mainRespDto.setGwp(processTargetCommitmentActualChart(targetCommitmentActualGWPList));
 		mainRespDto.setMcfp(processTargetCommitmentActualChart(targetCommitmentActualMCFPList));
 		mainRespDto.setRiny1(processCommitmentActualChart(targetCommitmentActualRTNY1List));
 		mainRespDto.setFyp(processTargetCommitmentActualChart(targetCommitmentActualFYPAchList));
+		
+		
+		
 		
 		
 		///////////////////Need to implement/////////////////////////////////////
@@ -79,10 +82,11 @@ public class DashboardServiceImpl implements DashboardService {
 		mainRespDto.setMonthlyTargetMCFP(monthlyTarget);
 		mainRespDto.setMonthlyTargetNOP(monthlyTarget);
 		
-		mainRespDto.setNopC(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
-		mainRespDto.setGwpC(processTargetCommitmentActualChart(targetCommitmentActualGWPList));
-		mainRespDto.setMcfpC(processTargetCommitmentActualChart(targetCommitmentActualMCFPList));
-		mainRespDto.setFypC(processTargetCommitmentActualChart(targetCommitmentActualFYPAchList));
+		mainRespDto.setNopC(processTargetCommitmentActualCumulativeChart(targetCommitmentActualNOPList));
+		mainRespDto.setGwpC(processTargetCommitmentActualCumulativeChart(targetCommitmentActualGWPList));
+		mainRespDto.setMcfpC(processTargetCommitmentActualCumulativeChart(targetCommitmentActualMCFPList));
+		mainRespDto.setFypC(processTargetCommitmentActualCumulativeChart(targetCommitmentActualFYPAchList));
+		
 		mainRespDto.setPolicySummery(new ArrayList<>());
 		
 		ArrayList<NameValuePair> arrayList=new ArrayList<>();
@@ -397,10 +401,12 @@ public class DashboardServiceImpl implements DashboardService {
 		NameSeriasPair actual = new NameSeriasPair();
 		NameSeriasPair target = new NameSeriasPair();
 		NameSeriasPair commitment = new NameSeriasPair();
+		NameSeriasPair carryForward = new NameSeriasPair();
 
 		ArrayList<NameValuePair> monthA = new ArrayList<>();
 		ArrayList<NameValuePair> monthT = new ArrayList<>();
 		ArrayList<NameValuePair> monthC = new ArrayList<>();
+		ArrayList<NameValuePair> monthCF = new ArrayList<>();
 		
 		if(targetCommitmentActualNOPList != null){
 			for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualNOPList) {
@@ -422,6 +428,11 @@ public class DashboardServiceImpl implements DashboardService {
 					janA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(janA);
 					
+					NameValuePair janCF = new NameValuePair();
+					janCF.setName("Jan.");
+					janCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(janCF);
+					
 				} if(targetCommitmentActual.getMonth() == 2){
 					
 					NameValuePair febT = new NameValuePair();
@@ -438,6 +449,11 @@ public class DashboardServiceImpl implements DashboardService {
 					febA.setName("Feb.");
 					febA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(febA);
+					
+					NameValuePair febCF = new NameValuePair();
+					febCF.setName("Feb.");
+					febCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(febCF);
 					
 				} if(targetCommitmentActual.getMonth() == 3){
 	
@@ -456,6 +472,11 @@ public class DashboardServiceImpl implements DashboardService {
 					marA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(marA);
 					
+					NameValuePair marCF = new NameValuePair();
+					marCF.setName("Mar.");
+					marCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(marCF);
+					
 				} if(targetCommitmentActual.getMonth() == 4){
 	
 					NameValuePair aprT = new NameValuePair();
@@ -472,6 +493,11 @@ public class DashboardServiceImpl implements DashboardService {
 					aprA.setName("Apr.");
 					aprA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(aprA);
+					
+					NameValuePair aprCF = new NameValuePair();
+					aprCF.setName("Apr.");
+					aprCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(aprCF);
 					
 				} if(targetCommitmentActual.getMonth() == 5){
 	
@@ -490,6 +516,11 @@ public class DashboardServiceImpl implements DashboardService {
 					mayA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(mayA);
 					
+					NameValuePair mayCF = new NameValuePair();
+					mayCF.setName("May.");
+					mayCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(mayCF);
+					
 				} if(targetCommitmentActual.getMonth() == 6){
 	
 					NameValuePair junT = new NameValuePair();
@@ -506,6 +537,11 @@ public class DashboardServiceImpl implements DashboardService {
 					junA.setName("Jun.");
 					junA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(junA);
+					
+					NameValuePair junCF = new NameValuePair();
+					junCF.setName("Jun.");
+					junCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(junCF);
 					
 				} if(targetCommitmentActual.getMonth() == 7){
 	
@@ -524,6 +560,11 @@ public class DashboardServiceImpl implements DashboardService {
 					julA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(julA);
 					
+					NameValuePair julCF = new NameValuePair();
+					julCF.setName("Jul.");
+					julCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(julCF);
+					
 				} if(targetCommitmentActual.getMonth() == 8){
 	
 					NameValuePair augT = new NameValuePair();
@@ -540,6 +581,11 @@ public class DashboardServiceImpl implements DashboardService {
 					augA.setName("Aug.");
 					augA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(augA);
+					
+					NameValuePair augCF = new NameValuePair();
+					augCF.setName("Aug.");
+					augCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(augCF);
 					
 				} if(targetCommitmentActual.getMonth() == 9){
 	
@@ -558,6 +604,11 @@ public class DashboardServiceImpl implements DashboardService {
 					sepA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(sepA);
 					
+					NameValuePair sepCF = new NameValuePair();
+					sepCF.setName("Sep.");
+					sepCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(sepCF);
+					
 				} if(targetCommitmentActual.getMonth() == 10){
 					
 					NameValuePair octT = new NameValuePair();
@@ -574,6 +625,11 @@ public class DashboardServiceImpl implements DashboardService {
 					octA.setName("Oct.");
 					octA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(octA);
+					
+					NameValuePair octCF = new NameValuePair();
+					octCF.setName("Oct.");
+					octCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(octCF);
 					
 				} if(targetCommitmentActual.getMonth() == 11){
 	
@@ -592,6 +648,11 @@ public class DashboardServiceImpl implements DashboardService {
 					novA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(novA);
 					
+					NameValuePair novCF = new NameValuePair();
+					novCF.setName("Nov.");
+					novCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(novCF);
+					
 				} if(targetCommitmentActual.getMonth() == 12){
 	
 					NameValuePair decT = new NameValuePair();
@@ -609,6 +670,11 @@ public class DashboardServiceImpl implements DashboardService {
 					decA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(decA);
 					
+					NameValuePair decCF = new NameValuePair();
+					decCF.setName("Dec.");
+					decCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					monthCF.add(decCF);
+					
 				}
 			}
 		}
@@ -619,10 +685,365 @@ public class DashboardServiceImpl implements DashboardService {
 		target.setSeries(monthT);
 		commitment.setName("Commitment");
 		commitment.setSeries(monthC);
+		carryForward.setName("Carry Forward");
+		carryForward.setSeries(monthCF);
 
 		yearlyValues.add(target);
 		yearlyValues.add(commitment);
 		yearlyValues.add(actual);
+		yearlyValues.add(carryForward);
+
+		return yearlyValues;
+	}
+	
+	private ArrayList<NameSeriasPair> processTargetCommitmentActualCumulativeChart(List<TargetCommitmentActual> targetCommitmentActualNOPList) {
+		ArrayList<NameSeriasPair> yearlyValues = new ArrayList<>();
+
+		NameSeriasPair actual = new NameSeriasPair();
+		NameSeriasPair target = new NameSeriasPair();
+		NameSeriasPair commitment = new NameSeriasPair();
+		NameSeriasPair carryForward = new NameSeriasPair();
+
+		ArrayList<NameValuePair> monthA = new ArrayList<>();
+		ArrayList<NameValuePair> monthT = new ArrayList<>();
+		ArrayList<NameValuePair> monthC = new ArrayList<>();
+		ArrayList<NameValuePair> monthCF = new ArrayList<>();
+		
+		if(targetCommitmentActualNOPList != null){
+			Double actualAmount = 0.0;
+			Double targetAmount = 0.0;
+			Double commitmentAmount = 0.0;
+			for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualNOPList) {
+				
+				if(targetCommitmentActual.getMonth() == 1){
+					
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair janT = new NameValuePair();
+					janT.setName("Jan.");
+					janT.setValue(targetAmount.intValue());
+					monthT.add(janT);
+					
+					NameValuePair janC = new NameValuePair();
+					janC.setName("Jan.");
+					janC.setValue(commitmentAmount.intValue());
+					monthC.add(janC);
+					
+					NameValuePair janA = new NameValuePair();
+					janA.setName("Jan.");
+					janA.setValue(actualAmount.intValue());
+					monthA.add(janA);
+					
+					NameValuePair janCF = new NameValuePair();
+					janCF.setName("Jan.");
+					janCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(janCF);
+					
+				} if(targetCommitmentActual.getMonth() == 2){
+					
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair febT = new NameValuePair();
+					febT.setName("Feb.");
+					febT.setValue(targetAmount.intValue());
+					monthT.add(febT);
+	
+					NameValuePair febC = new NameValuePair();
+					febC.setName("Feb.");
+					febC.setValue(commitmentAmount.intValue());
+					monthC.add(febC);
+					
+					NameValuePair febA = new NameValuePair();
+					febA.setName("Feb.");
+					febA.setValue(actualAmount.intValue());
+					monthA.add(febA);
+					
+					NameValuePair febCF = new NameValuePair();
+					febCF.setName("Feb.");
+					febCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(febCF);
+					
+				} if(targetCommitmentActual.getMonth() == 3){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair marT = new NameValuePair();
+					marT.setName("Mar.");
+					marT.setValue(targetAmount.intValue());
+					monthT.add(marT);
+	
+					NameValuePair marC = new NameValuePair();
+					marC.setName("Mar.");
+					marC.setValue(commitmentAmount.intValue());
+					monthC.add(marC);
+					
+					NameValuePair marA = new NameValuePair();
+					marA.setName("Mar.");
+					marA.setValue(actualAmount.intValue());
+					monthA.add(marA);
+					
+					NameValuePair marCF = new NameValuePair();
+					marCF.setName("Mar.");
+					marCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(marCF);
+					
+				} if(targetCommitmentActual.getMonth() == 4){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair aprT = new NameValuePair();
+					aprT.setName("Apr.");
+					aprT.setValue(targetAmount.intValue());
+					monthT.add(aprT);
+	
+					NameValuePair aprC = new NameValuePair();
+					aprC.setName("Apr.");
+					aprC.setValue(commitmentAmount.intValue());
+					monthC.add(aprC);
+					
+					NameValuePair aprA = new NameValuePair();
+					aprA.setName("Apr.");
+					aprA.setValue(actualAmount.intValue());
+					monthA.add(aprA);
+					
+					NameValuePair arpCF = new NameValuePair();
+					arpCF.setName("Apr.");
+					arpCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(arpCF);
+					
+				} if(targetCommitmentActual.getMonth() == 5){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair mayT = new NameValuePair();
+					mayT.setName("May.");
+					mayT.setValue(targetAmount.intValue());
+					monthT.add(mayT);
+	
+					NameValuePair mayC = new NameValuePair();
+					mayC.setName("May.");
+					mayC.setValue(commitmentAmount.intValue());
+					monthC.add(mayC);
+					
+					NameValuePair mayA = new NameValuePair();
+					mayA.setName("May.");
+					mayA.setValue(actualAmount.intValue());
+					monthA.add(mayA);
+					
+					NameValuePair mayCF = new NameValuePair();
+					mayCF.setName("May.");
+					mayCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(mayCF);
+					
+				} if(targetCommitmentActual.getMonth() == 6){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair junT = new NameValuePair();
+					junT.setName("Jun.");
+					junT.setValue(targetAmount.intValue());
+					monthT.add(junT);
+	
+					NameValuePair junC = new NameValuePair();
+					junC.setName("Jun.");
+					junC.setValue(commitmentAmount.intValue());
+					monthC.add(junC);
+					
+					NameValuePair junA = new NameValuePair();
+					junA.setName("Jun.");
+					junA.setValue(actualAmount.intValue());
+					monthA.add(junA);
+					
+					NameValuePair junCF = new NameValuePair();
+					junCF.setName("Jun.");
+					junCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(junCF);
+					
+				} if(targetCommitmentActual.getMonth() == 7){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair julT = new NameValuePair();
+					julT.setName("Jul.");
+					julT.setValue(targetAmount.intValue());
+					monthT.add(julT);
+	
+					NameValuePair julC = new NameValuePair();
+					julC.setName("Jul.");
+					julC.setValue(commitmentAmount.intValue());
+					monthC.add(julC);
+					
+					NameValuePair julA = new NameValuePair();
+					julA.setName("Jul.");
+					julA.setValue(actualAmount.intValue());
+					monthA.add(julA);
+					
+					NameValuePair julCF = new NameValuePair();
+					julCF.setName("Jul.");
+					julCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(julCF);
+					
+				} if(targetCommitmentActual.getMonth() == 8){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair augT = new NameValuePair();
+					augT.setName("Aug.");
+					augT.setValue(targetAmount.intValue());
+					monthT.add(augT);
+	
+					NameValuePair augC = new NameValuePair();
+					augC.setName("Aug.");
+					augC.setValue(commitmentAmount.intValue());
+					monthC.add(augC);
+					
+					NameValuePair augA = new NameValuePair();
+					augA.setName("Aug.");
+					augA.setValue(actualAmount.intValue());
+					monthA.add(augA);
+					
+					NameValuePair augCF = new NameValuePair();
+					augCF.setName("Aug.");
+					augCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(augCF);
+					
+				} if(targetCommitmentActual.getMonth() == 9){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair sepT = new NameValuePair();
+					sepT.setName("Sep.");
+					sepT.setValue(targetAmount.intValue());
+					monthT.add(sepT);
+	
+					NameValuePair sepC = new NameValuePair();
+					sepC.setName("Sep.");
+					sepC.setValue(commitmentAmount.intValue());
+					monthC.add(sepC);
+					
+					NameValuePair sepA = new NameValuePair();
+					sepA.setName("Sep.");
+					sepA.setValue(actualAmount.intValue());
+					monthA.add(sepA);
+					
+					NameValuePair sepCF = new NameValuePair();
+					sepCF.setName("Sep.");
+					sepCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(sepCF);
+					
+				} if(targetCommitmentActual.getMonth() == 10){
+					
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair octT = new NameValuePair();
+					octT.setName("Oct.");
+					octT.setValue(targetAmount.intValue());
+					monthT.add(octT);
+	
+					NameValuePair octC = new NameValuePair();
+					octC.setName("Oct.");
+					octC.setValue(commitmentAmount.intValue());
+					monthC.add(octC);
+					
+					NameValuePair octA = new NameValuePair();
+					octA.setName("Oct.");
+					octA.setValue(actualAmount.intValue());
+					monthA.add(octA);
+					
+					NameValuePair octCF = new NameValuePair();
+					octCF.setName("Oct.");
+					octCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(octCF);
+					
+				} if(targetCommitmentActual.getMonth() == 11){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair novT = new NameValuePair();
+					novT.setName("Nov.");
+					novT.setValue(targetAmount.intValue());
+					monthT.add(novT);
+	
+					NameValuePair novC = new NameValuePair();
+					novC.setName("Nov.");
+					novC.setValue(commitmentAmount.intValue());
+					monthC.add(novC);
+					
+					NameValuePair novA = new NameValuePair();
+					novA.setName("Nov.");
+					novA.setValue(actualAmount.intValue());
+					monthA.add(novA);
+					
+					NameValuePair novCF = new NameValuePair();
+					novCF.setName("Nov.");
+					novCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(novCF);
+					
+				} if(targetCommitmentActual.getMonth() == 12){
+	
+					targetAmount= targetAmount + targetCommitmentActual.getTarget();
+					commitmentAmount = commitmentAmount +targetCommitmentActual.getCommitment();
+					actualAmount = actualAmount+targetCommitmentActual.getActual();
+					
+					NameValuePair decT = new NameValuePair();
+					decT.setName("Dec.");
+					decT.setValue(targetAmount.intValue());
+					monthT.add(decT);
+	
+					NameValuePair decC = new NameValuePair();
+					decC.setName("Dec.");
+					decC.setValue(commitmentAmount.intValue());
+					monthC.add(decC);
+					
+					NameValuePair decA = new NameValuePair();
+					decA.setName("Dec.");
+					decA.setValue(actualAmount.intValue());
+					monthA.add(decA);
+					
+					NameValuePair decCF = new NameValuePair();
+					decCF.setName("Dec.");
+					decCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					monthCF.add(decCF);
+					
+				}
+			}
+		}
+		
+		actual.setName("Actual");
+		actual.setSeries(monthA);
+		target.setName("Target");
+		target.setSeries(monthT);
+		commitment.setName("Commitment");
+		commitment.setSeries(monthC);
+		carryForward.setName("Carry Forward");
+		carryForward.setSeries(monthCF);
+
+		yearlyValues.add(target);
+		yearlyValues.add(commitment);
+		yearlyValues.add(actual);
+		yearlyValues.add(carryForward);
 
 		return yearlyValues;
 	}
@@ -795,6 +1216,11 @@ public class DashboardServiceImpl implements DashboardService {
 		yearlyValues.add(actual);
 
 		return yearlyValues;
+	}
+
+	@Override
+	public DashboardPara getDashboardPara(String userid) throws Exception {
+		return dashboardTypeDao.getDashboardPara(userid);
 	}
 
 }

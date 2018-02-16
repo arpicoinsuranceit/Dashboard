@@ -5,6 +5,7 @@ public class DashboardPara {
 	private Integer dashyear;
 	private String dashtype;
 	private String dashpara;
+	private String usertype;
 	
 	public DashboardPara() {
 		super();
@@ -34,5 +35,12 @@ public class DashboardPara {
 		this.dashyear = dashyear;
 	}
 
+	public String getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
 	
 }

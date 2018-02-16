@@ -13,6 +13,7 @@ public class DashboardParaRowMapper implements RowMapper<DashboardPara> {
 		DashboardPara dashboardPara = new DashboardPara();
 		dashboardPara.setDashtype(rs.getString("dashtype"));
 		dashboardPara.setDashpara(rs.getString("dashpara"));
+		dashboardPara.setUsertype(rs.getString("usertype"));
 		return dashboardPara;
 	}
 
