@@ -3,6 +3,7 @@ package org.arpicoinsurance.groupit.dashboard.dto;
 public class DashboardPara {
 	
 	private Integer dashyear;
+	private Integer dashmonth;
 	private String dashtype;
 	private String dashpara;
 	private String usertype;
@@ -41,6 +42,14 @@ public class DashboardPara {
 
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
+	}
+
+	public Integer getDashmonth() {
+		return dashmonth;
+	}
+
+	public void setDashmonth(Integer dashmonth) {
+		this.dashmonth = dashmonth;
 	}
 	
 }

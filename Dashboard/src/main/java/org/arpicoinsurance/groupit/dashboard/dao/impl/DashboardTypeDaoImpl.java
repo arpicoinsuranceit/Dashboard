@@ -27,7 +27,8 @@ public class DashboardTypeDaoImpl implements DashboardTypeDao {
 				"    IF(ac.frmval = 'AAA' AND tovalu = 'ZZZ', " +
 				"        ac.vlsta, " +
 				"        ac.frmval) dashpara, " +
-				"    IF(ac.alsnam IN('agncod','unlcod'),(select IF(ag.appdat < DATE_ADD(now(), INTERVAL -1 YEAR) AND ac.alsnam = 'unlcod','DB2','DB1') from inagentmast ag where ag.sbucod=ac.sbucod and ag.agncod=ac.frmval),'DB2') dashtype    " +
+				"    IF(ac.alsnam IN('agncod','unlcod'),(select IF(ag.appdat < DATE_ADD(now(), INTERVAL -1 YEAR) AND ag.agncls='UNL','DB2','DB1') from inagentmast ag where ag.sbucod=ac.sbucod and ag.agncod=ac.frmval),'DB2') dashtype, "+
+				"    YEAR(curdate()) dashyear, MONTH(curdate()) dashmonth " +
 				"FROM " +
 				"    smaccesscontrol ac inner join rms_users u on ac.sbucod=u.SBU_CODE and ac.userid=u.USER_ID " +
 				"WHERE " +

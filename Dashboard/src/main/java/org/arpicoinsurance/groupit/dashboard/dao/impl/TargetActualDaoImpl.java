@@ -16,23 +16,23 @@ public class TargetActualDaoImpl implements TargetActualDao {
     JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<AgentAchievement> getAgentAchievements(DashboardPara para, Integer year) throws Exception {
-		if(para.getDashtype().equalsIgnoreCase("IC")){
-			return jdbcTemplate.query("SELECT * FROM inagentachievements where sbucod=? and agncod=? and yeronl=? order by mononl ", new Object[] { "450",Integer.parseInt(para.getDashpara()), year}, new AgentAchievementRowMapper());
-		} else if (para.getDashtype().equalsIgnoreCase("UNL")) {
-			return jdbcTemplate.query("SELECT * FROM inagentachievements where sbucod=? and agncod=? and yeronl=? order by mononl ", new Object[] { "450",Integer.parseInt(para.getDashpara()), year}, new AgentAchievementRowMapper());
-		} else if (para.getDashtype().equalsIgnoreCase("BRANCH")) {
+	public List<AgentAchievement> getAgentAchievements(DashboardPara para) throws Exception {
+		if(para.getUsertype().equalsIgnoreCase("IC")){
+			return jdbcTemplate.query("SELECT (trgamt+trgtcfa) trgamt,trgaca,mononl, yeronl FROM inagentachievements where sbucod=? and agncod=? and yeronl=? order by mononl ", new Object[] { "450",Integer.parseInt(para.getDashpara()), para.getDashyear()}, new AgentAchievementRowMapper());
+		} else if (para.getUsertype().equalsIgnoreCase("UNL")) {
+			return jdbcTemplate.query("SELECT (trgamt+trgtcfa) trgamt,trgaca,mononl, yeronl FROM inagentachievements where sbucod=? and agncod=? and yeronl=? order by mononl ", new Object[] { "450",Integer.parseInt(para.getDashpara()), para.getDashyear()}, new AgentAchievementRowMapper());
+		} else if (para.getUsertype().equalsIgnoreCase("BRANCH")) {
 			
 		}
 		return null;
 	}
 
 	@Override
-	public AgentAchievement getAgentAchievement(DashboardPara para, Integer month, Integer year) throws Exception {
-		if(para.getDashtype().equalsIgnoreCase("IC")){
-			return jdbcTemplate.queryForObject("SELECT * FROM inagentachievements where sbucod=? and agncod=? and mononl=? and yeronl=? ", new Object[] { "450",Integer.parseInt(para.getDashpara()), month, year}, new AgentAchievementRowMapper());
-		} else if (para.getDashtype().equalsIgnoreCase("UNL")) {
-			return jdbcTemplate.queryForObject("SELECT * FROM inagentachievements where sbucod=? and agncod=? and mononl=? and yeronl=? ", new Object[] { "450",Integer.parseInt(para.getDashpara()), month, year}, new AgentAchievementRowMapper());
+	public AgentAchievement getAgentAchievement(DashboardPara para) throws Exception {
+		if(para.getUsertype().equalsIgnoreCase("IC")){
+			return jdbcTemplate.queryForObject("SELECT (trgamt+trgtcfa) trgamt,trgaca,mononl, yeronl FROM inagentachievements where sbucod=? and agncod=? and mononl=? and yeronl=? ", new Object[] { "450",Integer.parseInt(para.getDashpara()), para.getDashmonth(), para.getDashyear()}, new AgentAchievementRowMapper());
+		} else if (para.getUsertype().equalsIgnoreCase("UNL")) {
+			return jdbcTemplate.queryForObject("SELECT (trgamt+trgtcfa) trgamt,trgaca,mononl, yeronl FROM inagentachievements where sbucod=? and agncod=? and mononl=? and yeronl=? ", new Object[] { "450",Integer.parseInt(para.getDashpara()), para.getDashmonth(), para.getDashyear()}, new AgentAchievementRowMapper());
 		}
 		return null;
 		

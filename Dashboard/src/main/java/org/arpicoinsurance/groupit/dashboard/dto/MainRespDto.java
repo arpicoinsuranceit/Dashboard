@@ -1,6 +1,7 @@
 package org.arpicoinsurance.groupit.dashboard.dto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainRespDto {
 	private MonthlyTarget monthlyTarget = new MonthlyTarget(); // dashbard ic
@@ -35,8 +36,8 @@ public class MainRespDto {
 	
 	private ArrayList<NameValuePair> policySummery; 
 	
-	private ArrayList<PendingPol> pendingPolList; //   all
-	private ArrayList<DevPolicies> devPolicieList; //   all
+	private List<PendingPolicies> pendingPolList; //   all
+	private List<DuePolicies> duePolicieList; //   all
 	
 	public MonthlyTarget getMonthlyTarget() {
 		return monthlyTarget;
@@ -166,20 +167,20 @@ public class MainRespDto {
 		this.zone = zone;
 	}
 
-	public ArrayList<PendingPol> getPendingPolList() {
+	public List<PendingPolicies> getPendingPolList() {
 		return pendingPolList;
 	}
 
-	public void setPendingPolList(ArrayList<PendingPol> pendingPolList) {
+	public void setPendingPolList(List<PendingPolicies> pendingPolList) {
 		this.pendingPolList = pendingPolList;
 	}
 
-	public ArrayList<DevPolicies> getDevPolicieList() {
-		return devPolicieList;
+	public List<DuePolicies> getDuePolicieList() {
+		return duePolicieList;
 	}
 
-	public void setDevPolicieList(ArrayList<DevPolicies> devPolicieList) {
-		this.devPolicieList = devPolicieList;
+	public void setDuePolicieList(List<DuePolicies> duePolicieList) {
+		this.duePolicieList = duePolicieList;
 	}
 
 	public ArrayList<NameValuePair> getPolicySummery() {

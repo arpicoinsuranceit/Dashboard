@@ -12,7 +12,7 @@ public class AgentAchievementRowMapper implements RowMapper<AgentAchievement> {
 	public AgentAchievement mapRow(ResultSet rs, int rownum) throws SQLException {
 		AgentAchievement agentAchievement = new AgentAchievement();
 		agentAchievement.setTrgamt(rs.getDouble("trgamt"));
-		agentAchievement.setTrgach(rs.getDouble("trgach"));
+		agentAchievement.setTrgach(rs.getDouble("trgaca"));
 		agentAchievement.setMonth(rs.getInt("mononl"));
 		agentAchievement.setYear(rs.getInt("yeronl"));
 		return agentAchievement;

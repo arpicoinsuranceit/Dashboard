@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.arpicoinsurance.groupit.dashboard.dao.DashboardTypeDao;
+import org.arpicoinsurance.groupit.dashboard.dao.PolicyDataDao;
 import org.arpicoinsurance.groupit.dashboard.dao.TargetActualDao;
 import org.arpicoinsurance.groupit.dashboard.dao.TargetCommitmentActualDao;
 import org.arpicoinsurance.groupit.dashboard.dto.AgentAchievement;
 import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
-import org.arpicoinsurance.groupit.dashboard.dto.DevPolicies;
+import org.arpicoinsurance.groupit.dashboard.dto.DuePolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.MainRespDto;
 import org.arpicoinsurance.groupit.dashboard.dto.MonthlyTarget;
 import org.arpicoinsurance.groupit.dashboard.dto.NameSeriasPair;
 import org.arpicoinsurance.groupit.dashboard.dto.NameValuePair;
-import org.arpicoinsurance.groupit.dashboard.dto.PendingPol;
+import org.arpicoinsurance.groupit.dashboard.dto.PendingPolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.TargetCommitmentActual;
 import org.arpicoinsurance.groupit.dashboard.dto.Top3;
 import org.arpicoinsurance.groupit.dashboard.service.DashboardService;
@@ -34,14 +35,21 @@ public class DashboardServiceImpl implements DashboardService {
 	@Autowired
 	TargetCommitmentActualDao targetCommitmentActualDao;
 	
+	@Autowired
+	PolicyDataDao policyDataDao;
+	
 	@Override
-	public MainRespDto getDashboard(String id) throws Exception {
-		DashboardPara dashboardPara = dashboardTypeDao.getDashboardPara("3857");
-		dashboardPara.setDashyear(2017);
-
-		AgentAchievement agentAchievement = targetActualDao.getAgentAchievement(dashboardPara, 12, 2017);
-		List<AgentAchievement> agentAchievements = targetActualDao.getAgentAchievements(dashboardPara, 2017);
+	public MainRespDto getDashboard(String userCode) throws Exception {
+		System.out.println(userCode);
+		DashboardPara dashboardPara = dashboardTypeDao.getDashboardPara(userCode);
 		
+		AgentAchievement agentAchievement = targetActualDao.getAgentAchievement(dashboardPara);
+		List<AgentAchievement> agentAchievements = targetActualDao.getAgentAchievements(dashboardPara);
+		
+		List<DuePolicies> duePolicies = policyDataDao.getDuePolicies(dashboardPara);
+		Integer currentMonthNOP = policyDataDao.getCurrentMonthNOP(dashboardPara);
+		System.out.println(currentMonthNOP+" - currentMonthNOP");
+		List<PendingPolicies> pendingPolicies = policyDataDao.getPendingPolicies(dashboardPara);
 		
 		dashboardPara.setDashtype("BRANCH");
 		dashboardPara.setDashpara("BOR");
@@ -50,6 +58,8 @@ public class DashboardServiceImpl implements DashboardService {
 		List<TargetCommitmentActual> targetCommitmentActualMCFPList = targetCommitmentActualDao.getCurrentYearMCFP(dashboardPara);
 		List<TargetCommitmentActual> targetCommitmentActualFYPAchList = targetCommitmentActualDao.getCurrentYearFYPAch(dashboardPara);
 		List<TargetCommitmentActual> targetCommitmentActualRTNY1List = targetCommitmentActualDao.getCurrentYearRTNY1(dashboardPara);
+		
+		
 		
 		MainRespDto mainRespDto = new MainRespDto();
 
@@ -139,40 +149,42 @@ public class DashboardServiceImpl implements DashboardService {
 		mainRespDto.setRegion(getTop3());
 		mainRespDto.setBranch(getTop3());
 		mainRespDto.setZone(getTop3());
-		mainRespDto.setDevPolicieList(getDeiPol());
-		mainRespDto.setPendingPolList(getPendingPol());
+		mainRespDto.setDuePolicieList(duePolicies);
+		mainRespDto.setPendingPolList(pendingPolicies);
 		return mainRespDto;
 	}
 	
-	private ArrayList<PendingPol> getPendingPol() {
-		ArrayList<PendingPol> arrayList=new ArrayList<>();
+	/*
+	private ArrayList<PendingPolicies> getPendingPol() {
+		ArrayList<PendingPolicies> arrayList=new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
-			PendingPol pendingPol=new PendingPol();
-			pendingPol.setAgentCode("000000"+i);
-			pendingPol.setBranch("branch"+i);
-			pendingPol.setCustName("Customer "+i);
-			pendingPol.setPropNo("Prop0000"+i);
-			pendingPol.setProposal(5000.00);
-			pendingPol.setReq("o.s.w.s.handler.SimpleUrlHandlerMapping");
+			PendingPolicies pendingPolicies=new PendingPolicies();
+			pendingPolicies.setAgentCode("000000"+i);
+			pendingPolicies.setBranch("branch"+i);
+			pendingPolicies.setCustName("Customer "+i);
+			pendingPolicies.setPropNo("Prop0000"+i);
+			pendingPolicies.setProposal(5000.00);
+			pendingPolicies.setReq("o.s.w.s.handler.SimpleUrlHandlerMapping");
 			
-			arrayList.add(pendingPol);
+			arrayList.add(pendingPolicies);
 		}
 		return arrayList;
 	}
-
-	private ArrayList<DevPolicies> getDeiPol() {
-		ArrayList<DevPolicies> arrayList = new ArrayList<>();
+	
+	private ArrayList<DuePolicies> getDeiPol() {
+		ArrayList<DuePolicies> arrayList = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
-			DevPolicies devPolicies=new DevPolicies();
-			devPolicies.setArias(i);
-			devPolicies.setBranch("branch"+i);
-			devPolicies.setCustName("Customer "+i);
-			devPolicies.setPolNum(""+i);
-			devPolicies.setPremium(25000.00);
-			arrayList.add(devPolicies);
+			DuePolicies duePolicies=new DuePolicies();
+			duePolicies.setNofarias(i);
+			duePolicies.setBranch("branch"+i);
+			duePolicies.setCustName("Customer "+i);
+			duePolicies.setPolnum(i);
+			duePolicies.setPremium(25000.00);
+			arrayList.add(duePolicies);
 		}
 		return arrayList;
 	}
+	*/
 
 	private ArrayList<Top3> getTop3() {
 		

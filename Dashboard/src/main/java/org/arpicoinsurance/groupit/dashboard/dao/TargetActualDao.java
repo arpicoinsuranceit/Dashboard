@@ -7,9 +7,9 @@ import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 
 public interface TargetActualDao {
 	
-	List<AgentAchievement> getAgentAchievements(DashboardPara para,Integer year)  throws Exception;
+	List<AgentAchievement> getAgentAchievements(DashboardPara para)  throws Exception;
 	
-	AgentAchievement getAgentAchievement(DashboardPara para,Integer month,Integer year)  throws Exception;
+	AgentAchievement getAgentAchievement(DashboardPara para)  throws Exception;
 	
 	AgentAchievement getCurrentMonthICAchievement(DashboardPara para) throws Exception;
 	

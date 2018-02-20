@@ -14,6 +14,8 @@ public class DashboardParaRowMapper implements RowMapper<DashboardPara> {
 		dashboardPara.setDashtype(rs.getString("dashtype"));
 		dashboardPara.setDashpara(rs.getString("dashpara"));
 		dashboardPara.setUsertype(rs.getString("usertype"));
+		dashboardPara.setDashyear(rs.getInt("dashyear"));
+		dashboardPara.setDashmonth(rs.getInt("dashmonth"));
 		return dashboardPara;
 	}
 
