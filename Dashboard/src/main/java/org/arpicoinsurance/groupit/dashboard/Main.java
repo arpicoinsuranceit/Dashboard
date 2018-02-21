@@ -3,18 +3,28 @@ package org.arpicoinsurance.groupit.dashboard;
 import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class Main {
+public class Main extends SpringBootServletInitializer {
 
-	private int maxUploadSizeInMb = 10 * 1024 * 1024;
+	//private int maxUploadSizeInMb = 10 * 1024 * 1024;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
 
+	}
+	
+	
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		// TODO Auto-generated method stub
+		return builder.sources(Main.class);
 	}
 
 	@Bean
@@ -32,4 +42,5 @@ public class Main {
         return tomcat;
 
     }
+	
 }
