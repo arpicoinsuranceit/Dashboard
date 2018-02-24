@@ -11,7 +11,7 @@ public class DashboardParaRowMapper implements RowMapper<DashboardPara> {
 	@Override
 	public DashboardPara mapRow(ResultSet rs, int rowNum) throws SQLException {
 		DashboardPara dashboardPara = new DashboardPara();
-		dashboardPara.setDashtype(rs.getString("dashtype"));
+		dashboardPara.setDashtype("DB2");
 		dashboardPara.setDashpara(rs.getString("dashpara"));
 		dashboardPara.setUsertype(rs.getString("usertype"));
 		dashboardPara.setDashyear(rs.getInt("dashyear"));

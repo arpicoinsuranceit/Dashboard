@@ -3,7 +3,6 @@ package org.arpicoinsurance.groupit.dashboard.dao.rowmapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.arpicoinsurance.groupit.dashboard.dao.AgentDao;
 import org.arpicoinsurance.groupit.dashboard.dto.AgentDto;
 import org.springframework.jdbc.core.RowMapper;
 

@@ -106,7 +106,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 
 	@Override
 	public List<PendingPolicies> getPendingPolicies(DashboardPara para) throws Exception {
-
+		//System.out.println(para.getDashpara()+" - "+para.getDashtype()+" - "+para.getUsertype());
 		if (para.getUsertype().equalsIgnoreCase("IC") || para.getUsertype().equalsIgnoreCase("UNL")) {
 			
 			return jdbcTemplate.query("select a.loccod,p.pprnum,a.agncod,p.ppdini,p.totprm,group_concat(m.addnot) requirment from inproposals p  "

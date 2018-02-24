@@ -42,5 +42,11 @@ public class AgentAchievement {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
+
+	public AgentAchievement(Double trgamt, Double trgach) {
+		super();
+		this.trgamt = trgamt;
+		this.trgach = trgach;
+	}
 	
 }
