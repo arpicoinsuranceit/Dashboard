@@ -3,8 +3,10 @@ package org.arpicoinsurance.groupit.dashboard.dao.impl;
 import java.util.List;
 import org.arpicoinsurance.groupit.dashboard.dao.TargetActualDao;
 import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.AgentAchievementRowMapper;
+import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.UNLAchievementRowMapper;
 import org.arpicoinsurance.groupit.dashboard.dto.AgentAchievement;
 import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
+import org.arpicoinsurance.groupit.dashboard.dto.UNLAchievement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -55,8 +57,6 @@ public class TargetActualDaoImpl implements TargetActualDao {
 		            + "having sum(if(a.amount<>0,a.amount*-1,0))<>0 "
 		            + ") x where txnyer = YEAR(now()) "
 		            + "group by txnyer,txnmth,advcod", new Object[] { "450",Integer.parseInt(para.getDashpara()), para.getDashyear(), para.getDashyear()}, new AgentAchievementRowMapper());
-		} else if (para.getUsertype().equalsIgnoreCase("UNL")) {
-			return jdbcTemplate.query("SELECT (trgamt+trgtcfa) trgamt,trgaca,mononl, yeronl FROM inagentachievements where sbucod=? and agncod=? and yeronl=? order by mononl ", new Object[] { "450",Integer.parseInt(para.getDashpara()), para.getDashyear()}, new AgentAchievementRowMapper());
 		} 
 		return null;
 	}
@@ -125,6 +125,14 @@ public class TargetActualDaoImpl implements TargetActualDao {
 	@Override
 	public AgentAchievement getCurrentMonthUNLAchievement(DashboardPara para) throws Exception {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UNLAchievement> getUNLAchievements(DashboardPara para) throws Exception {
+		if (para.getUsertype().equalsIgnoreCase("UNL")) {
+			return jdbcTemplate.query("SELECT trgamt,trgaca,trgtcfa,mononl, yeronl FROM inagentachievements where sbucod=? and agncod=? and yeronl=? order by mononl ", new Object[] { "450",Integer.parseInt(para.getDashpara()), para.getDashyear()}, new UNLAchievementRowMapper());
+		} 
 		return null;
 	}
 

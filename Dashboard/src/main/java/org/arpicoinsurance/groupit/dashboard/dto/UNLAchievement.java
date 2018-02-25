@@ -1,22 +1,15 @@
 package org.arpicoinsurance.groupit.dashboard.dto;
 
-public class AgentAchievement {
-
+public class UNLAchievement {
+	
 	private Double trgamt;
 	private Double trgach;
+	private Double trgtcfa;
 	private Integer month;
 	private Integer year;
 	
-	public AgentAchievement() {
+	public UNLAchievement() {
 		super();
-	}
-	
-	public AgentAchievement(Double trgamt, Double trgach, Integer month, Integer year) {
-		super();
-		this.trgamt = trgamt;
-		this.trgach = trgach;
-		this.month = month;
-		this.year = year;
 	}
 
 	public Double getTrgamt() {
@@ -35,6 +28,14 @@ public class AgentAchievement {
 		this.trgach = trgach;
 	}
 
+	public Double getTrgtcfa() {
+		return trgtcfa;
+	}
+
+	public void setTrgtcfa(Double trgtcfa) {
+		this.trgtcfa = trgtcfa;
+	}
+
 	public Integer getMonth() {
 		return month;
 	}
@@ -51,10 +52,4 @@ public class AgentAchievement {
 		this.year = year;
 	}
 
-	public AgentAchievement(Double trgamt, Double trgach) {
-		super();
-		this.trgamt = trgamt;
-		this.trgach = trgach;
-	}
-	
 }

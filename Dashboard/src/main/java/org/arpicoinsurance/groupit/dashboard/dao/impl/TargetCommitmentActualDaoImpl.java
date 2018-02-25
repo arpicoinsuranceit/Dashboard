@@ -18,11 +18,7 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 	
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearNOP(DashboardPara para) throws Exception {
-		if(para.getDashtype().equalsIgnoreCase("IC")){
-			
-		} else if (para.getDashtype().equalsIgnoreCase("UNL")) {
-			
-		} else if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
 			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
@@ -68,11 +64,7 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearGWP(DashboardPara para) throws Exception {
-		if(para.getDashtype().equalsIgnoreCase("IC")){
-			
-		} else if (para.getDashtype().equalsIgnoreCase("UNL")) {
-			
-		} else if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
 			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
@@ -118,11 +110,7 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearMCFP(DashboardPara para) throws Exception {
-		if(para.getDashtype().equalsIgnoreCase("IC")){
-			
-		} else if (para.getDashtype().equalsIgnoreCase("UNL")) {
-			
-		} else if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
 			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
@@ -168,11 +156,7 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearFYPAch(DashboardPara para) throws Exception {
-		if(para.getDashtype().equalsIgnoreCase("IC")){
-			
-		} else if (para.getDashtype().equalsIgnoreCase("UNL")) {
-			
-		} else if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
 			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
@@ -218,11 +202,7 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearRTNY1(DashboardPara para) throws Exception {
-		if(para.getDashtype().equalsIgnoreCase("IC")){
-			
-		} else if (para.getDashtype().equalsIgnoreCase("UNL")) {
-			
-		} else if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
 			if(para.getDashtype().equalsIgnoreCase("BRANCH")){

@@ -5,6 +5,7 @@ import java.util.List;
 import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 import org.arpicoinsurance.groupit.dashboard.dto.DuePolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.MainRespDto;
+import org.arpicoinsurance.groupit.dashboard.dto.NameSeriasPair;
 import org.arpicoinsurance.groupit.dashboard.dto.PendingPolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.Top3;
 
@@ -32,5 +33,15 @@ public interface DashboardService {
 	List<Top3> getTopRegion() throws Exception;
 	
 	List<Top3> getTopZone() throws Exception;
+	
+	List<Object> getGWPAndGWPC(String userid, String dashpara, String usertype) throws Exception;
+	
+	List<Object> getMCFPAndMCFPC(String userid, String dashpara, String usertype) throws Exception;
+	
+	List<Object> getFYPAndFYPC(String userid, String dashpara, String usertype) throws Exception;
+	
+	List<Object> getNOPAndNOPC(String userid, String dashpara, String usertype) throws Exception;
+	
+	List<NameSeriasPair> getRINY(String userid, String dashpara, String usertype) throws Exception;
 	
 }

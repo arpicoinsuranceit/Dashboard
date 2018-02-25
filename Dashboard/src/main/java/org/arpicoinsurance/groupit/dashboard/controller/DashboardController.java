@@ -166,72 +166,65 @@ public class DashboardController {
 		return null;
 	}
 	
-	@RequestMapping(value = "/getGWP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getGWP(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
+	@RequestMapping(value = "/getGWPAndGWPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	public List<Object> getGWPAndGWPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+		List<Object> GWPAndGWPC = null;
+		try {
+			GWPAndGWPC = dashboardService.getGWPAndGWPC(userid, dashpara, usertype);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return GWPAndGWPC;
 	}
 	
-	@RequestMapping(value = "/getGWPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getGWPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
+	@RequestMapping(value = "/getMCFPAndMCFPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	public List<Object> getMCFPAndMCFPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+		List<Object> MCFPAndMCFPC = null;
+		try {
+			MCFPAndMCFPC = dashboardService.getMCFPAndMCFPC(userid, dashpara, usertype);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return MCFPAndMCFPC;
 	}
 	
-	@RequestMapping(value = "/getMCFP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getMCFP(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
+	@RequestMapping(value = "/getFYPAndFYPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	public List<Object> getFYPAndFYPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+		List<Object> FYPAndFYPC = null;
+		try {
+			FYPAndFYPC = dashboardService.getFYPAndFYPC(userid, dashpara, usertype);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return FYPAndFYPC;
 	}
 	
-	@RequestMapping(value = "/getMCFPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getMCFPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
-	}
-	
-	@RequestMapping(value = "/getFYP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getFYP(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
-	}
-	
-	@RequestMapping(value = "/getFYPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getFYPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
-	}
-	
-	@RequestMapping(value = "/getNOP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getNOP(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
-	}
-	
-	@RequestMapping(value = "/getNOPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getNOPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
+	@RequestMapping(value = "/getNOPAndNOPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	public List<Object> getNOPAndNOPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+		List<Object> NOPAndNOPC = null;
+		try {
+			NOPAndNOPC = dashboardService.getNOPAndNOPC(userid, dashpara, usertype);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return NOPAndNOPC;
 	}
 	
 	@RequestMapping(value = "/getRINY/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public List<NameSeriasPair> getRINY(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
+		List<NameSeriasPair> RINY = null;
+		try {
+			RINY = dashboardService.getRINY(userid, dashpara, usertype);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return RINY;
 	}
-	
-	@RequestMapping(value = "/getCF/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getCF(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
-	}
-	
-	@RequestMapping(value = "/getCFC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getCFC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
-	}
-	
 	
 	@RequestMapping(value = "/getDuePolicies/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public List<DuePolicies> getDuePolicies(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
