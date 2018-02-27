@@ -32,7 +32,7 @@ public class JasperReportController {
 	private HttpServletResponse response;
 	
 	
-	@RequestMapping(path = "/pdf", method = RequestMethod.GET)
+	@RequestMapping(path = "/pdf", method = RequestMethod.GET, produces = "application/pdf")
     public byte[]  report() {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 	    response.setContentType("application/pdf");
