@@ -18,14 +18,14 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 	
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearNOP(DashboardPara para) throws Exception {
-		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getUsertype().equalsIgnoreCase("BRANCH") || para.getUsertype().equalsIgnoreCase("REGION") || para.getUsertype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
-			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
+			if(para.getUsertype().equalsIgnoreCase("BRANCH")){
 				colpara = "loccod";
-			} else if (para.getDashtype().equalsIgnoreCase("REGION")) {
+			} else if (para.getUsertype().equalsIgnoreCase("REGION")) {
 				colpara = "rgncod";
-			} else if (para.getDashtype().equalsIgnoreCase("ZONE")) {
+			} else if (para.getUsertype().equalsIgnoreCase("ZONE")) {
 				colpara = "zoncod"; 
 			}
 			
@@ -64,14 +64,14 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearGWP(DashboardPara para) throws Exception {
-		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getUsertype().equalsIgnoreCase("BRANCH") || para.getUsertype().equalsIgnoreCase("REGION") || para.getUsertype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
-			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
+			if(para.getUsertype().equalsIgnoreCase("BRANCH")){
 				colpara = "loccod";
-			} else if (para.getDashtype().equalsIgnoreCase("REGION")) {
+			} else if (para.getUsertype().equalsIgnoreCase("REGION")) {
 				colpara = "rgncod";
-			} else if (para.getDashtype().equalsIgnoreCase("ZONE")) {
+			} else if (para.getUsertype().equalsIgnoreCase("ZONE")) {
 				colpara = "zoncod"; 
 			}
 			
@@ -110,14 +110,14 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearMCFP(DashboardPara para) throws Exception {
-		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getUsertype().equalsIgnoreCase("BRANCH") || para.getUsertype().equalsIgnoreCase("REGION") || para.getUsertype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
-			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
+			if(para.getUsertype().equalsIgnoreCase("BRANCH")){
 				colpara = "loccod";
-			} else if (para.getDashtype().equalsIgnoreCase("REGION")) {
+			} else if (para.getUsertype().equalsIgnoreCase("REGION")) {
 				colpara = "rgncod";
-			} else if (para.getDashtype().equalsIgnoreCase("ZONE")) {
+			} else if (para.getUsertype().equalsIgnoreCase("ZONE")) {
 				colpara = "zoncod"; 
 			}
 			
@@ -146,6 +146,7 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
                     + "UNION ALL "
                     + "SELECT max(if(type='Target',(`dec`),0.0)) target,max(if(type='Commitment',(`dec`),0.0)) commitment,max(if(type='Actual',(`dec`),0.0)) actual,12 month,year FROM inbranchtargetsummary where sbucod='450' and "+colpara+"='"+para.getDashpara()+"' and year="+para.getDashyear()+" and para='MCFP' group by loccod "
                     + ") x group by year,month order by year,month ";
+			//System.out.println(sql);
 			
 			return jdbcTemplate.query(sql, new TargetCommitmentActualRowMapper());
 			
@@ -156,14 +157,14 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearFYPAch(DashboardPara para) throws Exception {
-		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getUsertype().equalsIgnoreCase("BRANCH") || para.getUsertype().equalsIgnoreCase("REGION") || para.getUsertype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
-			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
+			if(para.getUsertype().equalsIgnoreCase("BRANCH")){
 				colpara = "loccod";
-			} else if (para.getDashtype().equalsIgnoreCase("REGION")) {
+			} else if (para.getUsertype().equalsIgnoreCase("REGION")) {
 				colpara = "rgncod";
-			} else if (para.getDashtype().equalsIgnoreCase("ZONE")) {
+			} else if (para.getUsertype().equalsIgnoreCase("ZONE")) {
 				colpara = "zoncod"; 
 			}
 			
@@ -202,14 +203,14 @@ public class TargetCommitmentActualDaoImpl implements TargetCommitmentActualDao 
 
 	@Override
 	public List<TargetCommitmentActual> getCurrentYearRTNY1(DashboardPara para) throws Exception {
-		if (para.getDashtype().equalsIgnoreCase("BRANCH") || para.getDashtype().equalsIgnoreCase("REGION") || para.getDashtype().equalsIgnoreCase("ZONE")) {
+		if (para.getUsertype().equalsIgnoreCase("BRANCH") || para.getUsertype().equalsIgnoreCase("REGION") || para.getUsertype().equalsIgnoreCase("ZONE")) {
 			
 			String colpara = "loccod";
-			if(para.getDashtype().equalsIgnoreCase("BRANCH")){
+			if(para.getUsertype().equalsIgnoreCase("BRANCH")){
 				colpara = "loccod";
-			} else if (para.getDashtype().equalsIgnoreCase("REGION")) {
+			} else if (para.getUsertype().equalsIgnoreCase("REGION")) {
 				colpara = "rgncod";
-			} else if (para.getDashtype().equalsIgnoreCase("ZONE")) {
+			} else if (para.getUsertype().equalsIgnoreCase("ZONE")) {
 				colpara = "zoncod"; 
 			}
 			

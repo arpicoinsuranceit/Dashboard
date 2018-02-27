@@ -452,6 +452,7 @@ public class DashboardServiceImpl implements DashboardService {
 		ArrayList<NameValuePair> monthCF = new ArrayList<>();
 		
 		if(targetCommitmentActualNOPList != null){
+			Double trgcfa = 0.0;
 			for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualNOPList) {
 				
 				if(targetCommitmentActual.getMonth() == 1){
@@ -471,9 +472,10 @@ public class DashboardServiceImpl implements DashboardService {
 					janA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(janA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair janCF = new NameValuePair();
 					janCF.setName("Jan.");
-					janCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					janCF.setValue(trgcfa.intValue());
 					monthCF.add(janCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 2){
@@ -493,9 +495,10 @@ public class DashboardServiceImpl implements DashboardService {
 					febA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(febA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair febCF = new NameValuePair();
 					febCF.setName("Feb.");
-					febCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					febCF.setValue(trgcfa.intValue());
 					monthCF.add(febCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 3){
@@ -515,9 +518,10 @@ public class DashboardServiceImpl implements DashboardService {
 					marA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(marA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair marCF = new NameValuePair();
 					marCF.setName("Mar.");
-					marCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					marCF.setValue(trgcfa.intValue());
 					monthCF.add(marCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 4){
@@ -537,9 +541,10 @@ public class DashboardServiceImpl implements DashboardService {
 					aprA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(aprA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair aprCF = new NameValuePair();
 					aprCF.setName("Apr.");
-					aprCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					aprCF.setValue(trgcfa.intValue());
 					monthCF.add(aprCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 5){
@@ -559,9 +564,10 @@ public class DashboardServiceImpl implements DashboardService {
 					mayA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(mayA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair mayCF = new NameValuePair();
 					mayCF.setName("May.");
-					mayCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					mayCF.setValue(trgcfa.intValue());
 					monthCF.add(mayCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 6){
@@ -581,9 +587,10 @@ public class DashboardServiceImpl implements DashboardService {
 					junA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(junA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair junCF = new NameValuePair();
 					junCF.setName("Jun.");
-					junCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					junCF.setValue(trgcfa.intValue());
 					monthCF.add(junCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 7){
@@ -603,9 +610,10 @@ public class DashboardServiceImpl implements DashboardService {
 					julA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(julA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair julCF = new NameValuePair();
 					julCF.setName("Jul.");
-					julCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					julCF.setValue(trgcfa.intValue());
 					monthCF.add(julCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 8){
@@ -625,9 +633,10 @@ public class DashboardServiceImpl implements DashboardService {
 					augA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(augA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair augCF = new NameValuePair();
 					augCF.setName("Aug.");
-					augCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					augCF.setValue(trgcfa.intValue());
 					monthCF.add(augCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 9){
@@ -647,9 +656,10 @@ public class DashboardServiceImpl implements DashboardService {
 					sepA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(sepA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair sepCF = new NameValuePair();
 					sepCF.setName("Sep.");
-					sepCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					sepCF.setValue(trgcfa.intValue());
 					monthCF.add(sepCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 10){
@@ -669,9 +679,10 @@ public class DashboardServiceImpl implements DashboardService {
 					octA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(octA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair octCF = new NameValuePair();
 					octCF.setName("Oct.");
-					octCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					octCF.setValue(trgcfa.intValue());
 					monthCF.add(octCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 11){
@@ -691,9 +702,10 @@ public class DashboardServiceImpl implements DashboardService {
 					novA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(novA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair novCF = new NameValuePair();
 					novCF.setName("Nov.");
-					novCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					novCF.setValue(trgcfa.intValue());
 					monthCF.add(novCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 12){
@@ -713,9 +725,10 @@ public class DashboardServiceImpl implements DashboardService {
 					decA.setValue(targetCommitmentActual.getActual().intValue());
 					monthA.add(decA);
 					
+					trgcfa = (targetCommitmentActual.getTarget()-(targetCommitmentActual.getActual() > 0 ? targetCommitmentActual.getActual() : targetCommitmentActual.getTarget()));
 					NameValuePair decCF = new NameValuePair();
 					decCF.setName("Dec.");
-					decCF.setValue((targetCommitmentActual.getTarget().intValue()-targetCommitmentActual.getActual().intValue()));
+					decCF.setValue(trgcfa.intValue());
 					monthCF.add(decCF);
 					
 				}
@@ -778,6 +791,7 @@ public class DashboardServiceImpl implements DashboardService {
 					janA.setName("Jan.");
 					janA.setValue(actualAmount.intValue());
 					monthA.add(janA);
+					
 					
 					NameValuePair janCF = new NameValuePair();
 					janCF.setName("Jan.");
