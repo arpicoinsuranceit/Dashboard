@@ -5,6 +5,7 @@ import java.util.List;
 import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 import org.arpicoinsurance.groupit.dashboard.dto.DuePolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.PendingPolicies;
+import org.arpicoinsurance.groupit.dashboard.dto.PolicySummary;
 
 public interface PolicyDataDao {
 	
@@ -13,5 +14,7 @@ public interface PolicyDataDao {
 	Integer getCurrentMonthNOP(DashboardPara dashboardPara) throws Exception;
 	
 	List<PendingPolicies> getPendingPolicies(DashboardPara dashboardPara) throws Exception;
+	
+	PolicySummary getPolicySummary(DashboardPara dashboardPara) throws Exception;
 	
 }

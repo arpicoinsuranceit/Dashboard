@@ -7,12 +7,14 @@ import org.arpicoinsurance.groupit.dashboard.dto.DuePolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.MainRespDto;
 import org.arpicoinsurance.groupit.dashboard.dto.MonthlyTarget;
 import org.arpicoinsurance.groupit.dashboard.dto.NameSeriasPair;
+import org.arpicoinsurance.groupit.dashboard.dto.NameValuePair;
 import org.arpicoinsurance.groupit.dashboard.dto.PendingPolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.Top3;
 import org.arpicoinsurance.groupit.dashboard.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,8 +39,9 @@ public class DashboardController {
 		return mainRespDto;
 	}
 	
-	@RequestMapping(value = "/getdashboardpara/{userid}", method = RequestMethod.GET)
-	public DashboardPara getDashboardData(@PathVariable String userid) {
+	@RequestMapping(value = "/getdashboardpara", method = RequestMethod.POST)
+	public DashboardPara getDashboardData(@RequestBody String userid) {
+		//System.out.println(userid);
 		DashboardPara dashboardPara = null;
 		try {
 			dashboardPara = dashboardService.getDashboardPara(userid);
@@ -107,9 +110,15 @@ public class DashboardController {
 	}
 	
 	@RequestMapping(value = "/getPolicySummery/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getPolicySummery(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
-		return null;
+	public List<NameValuePair> getPolicySummery(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+		List<NameValuePair> nameValuePairs = null;
+		try {
+			nameValuePairs = dashboardService.getPolicySummery(userid, dashpara, usertype);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nameValuePairs;
 	}
 	
 	@RequestMapping(value = "/getTopIC", method = RequestMethod.GET)
@@ -150,8 +159,14 @@ public class DashboardController {
 	
 	@RequestMapping(value = "/getTopBranch", method = RequestMethod.GET)
 	public List<Top3> getTopBranch() {
-		
-		return null;
+		List<Top3> top3Branch = null;
+		try {
+			top3Branch = dashboardService.getTopBranch();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return top3Branch;
 	}
 	
 	@RequestMapping(value = "/getTopRegion", method = RequestMethod.GET)

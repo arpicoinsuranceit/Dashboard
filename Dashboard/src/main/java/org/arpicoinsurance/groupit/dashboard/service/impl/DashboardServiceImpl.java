@@ -17,6 +17,7 @@ import org.arpicoinsurance.groupit.dashboard.dto.MonthlyTarget;
 import org.arpicoinsurance.groupit.dashboard.dto.NameSeriasPair;
 import org.arpicoinsurance.groupit.dashboard.dto.NameValuePair;
 import org.arpicoinsurance.groupit.dashboard.dto.PendingPolicies;
+import org.arpicoinsurance.groupit.dashboard.dto.PolicySummary;
 import org.arpicoinsurance.groupit.dashboard.dto.TargetCommitmentActual;
 import org.arpicoinsurance.groupit.dashboard.dto.Top3;
 import org.arpicoinsurance.groupit.dashboard.dto.UNLAchievement;
@@ -792,10 +793,9 @@ public class DashboardServiceImpl implements DashboardService {
 					janA.setValue(actualAmount.intValue());
 					monthA.add(janA);
 					
-					
 					NameValuePair janCF = new NameValuePair();
 					janCF.setName("Jan.");
-					janCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					janCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(janCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 2){
@@ -821,7 +821,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair febCF = new NameValuePair();
 					febCF.setName("Feb.");
-					febCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					febCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(febCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 3){
@@ -847,7 +847,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair marCF = new NameValuePair();
 					marCF.setName("Mar.");
-					marCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					marCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(marCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 4){
@@ -873,7 +873,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair arpCF = new NameValuePair();
 					arpCF.setName("Apr.");
-					arpCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					arpCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(arpCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 5){
@@ -899,7 +899,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair mayCF = new NameValuePair();
 					mayCF.setName("May.");
-					mayCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					mayCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(mayCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 6){
@@ -925,7 +925,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair junCF = new NameValuePair();
 					junCF.setName("Jun.");
-					junCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					junCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(junCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 7){
@@ -951,7 +951,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair julCF = new NameValuePair();
 					julCF.setName("Jul.");
-					julCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					julCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(julCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 8){
@@ -977,7 +977,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair augCF = new NameValuePair();
 					augCF.setName("Aug.");
-					augCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					augCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(augCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 9){
@@ -1003,7 +1003,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair sepCF = new NameValuePair();
 					sepCF.setName("Sep.");
-					sepCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					sepCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(sepCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 10){
@@ -1029,7 +1029,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair octCF = new NameValuePair();
 					octCF.setName("Oct.");
-					octCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					octCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(octCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 11){
@@ -1055,7 +1055,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair novCF = new NameValuePair();
 					novCF.setName("Nov.");
-					novCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					novCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(novCF);
 					
 				} else if(targetCommitmentActual.getMonth() == 12){
@@ -1081,7 +1081,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					NameValuePair decCF = new NameValuePair();
 					decCF.setName("Dec.");
-					decCF.setValue((targetAmount.intValue()-actualAmount.intValue()));
+					decCF.setValue(targetCommitmentActual.getActual() > 0 ? (targetAmount.intValue()-actualAmount.intValue()) : 0);
 					monthCF.add(decCF);
 					
 				}
@@ -1370,8 +1370,7 @@ public class DashboardServiceImpl implements DashboardService {
 
 	@Override
 	public List<Top3> getTopBranch() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return top3Dao.getTopBranch();
 	}
 
 	@Override
@@ -1922,7 +1921,7 @@ public class DashboardServiceImpl implements DashboardService {
 				
 				if(achievement.getMonth() == 1){
 					
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -1942,8 +1941,8 @@ public class DashboardServiceImpl implements DashboardService {
 					monthCF.add(janCF);
 					
 				} else if(achievement.getMonth() == 2){
-					
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					//agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue();
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -1964,13 +1963,13 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 3){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
 					NameValuePair marT = new NameValuePair();
 					marT.setName("Mar.");
-					marT.setValue(achievement.getTrgamt().intValue());
+					marT.setValue(trgamt.intValue());
 					monthT.add(marT);
 	
 					NameValuePair marA = new NameValuePair();
@@ -1985,7 +1984,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 4){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2006,7 +2005,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 5){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2027,7 +2026,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 6){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2048,7 +2047,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 7){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2069,7 +2068,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 8){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2090,7 +2089,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 9){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2111,7 +2110,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 10){
 					
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2132,7 +2131,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 11){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2153,7 +2152,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 				} else if(achievement.getMonth() == 12){
 	
-					trgach = (trgach + agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach());
+					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
 					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
 					
@@ -2205,8 +2204,21 @@ public class DashboardServiceImpl implements DashboardService {
 		try {
 			List<TargetCommitmentActual> targetCommitmentActualGWPList = targetCommitmentActualDao.getCurrentYearGWP(dashboardPara);
 			
+			for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualGWPList) {
+				if (dashboardPara.getDashmonth()==targetCommitmentActual.getMonth()) {
+					MonthlyTarget monthlyTargetGWP = new MonthlyTarget();
+					monthlyTargetGWP.setTarget(targetCommitmentActual.getTarget().intValue());
+					monthlyTargetGWP.setActual(targetCommitmentActual.getActual().intValue());
+					Double targetExpand = targetCommitmentActual.getTarget()+(targetCommitmentActual.getTarget()/5);
+					monthlyTargetGWP.setTargetExpand(targetExpand.intValue());
+					GWPAndGWPC.add(monthlyTargetGWP);
+				}
+			}
+			
 			GWPAndGWPC.add(processTargetCommitmentActualChart(targetCommitmentActualGWPList));
 			GWPAndGWPC.add(processTargetCommitmentActualCumulativeChart(targetCommitmentActualGWPList));
+			
+			
 			targetCommitmentActualGWPList = null;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2232,6 +2244,17 @@ public class DashboardServiceImpl implements DashboardService {
 		
 		try {
 			List<TargetCommitmentActual> targetCommitmentActualMCFPList = targetCommitmentActualDao.getCurrentYearMCFP(dashboardPara);
+			
+			for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualMCFPList) {
+				if (dashboardPara.getDashmonth()==targetCommitmentActual.getMonth()) {
+					MonthlyTarget monthlyTargetMCFP = new MonthlyTarget();
+					monthlyTargetMCFP.setTarget(targetCommitmentActual.getTarget().intValue());
+					monthlyTargetMCFP.setActual(targetCommitmentActual.getActual().intValue());
+					Double targetExpand = targetCommitmentActual.getTarget()+(targetCommitmentActual.getTarget()/10);
+					monthlyTargetMCFP.setTargetExpand(targetExpand.intValue());
+					MCFPAndMCFPC.add(monthlyTargetMCFP);
+				}
+			}
 			
 			MCFPAndMCFPC.add(processTargetCommitmentActualChart(targetCommitmentActualMCFPList));
 			MCFPAndMCFPC.add(processTargetCommitmentActualCumulativeChart(targetCommitmentActualMCFPList));
@@ -2261,6 +2284,17 @@ public class DashboardServiceImpl implements DashboardService {
 		try {
 			List<TargetCommitmentActual> targetCommitmentActualFYPAchList = targetCommitmentActualDao.getCurrentYearFYPAch(dashboardPara);
 			
+			for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualFYPAchList) {
+				if (dashboardPara.getDashmonth()==targetCommitmentActual.getMonth()) {
+					MonthlyTarget monthlyTargetFYPAch = new MonthlyTarget();
+					monthlyTargetFYPAch.setTarget(targetCommitmentActual.getTarget().intValue());
+					monthlyTargetFYPAch.setActual(targetCommitmentActual.getActual().intValue());
+					Double targetExpand = targetCommitmentActual.getTarget()+(targetCommitmentActual.getTarget()/10);
+					monthlyTargetFYPAch.setTargetExpand(targetExpand.intValue());
+					FYPAndFYPC.add(monthlyTargetFYPAch);
+				}
+			}
+			
 			FYPAndFYPC.add(processTargetCommitmentActualChart(targetCommitmentActualFYPAchList));
 			FYPAndFYPC.add(processTargetCommitmentActualCumulativeChart(targetCommitmentActualFYPAchList));
 			targetCommitmentActualFYPAchList = null;
@@ -2289,6 +2323,17 @@ public class DashboardServiceImpl implements DashboardService {
 		try {
 			List<TargetCommitmentActual> targetCommitmentActualNOPList = targetCommitmentActualDao.getCurrentYearNOP(dashboardPara);
 			
+			for (TargetCommitmentActual targetCommitmentActual : targetCommitmentActualNOPList) {
+				if (dashboardPara.getDashmonth()==targetCommitmentActual.getMonth()) {
+					MonthlyTarget monthlyTargetNOP = new MonthlyTarget();
+					monthlyTargetNOP.setTarget(targetCommitmentActual.getTarget().intValue());
+					monthlyTargetNOP.setActual(targetCommitmentActual.getActual().intValue());
+					Double targetExpand = targetCommitmentActual.getTarget()+(targetCommitmentActual.getTarget()/10);
+					monthlyTargetNOP.setTargetExpand(targetExpand.intValue());
+					NOPAndNOPC.add(monthlyTargetNOP);
+				}
+			}
+			
 			NOPAndNOPC.add(processTargetCommitmentActualChart(targetCommitmentActualNOPList));
 			NOPAndNOPC.add(processTargetCommitmentActualCumulativeChart(targetCommitmentActualNOPList));
 			targetCommitmentActualNOPList = null;
@@ -2314,6 +2359,67 @@ public class DashboardServiceImpl implements DashboardService {
 		dashboardPara.setDashmonth((calendar.get(Calendar.MONTH)+1));
 		List<TargetCommitmentActual> targetCommitmentActualRTNY1List = targetCommitmentActualDao.getCurrentYearRTNY1(dashboardPara);
 		return processCommitmentActualChart(targetCommitmentActualRTNY1List);
+	}
+
+
+	@Override
+	public List<NameValuePair> getPolicySummery(String userid, String dashpara, String usertype) throws Exception {
+		
+		ArrayList<NameValuePair> arrayList=new ArrayList<>();
+		DashboardPara dashboardPara = new DashboardPara();
+		Calendar calendar = Calendar.getInstance();
+		
+		dashboardPara.setDashpara(dashpara);
+		dashboardPara.setUsertype(usertype);
+		dashboardPara.setDashyear(calendar.get(Calendar.YEAR));
+		dashboardPara.setDashmonth((calendar.get(Calendar.MONTH)+1));
+		
+		try {
+			PolicySummary policySummary= policyDataDao.getPolicySummary(dashboardPara);
+			
+			NameValuePair nameValuePair1=new NameValuePair();
+			nameValuePair1.setName("Enfored");
+			nameValuePair1.setValue(policySummary.getPlisuCount());
+			
+			arrayList.add(nameValuePair1);
+			
+			
+			NameValuePair nameValuePair2=new NameValuePair();
+			nameValuePair2.setName("Amount");
+			nameValuePair2.setValue(policySummary.getPlisuAmount().intValue());
+			
+			arrayList.add(nameValuePair2);
+			
+			NameValuePair nameValuePair3=new NameValuePair();
+			nameValuePair3.setName("Lapsed");
+			nameValuePair3.setValue(policySummary.getPlapsCount());
+			
+			arrayList.add(nameValuePair3);
+			
+			NameValuePair nameValuePair4=new NameValuePair();
+			nameValuePair4.setName("Amount");
+			nameValuePair4.setValue(policySummary.getPlapsAmount().intValue());
+			
+			arrayList.add(nameValuePair4);
+			
+			
+			NameValuePair nameValuePair5=new NameValuePair();
+			nameValuePair5.setName("Permanent Lapsed");
+			nameValuePair5.setValue(policySummary.getPlappCount());
+			
+			arrayList.add(nameValuePair5);
+			
+			NameValuePair nameValuePair6=new NameValuePair();
+			nameValuePair6.setName("Amount");
+			nameValuePair6.setValue(policySummary.getPlappAmount().intValue());
+			
+			arrayList.add(nameValuePair6);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return arrayList;
 	}
 	
 

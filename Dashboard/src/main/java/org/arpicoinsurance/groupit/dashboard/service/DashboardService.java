@@ -6,6 +6,7 @@ import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 import org.arpicoinsurance.groupit.dashboard.dto.DuePolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.MainRespDto;
 import org.arpicoinsurance.groupit.dashboard.dto.NameSeriasPair;
+import org.arpicoinsurance.groupit.dashboard.dto.NameValuePair;
 import org.arpicoinsurance.groupit.dashboard.dto.PendingPolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.Top3;
 
@@ -42,6 +43,8 @@ public interface DashboardService {
 	
 	List<Object> getNOPAndNOPC(String userid, String dashpara, String usertype) throws Exception;
 	
-	List<NameSeriasPair> getRINY(String userid, String dashpara, String usertype) throws Exception;
+	List<NameSeriasPair> getRINY(String userid, String dashpara, String usertype) throws Exception; 
+	
+	List<NameValuePair> getPolicySummery(String userid, String dashpara, String usertype) throws Exception;
 	
 }

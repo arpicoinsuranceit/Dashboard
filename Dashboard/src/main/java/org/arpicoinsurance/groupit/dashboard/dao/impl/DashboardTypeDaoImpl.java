@@ -16,6 +16,7 @@ public class DashboardTypeDaoImpl implements DashboardTypeDao {
 	
 	@Override
 	public DashboardPara getDashboardPara(String userCode) throws Exception {
+		//System.out.println(userCode);
 		return jdbcTemplate.queryForObject("SELECT  " +
 				"    CASE " +
 				"        WHEN ac.alsnam = 'agncod' THEN (select agncls from inagentmast where agncod=ac.frmval) " +
