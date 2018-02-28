@@ -62,6 +62,16 @@ public class AgentController {
 		if (file.isEmpty()) {
 			return "noFile";
 		}
+		
+		File file2=new File(file.getOriginalFilename());
+		try {
+			file.transferTo(file2);
+		} catch (IllegalStateException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 
 		try {
 
