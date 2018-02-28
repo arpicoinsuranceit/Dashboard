@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,10 +32,11 @@ public class JasperReportController {
 	private HttpServletResponse response;
 	
 	
-	@RequestMapping(path = "/pdf", method = RequestMethod.GET, produces = "application/pdf")
-    public byte[]  report() {
+	@RequestMapping(path = "/pdf/{id}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  report(@PathVariable Integer id) {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 	    response.setContentType("application/pdf");
+	    
 		Map<String, Object> params = new HashMap<>();
         params.put("sbucod", "450");
         
@@ -56,26 +58,15 @@ public class JasperReportController {
 			try {
 				JasperPrint jp;
 				
-				
 				jp = JasperFillManager.fillReport(jr, params, dataSource.getConnection());
 				
 				JRPdfExporter export = new JRPdfExporter();
 		        export.setExporterInput(new SimpleExporterInput(jp));
-		        //export.setParameter(JRExporterParameter.OUTPUT_STREAM, baos);
 		        export.setExporterOutput(new SimpleOutputStreamExporterOutput(baos));
-		        //SimplePdfExporterConfiguration config = new SimplePdfExporterConfiguration();
-		        //export.setConfiguration(config);
 		        export.exportReport();
 		        
-		        //ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/C", "explorer d:\\performance_detail.pdf");
-		        //processBuilder.start();
-		        
-		        /////////////////////////////////////////////
-		        
 		       
-		        System.out.println("Success");
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             
@@ -85,8 +76,6 @@ public class JasperReportController {
     		
     	}
 
-
-        System.out.println(baos.toByteArray().length);
         return baos.toByteArray();
     } 
 
