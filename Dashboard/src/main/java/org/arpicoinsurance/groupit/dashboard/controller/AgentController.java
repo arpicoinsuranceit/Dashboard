@@ -1,7 +1,9 @@
 package org.arpicoinsurance.groupit.dashboard.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
@@ -54,10 +56,11 @@ public class AgentController {
 
 	}
 
-	@PostMapping("/uploadProf") // //new annotation since 4.3
-	public String singleFileUpload(@RequestParam("image") MultipartFile file, RedirectAttributes redirectAttributes) {
+	@PostMapping("/uploadProf/{id}") // //new annotation since 4.3
+	public String singleFileUpload(@RequestParam("image") MultipartFile file, @PathVariable String id, RedirectAttributes redirectAttributes) {
 
 		System.out.println("called");
+		System.out.println(id);
 
 		if (file.isEmpty()) {
 			return "noFile";
@@ -68,6 +71,16 @@ public class AgentController {
 			// Get the file and save it somewhere
 			byte[] bytes = file.getBytes();
 
+			String fileName = UPLOADED_FOLDER + id;
+			
+			File saveImage = new File(fileName);
+			
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(saveImage));
+			
+			stream.write(bytes);
+			
+			stream.close();
+			
 			Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
 			Files.write(path, bytes);
 
@@ -84,7 +97,7 @@ public class AgentController {
 	@RequestMapping(path = "/downloadProfPic", method = RequestMethod.GET)
 	public @ResponseBody Map<String, String> getImage() throws IOException {
 
-		File file = new File("F://temp//Lighthouse.jpg");
+		File file = new File("F://temp//3857");
 
 		String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
 
