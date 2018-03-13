@@ -1,5 +1,7 @@
 package org.arpicoinsurance.groupit.dashboard.dao.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.arpicoinsurance.groupit.dashboard.dao.Top3Dao;
@@ -255,20 +257,31 @@ public class Top3DaoImpl implements Top3Dao{
 
 	@Override
 	public List<Top3> getTopBranch() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query("select loc_name t3code,prnnam t3name from ( "
+				+ "select l.loc_name,a.prnnam, b."+new SimpleDateFormat("MMM").format(new Date()).toLowerCase()+" mcfp from inbranchtargetsummary b inner join inagentmast a "
+                + "on b.sbucod=a.sbucod and b.loccod=a.loccod inner join rms_locations l "
+                + "on b.sbucod=l.sbu_code and b.loccod=l.loc_code "
+                + "where b.sbucod=? and b.year=YEAR(now()) and b.para='MCFP' and b.type='Actual'  "
+                + "and a.agncls='BRN' and a.agnsta='ACT'  "
+                + "order by ? ) x order by mcfp desc limit 3 ", new Object[] { "450",new SimpleDateFormat("MMM").format(new Date()).toLowerCase()}, new Top3RowMapper());
 	}
 
 	@Override
 	public List<Top3> getTopRegion() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query("select x.rgnnam t3code,a.prnnam t3name from ( "
+                + "select b.sbucod,r.rgncod,r.rgnnam,sum(b."+new SimpleDateFormat("MMM").format(new Date()).toLowerCase()+") mcfp from inbranchtargetsummary b "
+                + "inner join rms_locations l on b.sbucod=l.sbu_code and b.loccod=l.loc_code "
+                + "inner join inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod "
+                + "where b.sbucod=? and b.year=YEAR(now()) and b.para='MCFP' and b.type='Actual'  "
+                + "group by b.rgncod order by sum("+new SimpleDateFormat("MMM").format(new Date()).toLowerCase()+") desc limit 3 ) x "
+                + "inner join rms_locations l on x.sbucod=l.sbu_code and x.rgncod=l.rgncod "
+                + "inner join inagentmast a on a.sbucod=l.sbu_code and a.loccod=l.loc_code "
+                + "where a.sbucod=? and a.agncls='RGN' order by mcfp desc limit 3", new Object[] { "450","450"}, new Top3RowMapper());
 	}
 
 	@Override
 	public List<Top3> getTopZone() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.query(" ", new Object[] { "450"}, new Top3RowMapper());
 	}
 
 }

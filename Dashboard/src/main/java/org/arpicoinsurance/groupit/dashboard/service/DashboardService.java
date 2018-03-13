@@ -46,5 +46,7 @@ public interface DashboardService {
 	List<NameSeriasPair> getRINY(String userid, String dashpara, String usertype) throws Exception; 
 	
 	List<NameValuePair> getPolicySummery(String userid, String dashpara, String usertype) throws Exception;
+
+	Integer getCurrentMonthNOPCount(String userid, String dashpara, String usertype) throws Exception;;
 	
 }

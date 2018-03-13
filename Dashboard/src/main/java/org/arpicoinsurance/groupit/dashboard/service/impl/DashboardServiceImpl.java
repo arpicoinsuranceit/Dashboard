@@ -1375,8 +1375,7 @@ public class DashboardServiceImpl implements DashboardService {
 
 	@Override
 	public List<Top3> getTopRegion() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return top3Dao.getTopRegion();
 	}
 
 	@Override
@@ -1923,7 +1922,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair janT = new NameValuePair();
 					janT.setName("Jan.");
@@ -1944,7 +1943,7 @@ public class DashboardServiceImpl implements DashboardService {
 					//agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach().intValue() : achievement.getTrgach().intValue();
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair febT = new NameValuePair();
 					febT.setName("Feb.");
@@ -1965,7 +1964,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair marT = new NameValuePair();
 					marT.setName("Mar.");
@@ -1986,7 +1985,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair aprT = new NameValuePair();
 					aprT.setName("Apr.");
@@ -2007,7 +2006,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair mayT = new NameValuePair();
 					mayT.setName("May.");
@@ -2028,7 +2027,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair junT = new NameValuePair();
 					junT.setName("Jun.");
@@ -2049,7 +2048,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair julT = new NameValuePair();
 					julT.setName("Jul.");
@@ -2070,7 +2069,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair augT = new NameValuePair();
 					augT.setName("Aug.");
@@ -2091,7 +2090,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair sepT = new NameValuePair();
 					sepT.setName("Sep.");
@@ -2112,7 +2111,7 @@ public class DashboardServiceImpl implements DashboardService {
 					
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair octT = new NameValuePair();
 					octT.setName("Oct.");
@@ -2133,7 +2132,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair novT = new NameValuePair();
 					novT.setName("Nov.");
@@ -2154,7 +2153,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 					trgach = (trgach + (agentAchievement.getMonth() == achievement.getMonth() ? agentAchievement.getTrgach() : achievement.getTrgach()));
 					trgamt = (trgamt + achievement.getTrgamt());
-					trgtcfa = (trgtcfa + achievement.getTrgtcfa());
+					trgtcfa = achievement.getTrgtcfa() > 0 ? (trgtcfa + achievement.getTrgtcfa()) : 0.0;
 					
 					NameValuePair decT = new NameValuePair();
 					decT.setName("Dec.");
@@ -2420,6 +2419,19 @@ public class DashboardServiceImpl implements DashboardService {
 		}
 		
 		return arrayList;
+	}
+
+
+	@Override
+	public Integer getCurrentMonthNOPCount(String userid, String dashpara, String usertype) throws Exception {
+		DashboardPara dashboardPara = new DashboardPara();
+		Calendar calendar = Calendar.getInstance();
+		
+		dashboardPara.setDashpara(dashpara);
+		dashboardPara.setUsertype(usertype);
+		dashboardPara.setDashyear(calendar.get(Calendar.YEAR));
+		dashboardPara.setDashmonth((calendar.get(Calendar.MONTH)+1));
+		return policyDataDao.getCurrentMonthNOP(dashboardPara);
 	}
 	
 

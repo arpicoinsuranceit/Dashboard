@@ -39,7 +39,7 @@ public class AgentController {
 	private AgentService agentService;
 
 	// Save the uploaded file to this folder
-	private static String UPLOADED_FOLDER = "F://temp//";
+	private static String UPLOADED_FOLDER = "/home/rpcadmin/APINProfilePic/";
 
 	@RequestMapping(method = RequestMethod.GET, value = "/getagent/{agentCode}")
 	public AgentDto getAgent(@PathVariable String agentCode) {

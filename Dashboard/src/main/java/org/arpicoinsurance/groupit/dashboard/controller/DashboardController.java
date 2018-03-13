@@ -171,8 +171,14 @@ public class DashboardController {
 	
 	@RequestMapping(value = "/getTopRegion", method = RequestMethod.GET)
 	public List<Top3> getTopRegion() {
-		
-		return null;
+		List<Top3> top3Region = null;
+		try {
+			top3Region = dashboardService.getTopRegion();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return top3Region;
 	}
 	
 	@RequestMapping(value = "/getTopZone", method = RequestMethod.GET)
@@ -267,7 +273,17 @@ public class DashboardController {
 	}
 	
 	
-	
+	@RequestMapping(value = "/getCurrentMonthNOPCount/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	public Integer getCurrentMonthNOPCount(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+		Integer nopCount = null;
+		try {
+			nopCount = dashboardService.getCurrentMonthNOPCount(userid, dashpara, usertype);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nopCount;
+	}
 	
 	
 
