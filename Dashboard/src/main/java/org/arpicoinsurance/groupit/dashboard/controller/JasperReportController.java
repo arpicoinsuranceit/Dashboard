@@ -40,7 +40,7 @@ public class JasperReportController {
 		Map<String, Object> params = new HashMap<>();
         params.put("sbucod", "450");
         
-        String OUT_PUT = "D:\\performance_detail.pdf";
+        //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "performance_detail.jrxml";
         JasperReport jr=null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
