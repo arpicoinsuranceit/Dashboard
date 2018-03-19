@@ -9,6 +9,7 @@ import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.PendingPoliciesRowMap
 import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.PolicySummaryRowMapper;
 import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 import org.arpicoinsurance.groupit.dashboard.dto.DuePolicies;
+import org.arpicoinsurance.groupit.dashboard.dto.InquiryLoad;
 import org.arpicoinsurance.groupit.dashboard.dto.PendingPolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.PolicySummary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -194,6 +195,13 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 		
 		return null;
 		
+	}
+
+	@Override
+	public List<InquiryLoad> getPolicyListByAdvCod(String advCod) throws Exception {
+		return jdbcTemplate.queryForList("select pprnum, polnum, ppdini, ppdnic, "
+				+ "prdcod from inproposals where sbucod='450' and pprsta <> 'INAC'", 
+				null, InquiryLoad.class);
 	}
 
 }
