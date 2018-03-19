@@ -32,9 +32,10 @@ public class JasperReportController {
 	private HttpServletResponse response;
 	
 	
-	@RequestMapping(path = "/pdf/{id}", method = RequestMethod.GET, produces = "application/pdf")
-    public byte[]  report(@PathVariable Integer id) {
-		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
+	@RequestMapping(value = "/mcfpReport/{fromDate}/{toDate}/{advisor}/{branch}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  mcfpReport(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String advisor,@PathVariable String branch) {
+		System.out.println(fromDate+","+toDate+","+advisor+","+branch);
+		/*response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 	    response.setContentType("application/pdf");
 	    
 		Map<String, Object> params = new HashMap<>();
@@ -74,9 +75,45 @@ public class JasperReportController {
             ex.printStackTrace();   
         }catch (Exception ex) {
     		
-    	}
+    	}*/
 
-        return baos.toByteArray();
+        return null;
     } 
+
+	@RequestMapping(value = "/proposalRegister/{fromDate}/{toDate}/{zone}/{region}/{branch}/{unl}/{frequency}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  proposalRegister(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String unl,@PathVariable String frequency) {
+		System.out.println(fromDate+","+toDate+","+zone+","+region+","+branch+","+unl+","+frequency);
+		
+
+        return null;
+    }
+
+	
+	@RequestMapping(value = "/pendingRequirements/{advisor}/{branch}/{region}/{zone}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  pendingRequirements(@PathVariable String advisor,@PathVariable String branch,@PathVariable String region,@PathVariable String zone) {
+		System.out.println(advisor+","+branch+","+region+","+zone);
+		
+
+        return null;
+    }
+
+
+	@RequestMapping(value = "/retentionUnit/{toDate}/{zone}/{region}/{branch}/{unl}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  retentionUnit(@PathVariable String toDate,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String unl) {
+		System.out.println(toDate+","+zone+","+region+","+branch+","+unl);
+		
+
+        return null;
+    }
+
+	@RequestMapping(value = "/retentionCode/{date}/{zone}/{region}/{branch}/{code}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  retentionCode(@PathVariable String date,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String code) {
+		System.out.println(date+","+zone+","+region+","+branch+","+code);
+		
+
+        return null;
+    }
+
+
 
 }
