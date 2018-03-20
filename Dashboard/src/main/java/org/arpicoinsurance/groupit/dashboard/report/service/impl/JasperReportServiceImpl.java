@@ -4,15 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
-
 import org.arpicoinsurance.groupit.dashboard.report.service.JasperReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
