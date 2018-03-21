@@ -1,5 +1,6 @@
 package org.arpicoinsurance.groupit.dashboard.controller;
 
+import org.arpicoinsurance.groupit.dashboard.helper.JwtDecoder;
 import org.arpicoinsurance.groupit.dashboard.report.service.JasperReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,12 +16,31 @@ public class JasperReportController {
 	@Autowired
 	private JasperReportService jasperReportService;
 	
+	
+	private JwtDecoder jwtDecorder;
+	
 		
-	@RequestMapping(value = "/mcfpReport/{fromDate}/{toDate}/{advisor}/{branch}", method = RequestMethod.GET, produces = "application/pdf")
-    public byte[]  mcfpReport(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String advisor,@PathVariable String branch) {
-		System.out.println(fromDate+","+toDate+","+advisor+","+branch);
+	@RequestMapping(value = "/mcfpReport/{fromDate}/{toDate}/{advisor}/{branch}/{status}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  mcfpReport(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String advisor,@PathVariable String branch,@PathVariable String status) {
+		System.out.println(fromDate);
 		try {
-			return jasperReportService.mcfpReport(fromDate, toDate, advisor, branch);
+			if(branch.equals("ALL")) {
+				branch="%";
+			}else if(branch.equals("undefined")) {
+				branch="%";
+			}
+			
+			if(advisor.equals("ALL")) {
+				advisor="%";
+			}
+			
+			jwtDecorder=new JwtDecoder();
+			
+			if(status.equals("Y")) {
+				advisor=jwtDecorder.generate(advisor);
+			}
+			System.out.println(advisor+" , "+branch);
+			return jasperReportService.mcfpReport(fromDate,toDate,advisor,branch);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
