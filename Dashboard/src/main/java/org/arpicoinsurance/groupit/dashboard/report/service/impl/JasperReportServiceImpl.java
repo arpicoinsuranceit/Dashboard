@@ -39,7 +39,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("sbucod", "450");
         params.put("sdate", fromDate);
         params.put("edate", toDate);
-        params.put("agncod", "%");
+        params.put("agncod", advisor);
         params.put("loccod", branch);
         
         
