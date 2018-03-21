@@ -24,6 +24,8 @@ public interface JasperReportService {
 
 	public byte[]  firstPremiumLapSummary(String fromDate,String toDate,String zone,String region,String branch)throws Exception;
 
+	public byte[]  policyAcknowledgement(String branch,String year,String month)throws Exception;
+
 	public byte[]  salesPerfSummaryCode(String fromDate,String toDate,String zone,String region,String branch,String frequency, String product)throws Exception;
 
 	public byte[]  salesPerfSummary(String fromDate,String toDate,String zone,String region,String branch,String frequency, String product,String so)throws Exception;

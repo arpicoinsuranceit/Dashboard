@@ -153,6 +153,18 @@ public class JasperReportController {
         return null;
     }
 	
+	@RequestMapping(value = "/policyAcknowledgement/{branch}/{year}/{month}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  policyAcknowledgement(@PathVariable String branch  ,@PathVariable String year,@PathVariable String month) {
+		System.out.println(branch+","+year+","+month);
+		try {
+			return jasperReportService.policyAcknowledgement(branch, year, month);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+        return null;
+    }
+	
 	@RequestMapping(value = "/salesPerfSummaryCode/{fromDate}/{toDate}/{zone}/{region}/{branch}/{frequency}/{product}", method = RequestMethod.GET, produces = "application/pdf")
     public byte[]  salesPerfSummaryCode(@PathVariable String fromDate  ,@PathVariable String toDate,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String frequency,@PathVariable String product) {
 		System.out.println(fromDate+","+toDate+","+zone+","+region+","+branch+","+frequency+","+product);

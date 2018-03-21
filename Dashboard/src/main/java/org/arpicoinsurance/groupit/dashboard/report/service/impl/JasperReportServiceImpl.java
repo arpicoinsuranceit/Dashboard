@@ -940,6 +940,59 @@ public class JasperReportServiceImpl implements JasperReportService{
         
         return baos.toByteArray();
 	}
+
+	@Override
+	public byte[] policyAcknowledgement(String branch, String year, String month) throws Exception {
+		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
+	    response.setContentType("application/pdf");
+	    
+		Map<String, Object> params = new HashMap<>();
+        params.put("sbucod", "450");
+        params.put("year", year);
+        params.put("loccod", branch);
+        params.put("period", month);
+        
+
+        
+        //String OUT_PUT = "D:\\performance_detail.pdf";
+        String REPORT = "biz_gra_sub.jrxml";
+        JasperReport jr=null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        
+        try {
+        	try {
+        		 jr = JasperCompileManager.compileReport(
+                         ClassLoader.getSystemResourceAsStream(REPORT));
+                 
+        	}catch (Exception ex) {
+        		ex.printStackTrace();
+        		System.out.println("Exception...");
+        	}
+
+           
+			try {
+				JasperPrint jp;
+				
+				jp = JasperFillManager.fillReport(jr, params, dataSource.getConnection());
+				
+				JRPdfExporter export = new JRPdfExporter();
+		        export.setExporterInput(new SimpleExporterInput(jp));
+		        export.setExporterOutput(new SimpleOutputStreamExporterOutput(baos));
+		        export.exportReport();
+		        
+		       
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+            
+        } catch (JRException ex) {
+            ex.printStackTrace();   
+        }catch (Exception ex) {
+        	ex.printStackTrace();  
+    	}
+        
+        return baos.toByteArray();
+	}
 	
 	
 
