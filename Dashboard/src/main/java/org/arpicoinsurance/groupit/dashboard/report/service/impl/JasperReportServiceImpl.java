@@ -150,7 +150,7 @@ public class JasperReportServiceImpl implements JasperReportService{
 	    
 		Map<String, Object> params = new HashMap<>();
         params.put("sbucod", "450");
-        params.put("agncod", "%");
+        params.put("agncod", advisor);
         params.put("loccod", branch);
         params.put("rgncod", region);
         params.put("rgncod", region);
@@ -893,7 +893,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("loccod", branch);
         params.put("prdcod", product);
         params.put("catcod", frequency);
-        params.put("agncod", "%");
+        params.put("agncod", unl);
         params.put("subtyp", type);
 
 
