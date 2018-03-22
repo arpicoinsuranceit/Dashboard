@@ -103,12 +103,33 @@ public class JasperReportController {
     public byte[]  retentionBranch(@PathVariable String date,@PathVariable String zone,@PathVariable String region,@PathVariable String branch) {
 		System.out.println(date+","+zone+","+region+","+branch);
 		try {
+			if(zone.equals("ALL")) {
+				zone="%";
+			}else if(zone.equals("undefined")) {
+				zone="%";
+			}
+			
+			if(region.equals("ALL")) {
+				region="%";
+			}else if(region.equals("undefined")) {
+				region="%";
+			}
+			
+			if(branch.equals("ALL")) {
+				branch="%";
+			}else if(branch.equals("undefined")) {
+				branch="%";
+			}
+			
+			
+			System.out.println(region+" , "+branch);
 			return jasperReportService.retentionBranch(date, zone, region, branch);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-        return null;
+		
+		return null;
     }
 
 
@@ -116,10 +137,50 @@ public class JasperReportController {
     public byte[]  detailsOfPolicies(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String ic,@PathVariable String ul,@PathVariable String branch,@PathVariable String region,@PathVariable String zone,@PathVariable String sp) {
 		System.out.println(fromDate+","+toDate+","+ic+","+ul+","+branch+","+region+","+zone+","+sp);
 		try {
+			if(ic.equals("ALL")) {
+				ic="%";
+			}else if(ic.equals("undefined")) {
+				ic="%";
+			}
+			
+			if(ul.equals("ALL")) {
+				ul="%";
+			}else if(ul.equals("undefined")) {
+				ul="%";
+			}
+			
+			if(branch.equals("ALL")) {
+				branch="%";
+			}else if(branch.equals("undefined")) {
+				branch="%";
+			}
+			
+			if(region.equals("ALL")) {
+				region="%";
+			}else if(region.equals("undefined")) {
+				region="%";
+			}
+			
+			if(zone.equals("ALL")) {
+				zone="%";
+			}else if(zone.equals("undefined")) {
+				zone="%";
+			}
+			
+			if(sp.equals("ALL")) {
+				sp="%";
+			}else if(sp.equals("undefined")) {
+				sp="%";
+			}
+			
+			
+			System.out.println(region+" , "+branch);
 			return jasperReportService.detailsOfPolicies(fromDate, toDate, ic, ul, branch, region, zone, sp);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 
         return null;
     }
@@ -165,6 +226,25 @@ public class JasperReportController {
     public byte[]  firstPremiumLapSummary(@PathVariable String fromDate  ,@PathVariable String toDate,@PathVariable String zone,@PathVariable String region,@PathVariable String branch) {
 		System.out.println(fromDate+","+toDate+","+zone+","+region+","+branch);
 		try {
+			if(zone.equals("ALL")) {
+				zone="%";
+			}else if(zone.equals("undefined")) {
+				zone="%";
+			}
+			
+			if(region.equals("ALL")) {
+				region="%";
+			}else if(region.equals("undefined")) {
+				region="%";
+			}
+			
+			if(branch.equals("ALL")) {
+				branch="%";
+			}else if(branch.equals("undefined")) {
+				branch="%";
+			}
+			
+			
 			return jasperReportService.firstPremiumLapSummary(fromDate, toDate, zone, region, branch);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -177,6 +257,13 @@ public class JasperReportController {
     public byte[]  policyAcknowledgement(@PathVariable String branch  ,@PathVariable String year,@PathVariable String month) {
 		System.out.println(branch+","+year+","+month);
 		try {
+			if(branch.equals("ALL")) {
+				branch="%";
+			}else if(branch.equals("undefined")) {
+				branch="%";
+			}
+			
+			
 			return jasperReportService.policyAcknowledgement(branch, year, month);
 		} catch (Exception e) {
 			e.printStackTrace();

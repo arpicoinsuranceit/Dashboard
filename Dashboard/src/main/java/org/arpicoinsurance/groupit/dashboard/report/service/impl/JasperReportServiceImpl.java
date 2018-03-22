@@ -316,7 +316,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("edate", date);
         params.put("zoncod", zone);
         params.put("rgncod", region);
-        params.put("agncod", "%");
+        params.put("pprsta", "%");
 
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
