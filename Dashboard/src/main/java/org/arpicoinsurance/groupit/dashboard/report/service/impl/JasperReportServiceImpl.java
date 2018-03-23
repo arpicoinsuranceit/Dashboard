@@ -32,8 +32,7 @@ public class JasperReportServiceImpl implements JasperReportService{
 	@Override
 	public byte[] mcfpReport(String fromDate, String toDate, String advisor, String branch) throws Exception {
 		System.out.println(fromDate+","+toDate+","+advisor+","+branch);
-		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
-	    response.setContentType("application/pdf");
+		
 	    
 		Map<String, Object> params = new HashMap<>();
         params.put("sbucod", "450");
@@ -98,7 +97,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("zoncod", zone);
         params.put("rgncod", region);
         params.put("loccod", branch);
-        params.put("agncod", "%");
+        params.put("agncod", unl);
         params.put("catcod", frequency);
 
         
@@ -773,7 +772,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("loccod", branch);
         params.put("prdcod", product);
         params.put("catcod", frequency);
-        params.put("agncod", "%");
+        params.put("agncod", unl);
         params.put("subtyp", type);
         params.put("unlcod", unl);
 

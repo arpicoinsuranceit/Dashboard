@@ -1,5 +1,7 @@
 package org.arpicoinsurance.groupit.dashboard.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.arpicoinsurance.groupit.dashboard.helper.JwtDecoder;
 import org.arpicoinsurance.groupit.dashboard.report.service.JasperReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,10 @@ public class JasperReportController {
 	
 		
 	@RequestMapping(value = "/mcfpReport/{fromDate}/{toDate}/{advisor}/{branch}/{status}", method = RequestMethod.GET, produces = "application/pdf")
-    public byte[]  mcfpReport(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String advisor,@PathVariable String branch,@PathVariable String status) {
+    public byte[]  mcfpReport(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String advisor,@PathVariable String branch,@PathVariable String status,HttpServletResponse response) {
 		System.out.println(fromDate);
+		response.setHeader("Content-Disposition", "inline; filename=mcfpr.pdf");
+	    response.setContentType("application/pdf");
 		try {
 			if(branch.equals("ALL")) {
 				branch="%";
@@ -49,10 +53,32 @@ public class JasperReportController {
     } 
 
 	
-	@RequestMapping(value = "/proposalRegister/{fromDate}/{toDate}/{zone}/{region}/{branch}/{unl}/{frequency}", method = RequestMethod.GET, produces = "application/pdf")
-    public byte[]  proposalRegister(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String unl,@PathVariable String frequency) {
+	@RequestMapping(value = "/proposalRegister/{fromDate}/{toDate}/{zone}/{region}/{branch}/{unl}/{frequency}/{status}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  proposalRegister(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String unl,@PathVariable String frequency,@PathVariable String status) {
 		System.out.println(fromDate+","+toDate+","+zone+","+region+","+branch+","+unl+","+frequency);
 		try {
+			if(unl.equals("ALL") || unl.equals("undefined")) {
+				unl="%";
+			}
+			
+			if(branch.equals("ALL") || branch.equals("undefined")) {
+				branch="%";
+			}
+			
+			if(region.equals("ALL") || region.equals("undefined")) {
+				region="%";
+			}
+			
+			if(zone.equals("ALL")) {
+				zone="%";
+			}
+			
+			jwtDecorder=new JwtDecoder();
+			
+			if(status.equals("Y")) {
+				unl=jwtDecorder.generate(unl);
+			}
+			
 			return jasperReportService.proposalRegister(fromDate, toDate, zone, region, branch, unl, frequency);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -127,6 +153,21 @@ public class JasperReportController {
     public byte[]  retentionCode(@PathVariable String date,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String code) {
 		System.out.println(date+","+zone+","+region+","+branch+","+code);
 		try {
+			if(code.equals("ALL") || code.equals("undefined")) {
+				code="%";
+			}
+			
+			if(branch.equals("ALL") || branch.equals("undefined")) {
+				branch="%";
+			}
+			
+			if(region.equals("ALL") || region.equals("undefined")) {
+				region="%";
+			}
+			
+			if(zone.equals("ALL")) {
+				zone="%";
+			}
 			return jasperReportService.retentionCode(date, zone, region, branch, code);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -285,6 +326,10 @@ public class JasperReportController {
     public byte[]  grantStmtBranch(@PathVariable String branch  ,@PathVariable String year,@PathVariable String month,@PathVariable String code,@PathVariable String status) {
 		System.out.println(branch+","+year+","+month+","+code+","+status);
 		try {
+			if(code.equals("ALL") || code.equals("undefined")) {
+				code="%";
+			}
+			
 			return jasperReportService.grantStmtBranch(branch, year, month, code, status);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -392,10 +437,31 @@ public class JasperReportController {
     }
 	
 	
-	@RequestMapping(value = "/unitIsPerfSummary/{fromDate}/{toDate}/{zone}/{region}/{branch}/{unl}/{type}/{frequency}/{product}", method = RequestMethod.GET, produces = "application/pdf")
-    public byte[]  unitIsPerfSummary(@PathVariable String fromDate  ,@PathVariable String toDate,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String unl,@PathVariable String type,@PathVariable String frequency,@PathVariable String product) {
+	@RequestMapping(value = "/unitIsPerfSummary/{fromDate}/{toDate}/{zone}/{region}/{branch}/{unl}/{type}/{frequency}/{product}/{status}", method = RequestMethod.GET, produces = "application/pdf")
+    public byte[]  unitIsPerfSummary(@PathVariable String fromDate  ,@PathVariable String toDate,@PathVariable String zone,@PathVariable String region,@PathVariable String branch,@PathVariable String unl,@PathVariable String type,@PathVariable String frequency,@PathVariable String product,@PathVariable String status) {
 		System.out.println(fromDate+","+toDate+","+zone+","+region+","+branch+","+unl+","+type+","+frequency+","+product);
 		try {
+			if(unl.equals("ALL") || unl.equals("undefined")) {
+				unl="%";
+			}
+			
+			if(branch.equals("ALL") || branch.equals("undefined")) {
+				branch="%";
+			}
+			
+			if(region.equals("ALL") || region.equals("undefined")) {
+				region="%";
+			}
+			
+			if(zone.equals("ALL")) {
+				zone="%";
+			}
+			
+			jwtDecorder=new JwtDecoder();
+			
+			if(status.equals("Y")) {
+				unl=jwtDecorder.generate(unl);
+			}
 			return jasperReportService.unitIsPerfSummary(fromDate, toDate, zone, region, branch, unl, type, frequency, product);
 		} catch (Exception e) {
 			e.printStackTrace();
