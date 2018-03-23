@@ -6,7 +6,9 @@ public class InquiryLoad {
 	private String policyNo;
 	private String mainLifeName;
 	private String nic;
-	private String password;
+	private String product;
+	private String proposalStatus;
+	private String advisorCode;
 	
 	public String getProposalNo() {
 		return proposalNo;
@@ -32,11 +34,23 @@ public class InquiryLoad {
 	public void setNic(String nic) {
 		this.nic = nic;
 	}
-	public String getPassword() {
-		return password;
+	public String getProduct() {
+		return product;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setProduct(String product) {
+		this.product = product;
+	}
+	public String getProposalStatus() {
+		return proposalStatus;
+	}
+	public void setProposalStatus(String proposalStatus) {
+		this.proposalStatus = proposalStatus;
+	}
+	public String getAdvisorCode() {
+		return advisorCode;
+	}
+	public void setAdvisorCode(String advisorCode) {
+		this.advisorCode = advisorCode;
 	}
 	
 }
