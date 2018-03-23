@@ -1,7 +1,6 @@
 package org.arpicoinsurance.groupit.dashboard.dao.impl;
 
 import org.arpicoinsurance.groupit.dashboard.dao.DashboardTypeDao;
-import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.AgentAchievementRowMapper;
 import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.DashboardParaRowMapper;
 import org.arpicoinsurance.groupit.dashboard.dto.DashboardPara;
 import org.springframework.beans.factory.annotation.Autowired;
