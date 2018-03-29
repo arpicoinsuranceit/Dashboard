@@ -44,6 +44,15 @@ public class ProposalGeneralRowMapper implements RowMapper<ProposalGeneralDto> {
 		proposalGeneralDto.setSpouseDob(rs.getString("spodob"));
 		proposalGeneralDto.setSpouseocu(rs.getString("spoocu"));
 		
+		proposalGeneralDto.setPayTerm(rs.getString("pay_term"));
+		proposalGeneralDto.setTargetPremium(rs.getDouble("trgprm"));
+		proposalGeneralDto.setRelTerm(rs.getInt("rlftrm"));
+		proposalGeneralDto.setTopTerm(rs.getInt("toptrm"));
+		proposalGeneralDto.setBasicSum(rs.getDouble("bassum"));
+		proposalGeneralDto.setPremiumForBasicSum(rs.getDouble("premum"));
+		proposalGeneralDto.setTotalPremiun(rs.getDouble("totprm"));
+		proposalGeneralDto.setQuotationNum(rs.getString("quonum"));
+		
 		return proposalGeneralDto;
 	}
 

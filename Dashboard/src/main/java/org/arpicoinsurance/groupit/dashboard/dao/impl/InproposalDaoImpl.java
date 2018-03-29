@@ -199,9 +199,14 @@ public class InproposalDaoImpl implements InproposalsDao {
 	public ProposalGeneralDto getProposalGeneralDetails(String proposalNo) throws Exception {
 
 		ProposalGeneralDto proposalGeneralDto = jdbcTemplate.queryForObject(
-				"select pprnum, polnum, comdat, loccod, prdcod, prdnam, expdat, ppdsex, ppdnam, ppdini, ppdad1, ppdad2, ppdad3, ppdnic, ppdtel,"
-						+ "ppdmob, ppdeml, ppddob, ppdnag, ppdocu,ppdcst, ban_no,accnum,crmnum, sponam, spoini, sponic, spodob, spoocu, prpseq"
-						+ " from inproposals where pprnum = '" + proposalNo + "' and pprsta <> 'INAC'",
+				"select pprnum, polnum, comdat, loccod, prdcod, prdnam, expdat, ppdsex, ppdnam, ppdini, ppdad1, ppdad2, ppdad3, ppdnic, ppdtel,\r\n" + 
+				"ppdmob, ppdeml, ppddob, ppdnag, ppdocu,ppdcst, ban_no,accnum,crmnum, sponam, spoini, sponic, spodob, spoocu, prpseq,\r\n" + 
+				"case when paytrm = 1 and (sinprm is null or sinprm='0')  then 'Yearly'" + 
+				"            when paytrm = 12 and (sinprm is null or sinprm='0') then 'Monthly'" + 
+				"            when paytrm = 4 and (sinprm is null or sinprm='0') then 'Quartaly'" + 
+				"            when paytrm = 2 and (sinprm is null or sinprm='0') then 'Half Yearly'" + 
+				"            when sinprm='1' then 'Single Premium' end as pay_term, trgprm, rlftrm , toptrm, bassum, premum, totprm, quonum "+ 
+				"from inproposals where pprnum = '" + proposalNo + "' and pprsta <> 'INAC'",
 				new ProposalGeneralRowMapper());
 
 		return proposalGeneralDto;
@@ -301,7 +306,6 @@ public class InproposalDaoImpl implements InproposalsDao {
 	public List<PaymentHistoryDto> getPaymentHistoryDetails(String polocyNumber, String branchCode) throws Exception {
 		List<Object> args = new ArrayList<>();
 		args.add(polocyNumber);
-		args.add(branchCode);
 
 		return jdbcTemplate.query(
 				"select txnyer,txnmth,max(txndat) txndat,sum(if(doccod <> 'PRMI',amount,0)) setamt,sum(if(doccod = 'PRMI',amount,0)) dueamt,max(duedat) duedat, \r\n"
@@ -309,7 +313,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "ifnull((select group_concat(docnum) docnum from inbillingtransactions b \r\n"
 						+ "where a.sbucod=b.sbucod and a.pprnum=b.pprnum and a.txnyer=b.txnyer \r\n"
 						+ "and a.txnmth=b.txnmth and doccod <> 'PRMI' and amount <> 0 and txntyp <> 'RECOVERY' group by txnyer,txnmth),'') remark  \r\n"
-						+ "from inbillingtransactions a where sbucod='450' and polnum= ? and loccod = ? and amount <> 0 \r\n"
+						+ "from inbillingtransactions a where sbucod='450' and polnum= ? and amount <> 0 \r\n"
 						+ "group by txnyer desc,txnmth desc",
 				args.toArray(), new PaymentHistoryRowMapper());
 	}
@@ -327,10 +331,14 @@ public class InproposalDaoImpl implements InproposalsDao {
 				.query("SELECT cadsdt, remark FROM inhealthcarecard where sbucod='450' and polnum='" + policyNo
 						+ "'  order by lockin desc limit 1", new HealthCareRowMapper());
 		if (dispatch.size() > 0) {
+			acknowDto.setDispatch(new PolicyDispatch());
+		}else {
 			acknowDto.setDispatch(dispatch.get(0));
 		}
 		if (helthCare.size() > 0) {
 			acknowDto.setCare(helthCare.get(0));
+		}else {
+			acknowDto.setCare(new HelthCare());
 		}
 
 		return acknowDto;

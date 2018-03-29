@@ -32,6 +32,17 @@ public class ProposalGeneralDto {
 	private String spouseDob;
 	private String spouseocu;
 	
+	private String payTerm;
+	private Double targetPremium;
+	private Integer relTerm;
+	private Integer topTerm;
+	private Double basicSum;
+	private Double premiumForBasicSum;
+	private Double totalPremiun;
+	
+	private String quotationNum;
+	
+	
 	
 	public String getProposalNo() {
 		return proposalNo;
@@ -202,19 +213,72 @@ public class ProposalGeneralDto {
 		this.spouseocu = spouseocu;
 	}
 	
+	public String getPayTerm() {
+		return payTerm;
+	}
+	public void setPayTerm(String payTerm) {
+		this.payTerm = payTerm;
+	}
+	public Double getTargetPremium() {
+		return targetPremium;
+	}
+	public void setTargetPremium(Double targetPremium) {
+		this.targetPremium = targetPremium;
+	}
+	public Integer getRelTerm() {
+		return relTerm;
+	}
+	public void setRelTerm(Integer relTerm) {
+		this.relTerm = relTerm;
+	}
+	public Integer getTopTerm() {
+		return topTerm;
+	}
+	public void setTopTerm(Integer topTerm) {
+		this.topTerm = topTerm;
+	}
+	public Double getBasicSum() {
+		return basicSum;
+	}
+	public void setBasicSum(Double basicSum) {
+		this.basicSum = basicSum;
+	}
+	public Double getPremiumForBasicSum() {
+		return premiumForBasicSum;
+	}
+	public void setPremiumForBasicSum(Double premiumForBasicSum) {
+		this.premiumForBasicSum = premiumForBasicSum;
+	}
+	public Double getTotalPremiun() {
+		return totalPremiun;
+	}
+	public void setTotalPremiun(Double totalPremiun) {
+		this.totalPremiun = totalPremiun;
+	}
+	
+	public String getQuotationNum() {
+		return quotationNum;
+	}
+	public void setQuotationNum(String quotationNum) {
+		this.quotationNum = quotationNum;
+	}
 	@Override
 	public String toString() {
 		return "ProposalGeneralDto [proposalNo=" + proposalNo + ", policyNo=" + policyNo + ", commencementDate="
 				+ commencementDate + ", branchCode=" + branchCode + ", productCode=" + productCode + ", productName="
-				+ productName + ", expDate=" + expDate + ", mainLifesex=" + mainLifesex + ", mainLifeName="
-				+ mainLifeName + ", mainLifeNameIni=" + mainLifeNameIni + ", mainlifeAddress=" + mainlifeAddress
-				+ ", mainLifeNic=" + mainLifeNic + ", mainLifeTel=" + mainLifeTel + ", mainLifeMob=" + mainLifeMob
-				+ ", mainLifeEmail=" + mainLifeEmail + ", mainLifeDob=" + mainLifeDob + ", mainLifeNextAge="
-				+ mainLifeNextAge + ", mainLifeOcu=" + mainLifeOcu + ", mainLifeStatus=" + mainLifeStatus + ", bankNo="
-				+ bankNo + ", accountNo=" + accountNo + ", previlageCardNo=" + previlageCardNo + ", spouseName="
-				+ spouseName + ", spouseNameIni=" + spouseNameIni + ", spouseNic=" + spouseNic + ", spouseDob="
-				+ spouseDob + ", spouseocu=" + spouseocu + "]";
+				+ productName + ", expDate=" + expDate + ", seqNo=" + seqNo + ", mainLifesex=" + mainLifesex
+				+ ", mainLifeName=" + mainLifeName + ", mainLifeNameIni=" + mainLifeNameIni + ", mainlifeAddress="
+				+ mainlifeAddress + ", mainLifeNic=" + mainLifeNic + ", mainLifeTel=" + mainLifeTel + ", mainLifeMob="
+				+ mainLifeMob + ", mainLifeEmail=" + mainLifeEmail + ", mainLifeDob=" + mainLifeDob
+				+ ", mainLifeNextAge=" + mainLifeNextAge + ", mainLifeOcu=" + mainLifeOcu + ", mainLifeStatus="
+				+ mainLifeStatus + ", bankNo=" + bankNo + ", accountNo=" + accountNo + ", previlageCardNo="
+				+ previlageCardNo + ", spouseName=" + spouseName + ", spouseNameIni=" + spouseNameIni + ", spouseNic="
+				+ spouseNic + ", spouseDob=" + spouseDob + ", spouseocu=" + spouseocu + ", payTerm=" + payTerm
+				+ ", targetPremium=" + targetPremium + ", relTerm=" + relTerm + ", topTerm=" + topTerm + ", basicSum="
+				+ basicSum + ", premiumForBasicSum=" + premiumForBasicSum + ", totalPremiun=" + totalPremiun
+				+ ", quotationNum=" + quotationNum + "]";
 	}
+
 	
 	
 }
