@@ -1,14 +1,18 @@
 package org.arpicoinsurance.groupit.dashboard.report.service.impl;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 import org.arpicoinsurance.groupit.dashboard.report.service.JasperReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -41,6 +45,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("agncod", advisor);
         params.put("loccod", branch);
         
+        Resource resource = new ClassPathResource("mcfpr.jrxml");
+        File file = resource.getFile();
+        
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "mcfpr.jrxml";
@@ -50,7 +57,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -99,6 +106,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("loccod", branch);
         params.put("agncod", unl);
         params.put("catcod", frequency);
+        
+        Resource resource = new ClassPathResource("prop_register.jrxml");
+        File file = resource.getFile();
 
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
@@ -109,7 +119,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -155,8 +165,11 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("rgncod", region);
         params.put("loccod", branch);
         params.put("zoncod", zone);
-
         
+        Resource resource = new ClassPathResource("Pend_req_advi.jrxml");
+        File file = resource.getFile();
+
+        System.out.println(file.getPath()+" Path.....");
         //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "Pend_req_advi.jrxml";
         JasperReport jr=null;
@@ -165,7 +178,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -210,6 +223,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("zoncod", zone);
         params.put("rgncod", region);
         params.put("agncod", unl);
+        
+        Resource resource = new ClassPathResource("reten_unl_sum.jrxml");
+        File file = resource.getFile();
 
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
@@ -220,7 +236,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -263,6 +279,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("zoncod", zone);
         params.put("rgncod", region);
         params.put("pprsta", code);
+        
+        Resource resource = new ClassPathResource("pre_bas_persi_sum.jrxml");
+        File file = resource.getFile();
 
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
@@ -273,7 +292,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -316,6 +335,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("zoncod", zone);
         params.put("rgncod", region);
         params.put("pprsta", "%");
+        
+        Resource resource = new ClassPathResource("pre_bas_persi_sum.jrxml");
+        File file = resource.getFile();
 
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
@@ -326,7 +348,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -374,6 +396,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("sinprm", sp);
         params.put("agncod", ic);
         params.put("unlcod", ul);
+        
+        Resource resource = new ClassPathResource("detai_pol_list.jrxml");
+        File file = resource.getFile();
 
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
@@ -384,7 +409,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -429,6 +454,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("rgncod", regionCode);
         params.put("agncod", code);
         params.put("zoncod", zone);
+        
+        Resource resource = new ClassPathResource("Premium_due_rep_live.jrxml");
+        File file = resource.getFile();
       
 
         
@@ -440,7 +468,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -486,7 +514,8 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("agncod", code);
         params.put("zoncod", zone);
       
-
+        Resource resource = new ClassPathResource("Premium_due_rep.jrxml");
+        File file = resource.getFile();
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "Premium_due_rep.jrxml";
@@ -496,7 +525,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -541,6 +570,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("agnsta", status);
         params.put("agncod", code);
         params.put("loccod", branch);
+        
+        Resource resource = new ClassPathResource("comm_agnt_bra.jrxml");
+        File file = resource.getFile();
       
 
         
@@ -552,7 +584,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -598,7 +630,8 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("rgncod", region);
         params.put("loccod", branch);
       
-
+        Resource resource = new ClassPathResource("first_prm_lap.jrxml");
+        File file = resource.getFile();
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "first_prm_lap.jrxml";
@@ -608,7 +641,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -655,6 +688,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("loccod", branch);
         params.put("prdcod", product);
         params.put("catcod", frequency);
+        
+        Resource resource = new ClassPathResource("performance_agn.jrxml");
+        File file = resource.getFile();
 
 
         
@@ -666,7 +702,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -714,6 +750,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("prdcod", product);
         params.put("catcod", frequency);
         params.put("sinprm", so);
+        
+        Resource resource = new ClassPathResource("performance_brn.jrxml");
+        File file = resource.getFile();
 
 
         
@@ -725,7 +764,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -775,6 +814,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("agncod", unl);
         params.put("subtyp", type);
         params.put("unlcod", unl);
+        
+        Resource resource = new ClassPathResource("performance_summ_unl.jrxml");
+        File file = resource.getFile();
 
 
         
@@ -786,7 +828,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -835,7 +877,8 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("catcod", frequency);
         params.put("agncod", code);
 
-
+        Resource resource = new ClassPathResource("performance_detail.jrxml");
+        File file = resource.getFile();
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "performance_detail.jrxml";
@@ -845,7 +888,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -895,7 +938,8 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("agncod", unl);
         params.put("subtyp", type);
 
-
+        Resource resource = new ClassPathResource("performance_detail_unl.jrxml");
+        File file = resource.getFile();
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "performance_detail_unl.jrxml";
@@ -905,7 +949,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
@@ -948,7 +992,8 @@ public class JasperReportServiceImpl implements JasperReportService{
         params.put("loccod", branch);
         params.put("period", month);
         
-
+        Resource resource = new ClassPathResource("biz_gra_sub.jrxml");
+        File file = resource.getFile();
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "biz_gra_sub.jrxml";
@@ -958,7 +1003,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
         	try {
         		 jr = JasperCompileManager.compileReport(
-                         ClassLoader.getSystemResourceAsStream(REPORT));
+                         ClassLoader.getSystemResourceAsStream(file.getName()));
                  
         	}catch (Exception ex) {
         		ex.printStackTrace();
