@@ -38,7 +38,25 @@ public class OrgChartDetailsServiceImpl implements OrgChartDetailsService {
 				orgChartDetailsDto.setActive(0);
 
 				for (OrgChartDetailsDto orgChartDetailsDto1 : chartDetailsDtos) {
-
+					Test test1 = new Test();
+					if(orgChartDetailsDto1.getAgncls().equals(rgn) && orgChartDetailsDto1.getSubdcd().equals("ARSM")
+							&& orgChartDetailsDto1.getActive() == 1) {
+						test1 = getTest(test1, orgChartDetailsDto1);
+						orgChartDetailsDto1.setActive(0);
+						
+						for (OrgChartDetailsDto orgChartDetailsDto2 : chartDetailsDtos) {
+							Test test2 = new Test();
+							if(orgChartDetailsDto2.getAgncls().equals(rgn) && orgChartDetailsDto2.getSubdcd().equals("ARSM")
+									&& orgChartDetailsDto2.getActive() == 1) {
+								test1 = getTest(test2, orgChartDetailsDto2);
+								orgChartDetailsDto2.setActive(0);
+								
+								
+								
+							}
+						}
+						
+					}
 				}
 
 			}
@@ -50,7 +68,13 @@ public class OrgChartDetailsServiceImpl implements OrgChartDetailsService {
 				orgChartDetailsDto.setActive(0);
 
 				for (OrgChartDetailsDto orgChartDetailsDto1 : chartDetailsDtos) {
-
+					Test test1 = new Test();
+					if(orgChartDetailsDto1.getAgncls().equals(rgn) && orgChartDetailsDto1.getSubdcd().equals("NABR")
+							&& orgChartDetailsDto1.getActive() == 1) {
+						test1 = getTest(test1, orgChartDetailsDto1);
+						orgChartDetailsDto1.setActive(0);
+						
+					}
 				}
 
 			}
