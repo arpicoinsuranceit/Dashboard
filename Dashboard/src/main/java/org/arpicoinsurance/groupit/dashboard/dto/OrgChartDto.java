@@ -1,14 +1,16 @@
 package org.arpicoinsurance.groupit.dashboard.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class OrgChartDto {
 
 	private String id;
 	private String name;
 	private String Location;
 	private String designation;
-	private List<Object> childs;
+	private String desCod;
+	private List<OrgChartDto> childs = new ArrayList<>();
 	
 	public String getId() {
 		return id;
@@ -34,15 +36,21 @@ public class Test {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public List<Object> getChilds() {
+	public String getDesCod() {
+		return desCod;
+	}
+	public void setDesCod(String desCod) {
+		this.desCod = desCod;
+	}
+	public List<OrgChartDto> getChilds() {
 		return childs;
 	}
-	public void setChilds(List<Object> childs) {
+	public void setChilds(List<OrgChartDto> childs) {
 		this.childs = childs;
 	}
 	@Override
 	public String toString() {
-		return "Test [name=" + name + ", Location=" + Location + ", designation=" + designation + ", childs=" + childs
+		return "OrgChartDto [name=" + name + ", Location=" + Location + ", designation=" + designation + ", childs=" + childs
 				+ "]";
 	} 
 }

@@ -1,5 +1,8 @@
 package org.arpicoinsurance.groupit.dashboard.controller;
 
+import java.util.List;
+
+import org.arpicoinsurance.groupit.dashboard.dto.OrgChartDto;
 import org.arpicoinsurance.groupit.dashboard.service.OrgChartDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,16 +18,16 @@ public class OrgChartController {
 	private OrgChartDetailsService chartDetailsService;
 	
 	@RequestMapping(value = "/loadOrg", method = RequestMethod.GET)
-	public String load() {
+	public List<OrgChartDto> load() {
 	
 		try {
-			chartDetailsService.load();
+			return chartDetailsService.load();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return "called";
+		return null;
 	}
 	
 }

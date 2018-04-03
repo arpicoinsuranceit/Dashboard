@@ -330,7 +330,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 		List<HelthCare> helthCare = jdbcTemplate
 				.query("SELECT cadsdt, remark FROM inhealthcarecard where sbucod='450' and polnum='" + policyNo
 						+ "'  order by lockin desc limit 1", new HealthCareRowMapper());
-		if (dispatch.size() > 0) {
+		if (dispatch.size() < 1) {
 			acknowDto.setDispatch(new PolicyDispatch());
 		}else {
 			acknowDto.setDispatch(dispatch.get(0));
