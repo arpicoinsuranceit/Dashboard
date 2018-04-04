@@ -8,6 +8,7 @@ public class OrgChartDto {
 	private String id;
 	private String name;
 	private String Location;
+	private String LocationName;
 	private String designation;
 	private String desCod;
 	private List<OrgChartDto> childs = new ArrayList<>();
@@ -29,6 +30,12 @@ public class OrgChartDto {
 	}
 	public void setLocation(String location) {
 		Location = location;
+	}
+	public String getLocationName() {
+		return LocationName;
+	}
+	public void setLocationName(String locationName) {
+		LocationName = locationName;
 	}
 	public String getDesignation() {
 		return designation;

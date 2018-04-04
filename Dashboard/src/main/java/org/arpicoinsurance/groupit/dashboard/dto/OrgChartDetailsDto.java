@@ -1,6 +1,7 @@
 package org.arpicoinsurance.groupit.dashboard.dto;
 
 public class OrgChartDetailsDto {
+	private String agncod;
 	private String shrtnm;
 	private String loc_name;
 	private String subdes;
@@ -12,9 +13,17 @@ public class OrgChartDetailsDto {
 	private String unlcod;
 	private Integer active = 1;
 	
+	public String getAgncod() {
+		return agncod;
+	}
+	public void setAgncod(String agncod) {
+		this.agncod = agncod;
+	}
+	
 	public String getShrtnm() {
 		return shrtnm;
 	}
+	
 	public void setShrtnm(String shrtnm) {
 		this.shrtnm = shrtnm;
 	}

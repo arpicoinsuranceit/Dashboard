@@ -17,13 +17,13 @@ public class OrgChartDaoimpl implements OrgChartDao{
 	JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<OrgChartDetailsDto> getOrgChartList() throws Exception {
+	public List<OrgChartDetailsDto> getOrgChartList(String exp) throws Exception {
 		return jdbcTemplate.query(
-				"select a.shrtnm,l.loc_name,d.subdes,d.subdcd,a.agncls, l.loc_code, r.rgncod, r.zoncod, a.unlcod from inagentmast a inner join insubdesignation d \r\n" + 
+				"select a.agncod, a.shrtnm,l.loc_name,d.subdes,d.subdcd,a.agncls, l.loc_code, r.rgncod, r.zoncod, a.unlcod from inagentmast a inner join insubdesignation d \r\n" + 
 				"on a.agncls=d.descod and a.subdcd=d.subdcd and a.subtyp=d.subtyp\r\n" + 
 				"inner join rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code\r\n" + 
 				"inner join inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod\r\n" + 
-				"where a.sbucod='450' and l.loc_code = 'TWG-2' and a.agnsta in ('ACT', 'INAC');", new OrgChartDetailsRowMapper());
+				"where a.sbucod='450' and "+ exp +" and a.agnsta in ('ACT', 'INAC');", new OrgChartDetailsRowMapper());
 	}
 
 }

@@ -12,6 +12,7 @@ public class OrgChartDetailsRowMapper implements RowMapper<OrgChartDetailsDto>{
 	public OrgChartDetailsDto mapRow(ResultSet rs, int row) throws SQLException {
 		OrgChartDetailsDto chartDetailsDto = new OrgChartDetailsDto();
 		
+		chartDetailsDto.setAgncod(rs.getString("agncod"));
 		chartDetailsDto.setAgncls(rs.getString("agncls"));
 		chartDetailsDto.setLoc_code(rs.getString("loc_code"));
 		chartDetailsDto.setLoc_name(rs.getString("loc_name"));
