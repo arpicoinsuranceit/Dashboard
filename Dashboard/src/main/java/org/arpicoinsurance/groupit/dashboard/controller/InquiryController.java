@@ -35,6 +35,11 @@ public class InquiryController {
 		
 		DataTableResponse dataTableResponse = new DataTableResponse();
 		try {
+			System.out.println(userType);
+			System.out.println(dashpara);
+			System.out.println(advcod);
+			System.out.println(offset);
+			System.out.println(limit);
 			dataTableResponse.setData(inquiryService.inquiryLoad(userType, dashpara, advcod, offset, limit).toArray());
 			dataTableResponse.setRecordsFiltered(limit);
 		} catch (Exception e) {
