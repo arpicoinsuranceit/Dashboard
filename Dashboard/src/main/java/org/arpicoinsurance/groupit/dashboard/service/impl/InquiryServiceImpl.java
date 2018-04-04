@@ -73,7 +73,7 @@ public class InquiryServiceImpl implements InquiryService {
 		case "ZONE":
 			return inproposalDao.getInquiriesZone(dashpara, offset, limit, sqlData);
 		case "HO":
-			return inproposalDao.getInquiriesHo(dashpara, offset, limit, "");
+			return inproposalDao.getInquiriesHo(dashpara, offset, limit, sqlData);
 		default:
 			break;
 		}
@@ -126,7 +126,7 @@ public class InquiryServiceImpl implements InquiryService {
 		case "ZONE":
 			return inproposalDao.getInquiryZoneCount(dashpara, sqlData);
 		case "HO":
-			return inproposalDao.getInquiriesHoCount(dashpara, "");
+			return inproposalDao.getInquiriesHoCount(dashpara, sqlData);
 		default:
 			break;
 		}
