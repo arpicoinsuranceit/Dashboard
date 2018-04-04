@@ -42,6 +42,14 @@ public interface InproposalsDao {
 	List<InquiryLoad> getInquiriesZone(String zoneCode, Integer offset, Integer limit, String data) throws Exception;
 
 	Integer getInquiryZoneCount(String zoneCode, String data) throws Exception;
+	
+	
+	///////////////// HO ///////////////////////////
+	
+	List<InquiryLoad> getInquiriesHo(String dashpara, int offset, int limit, String string);
+
+	Integer getInquiriesHoCount(String dashpara, String data);
+
 
 	ProposalGeneralDto getProposalGeneralDetails(String proposalNo) throws Exception;
 
@@ -60,4 +68,6 @@ public interface InproposalsDao {
 	List<PaymentHistoryDto> getPaymentHistoryDetails(String proposalNo, String branchCode) throws Exception;
 
 	PolicyDispatchAcknowDto getPolicyDispatch (String policyNo) throws Exception;
+
+	
 }
