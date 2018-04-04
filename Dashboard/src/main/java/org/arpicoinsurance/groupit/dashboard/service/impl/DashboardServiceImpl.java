@@ -1327,7 +1327,7 @@ public class DashboardServiceImpl implements DashboardService {
 		try {
 			try {
 				dashboardPara = dashboardTypeDao.getDashboardPara(userid);
-
+				return dashboardPara;
 			} catch (Exception e) {
 				if (dashboardPara != null && dashboardPara.getDashpara() != null
 						&& dashboardPara.getDashtype() != null) {
