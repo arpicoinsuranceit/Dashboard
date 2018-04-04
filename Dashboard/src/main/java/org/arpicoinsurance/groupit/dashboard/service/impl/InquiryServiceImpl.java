@@ -20,17 +20,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class InquiryServiceImpl implements InquiryService{
+public class InquiryServiceImpl implements InquiryService {
 
 	@Autowired
 	private InproposalsDao inproposalDao;
-	
-	
 
 	@Override
 	public List<InquiryLoad> inquiryLoad(String userType, String dashpara, String advCode, int offset, int limit)
 			throws Exception {
-		
+
 		switch (userType) {
 		case "IC":
 			return inproposalDao.getInquiriesIC(advCode, offset, limit, "");
@@ -42,25 +40,27 @@ public class InquiryServiceImpl implements InquiryService{
 			return inproposalDao.getInquiriesRegion(dashpara, offset, limit, "");
 		case "ZONE":
 			return inproposalDao.getInquiriesZone(dashpara, offset, limit, "");
+		case "HO":
+			return inproposalDao.getInquiriesHo(dashpara, offset, limit, "");
 		default:
 			break;
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public List<InquiryLoad> inquiryLoadFilterd(String userType, String dashpara, String advCode, int offset, int limit,
 			String column, String data, String equality) throws Exception {
-		
+
 		String sqlData = "";
-		
-		if(equality.equals("equal")) {
-			sqlData = "and p."+column+" = "+ data ;
-		}else if(equality.equals("with")) {
-			sqlData = "and p."+column+" LIKE '%"+ data +"%'";
+
+		if (equality.equals("equal")) {
+			sqlData = "and p." + column + " = " + data;
+		} else if (equality.equals("with")) {
+			sqlData = "and p." + column + " LIKE '%" + data + "%'";
 		}
-		
+
 		switch (userType) {
 		case "IC":
 			return inproposalDao.getInquiriesIC(advCode, offset, limit, sqlData);
@@ -72,10 +72,12 @@ public class InquiryServiceImpl implements InquiryService{
 			return inproposalDao.getInquiriesRegion(dashpara, offset, limit, sqlData);
 		case "ZONE":
 			return inproposalDao.getInquiriesZone(dashpara, offset, limit, sqlData);
+		case "HO":
+			return inproposalDao.getInquiriesHo(dashpara, offset, limit, "");
 		default:
 			break;
 		}
-		
+
 		return null;
 	}
 
@@ -92,22 +94,24 @@ public class InquiryServiceImpl implements InquiryService{
 			return inproposalDao.getInquiryRegionCount(dashpara, "");
 		case "ZONE":
 			return inproposalDao.getInquiryZoneCount(dashpara, "");
+		case "HO":
+			return inproposalDao.getInquiriesHoCount(dashpara, "");
 		default:
 			break;
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public Integer inquiryLoadCountFilterd(String userType, String dashpara, String advCode, String column, String data,
 			String equality) throws Exception {
-String sqlData = "";
-		
-		if(equality.equals("equal")) {
-			sqlData = "and p."+column+" = "+ data ;
-		}else if(equality.equals("with")) {
-			sqlData = "and p."+column+" LIKE '%"+ data +"%'";
+		String sqlData = "";
+
+		if (equality.equals("equal")) {
+			sqlData = "and p." + column + " = " + data;
+		} else if (equality.equals("with")) {
+			sqlData = "and p." + column + " LIKE '%" + data + "%'";
 		}
 
 		switch (userType) {
@@ -121,23 +125,24 @@ String sqlData = "";
 			return inproposalDao.getInquiryRegionCount(dashpara, sqlData);
 		case "ZONE":
 			return inproposalDao.getInquiryZoneCount(dashpara, sqlData);
+		case "HO":
+			return inproposalDao.getInquiriesHoCount(dashpara, "");
 		default:
 			break;
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public ProposalGeneralDto getProposalGeneralInfo(String proposalNo) throws Exception {
-		
+
 		return inproposalDao.getProposalGeneralDetails(proposalNo);
 	}
 
 	@Override
 	public List<ChildDto> getChildrenList(String proposalNo, String branchCode, String seqNo) throws Exception {
-		
-		
+
 		return inproposalDao.getChildrenDetails(proposalNo, branchCode, Integer.parseInt(seqNo));
 	}
 
@@ -147,14 +152,15 @@ String sqlData = "";
 	}
 
 	@Override
-	public List<BenefictInquiryDto> getBenefictList(String proposalNo, String branchCode, String seqNo) throws Exception {
-		
+	public List<BenefictInquiryDto> getBenefictList(String proposalNo, String branchCode, String seqNo)
+			throws Exception {
+
 		return inproposalDao.getBenefictDetails(proposalNo, branchCode, Integer.parseInt(seqNo));
 	}
 
 	@Override
 	public List<MedicalReqDto> getMedicalReqList(String proposalNo, String branchCode, String seqNo) throws Exception {
-		
+
 		return inproposalDao.getMedicalReqDetails(proposalNo, branchCode, Integer.parseInt(seqNo));
 	}
 
@@ -170,16 +176,14 @@ String sqlData = "";
 
 	@Override
 	public List<PaymentHistoryDto> getPaymentHistory(String policyNo, String branchCode) throws Exception {
-		
+
 		return inproposalDao.getPaymentHistoryDetails(policyNo, branchCode);
 	}
 
 	@Override
 	public PolicyDispatchAcknowDto getPolicyDispatch(String policyNo) throws Exception {
-		
+
 		return inproposalDao.getPolicyDispatch(policyNo);
 	}
-
-	
 
 }

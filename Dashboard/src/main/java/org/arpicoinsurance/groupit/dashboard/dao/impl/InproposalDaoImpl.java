@@ -84,6 +84,8 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "	    and (a.agncod = ? OR a.unlcod = ?) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
+	
+	
 
 	@Override
 	public Integer getInquiryUNLCount(String advCode, String unlCod, String data) throws Exception {
@@ -195,6 +197,40 @@ public class InproposalDaoImpl implements InproposalsDao {
 		return count;
 	}
 
+	
+	@Override
+	public List<InquiryLoad> getInquiriesHo(String dashpara, int offset, int limit, String data) {
+		List<Object> args = new ArrayList<>();
+		args.add(offset);
+		args.add(limit);
+
+		return jdbcTemplate.query(
+				"SELECT " 
+						+ "        p.pprnum, p.polnum, p.ppdnam, p.ppdnic, p.prdcod,p.pprsta,p.advcod" + "    FROM"
+						+ "        inproposals p" + "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod"
+						+ "        AND p.advcod = a.agncod"
+						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code"
+						+ "    INNER JOIN inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod" + "    WHERE"
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + " limit ?,?",
+				args.toArray(), new InquiryLoadRowMapper());
+		
+	}
+	
+	@Override
+	public Integer getInquiriesHoCount(String dashpara, String data) {
+		List<Object> args = new ArrayList<>();
+
+		Integer count = jdbcTemplate.queryForObject(
+				"SELECT " + "        count(*) as count" + "    FROM" + "        inproposals p"
+						+ "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod" + "        AND p.advcod = a.agncod"
+						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code"
+						+ "    INNER JOIN inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod" + "    WHERE"
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "",
+				Integer.class, args.toArray());
+
+		return count;
+	}
+	
 	@Override
 	public ProposalGeneralDto getProposalGeneralDetails(String proposalNo) throws Exception {
 
@@ -343,5 +379,9 @@ public class InproposalDaoImpl implements InproposalsDao {
 
 		return acknowDto;
 	}
+
+	
+
+	
 
 }

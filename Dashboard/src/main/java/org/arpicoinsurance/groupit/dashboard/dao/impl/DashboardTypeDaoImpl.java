@@ -35,4 +35,14 @@ public class DashboardTypeDaoImpl implements DashboardTypeDao {
 				"    ac.sbucod = ? AND ac.userid = ? and u.active='1' order by CRE_DATE DESC limit 1 ", new Object[] { "450",userCode}, new DashboardParaRowMapper());
 	}
 
+	@Override
+	public String isHo(String userid) {
+		
+		System.out.println(userid);
+		
+		String ho = jdbcTemplate.queryForObject("select r.LOC_CODE from rms_users r where SBU_CODE = '450' and USER_ID = '"+ userid +"' "
+				+ "and active = 1 order by CRE_DATE desc limit 1", String.class);
+		return ho;
+	}
+
 }
