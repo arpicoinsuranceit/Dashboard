@@ -6,6 +6,6 @@ import org.arpicoinsurance.groupit.dashboard.dto.OrgChartDetailsDto;
 
 public interface OrgChartDao {
 
-	List<OrgChartDetailsDto> getOrgChartList() throws Exception;
+	List<OrgChartDetailsDto> getOrgChartList(String exp) throws Exception;
 	
 }
