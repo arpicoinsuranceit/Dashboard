@@ -48,6 +48,10 @@ public class JasperReportServiceImpl implements JasperReportService{
         Resource resource = new ClassPathResource("mcfpr.jrxml");
         File file = resource.getFile();
         
+        System.out.println(file.getPath());
+        System.out.println(file.getName());
+        System.out.println(file.getCanonicalPath());
+        
         
         //String OUT_PUT = "D:\\performance_detail.pdf";
         String REPORT = "mcfpr.jrxml";
