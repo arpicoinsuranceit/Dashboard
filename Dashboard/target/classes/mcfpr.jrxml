@@ -108,14 +108,14 @@ where c.loccod like $P{loccod}]]>
 				<textField>
 					<reportElement uuid="72a86f5f-dbd9-4276-b500-560a288eef5d" x="64" y="0" width="55" height="15"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{loccod}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement uuid="0b0529be-d747-445d-be9f-d921b6fccfc4" x="123" y="0" width="185" height="15"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{locnam}]]></textFieldExpression>
 				</textField>
@@ -134,7 +134,7 @@ where c.loccod like $P{loccod}]]>
 				<staticText>
 					<reportElement uuid="8133b1f1-bd9f-476e-bff2-9949b5c0e87d" x="4" y="0" width="55" height="15"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Branch]]></text>
 				</staticText>
@@ -145,28 +145,28 @@ where c.loccod like $P{loccod}]]>
 				<textField pattern="#,##0.00">
 					<reportElement uuid="d6f64563-d590-4a5d-af71-1bb540ce4d4c" x="366" y="2" width="79" height="17"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{brntotprm}]]></textFieldExpression>
 				</textField>
 				<textField pattern="#,##0.00">
 					<reportElement uuid="438189e2-7280-4ea0-93ba-f8f9b7990a4f" x="449" y="2" width="80" height="17"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{brntotmcfp}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0">
 					<reportElement uuid="f8c09b22-6d6a-44a7-99a0-2e4a0ade2755" x="177" y="2" width="30" height="17"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{brncupol}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement uuid="089984f9-24b1-443e-9faa-5c4b76d0b305" x="18" y="2" width="159" height="17"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
+						<font fontName="DejaVu Sans"/>
 					</textElement>
 					<text><![CDATA[No of Polices by Branch]]></text>
 				</staticText>
@@ -198,14 +198,14 @@ where c.loccod like $P{loccod}]]>
 				<textField>
 					<reportElement uuid="4b5bdc01-1fed-4848-8fec-020bff6d68b3" x="64" y="0" width="55" height="15"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{advcod}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement uuid="b67f3083-c4db-4948-a9b7-46eed95c39e8" x="123" y="0" width="185" height="15"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{agnnam}]]></textFieldExpression>
 				</textField>
@@ -224,7 +224,7 @@ where c.loccod like $P{loccod}]]>
 				<staticText>
 					<reportElement uuid="bb2dfc9d-1ae9-4d1d-bf12-5f1b7732d1cf" x="4" y="0" width="55" height="15"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Advisor]]></text>
 				</staticText>
@@ -235,28 +235,28 @@ where c.loccod like $P{loccod}]]>
 				<textField pattern="#,##0.00">
 					<reportElement uuid="f9e3b51b-2eea-4ece-8af0-6a7cf7cf3eff" x="366" y="2" width="79" height="17"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{advtotprm}]]></textFieldExpression>
 				</textField>
 				<textField pattern="#,##0.00">
 					<reportElement uuid="32929871-1c13-4385-8d31-03c5d1a0650c" x="449" y="2" width="80" height="17"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{advtotmcfp}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0">
 					<reportElement uuid="d554225f-522b-4f78-998e-3b71037df8a3" x="177" y="2" width="30" height="17"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Times New Roman" isBold="true"/>
+						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{advcupol}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement uuid="657d2947-d7e8-4957-8947-e6a0830de215" x="18" y="2" width="159" height="17"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Times New Roman"/>
+						<font fontName="DejaVu Sans"/>
 					</textElement>
 					<text><![CDATA[No of Polices by Advisor]]></text>
 				</staticText>
@@ -295,49 +295,49 @@ where c.loccod like $P{loccod}]]>
 			<staticText>
 				<reportElement uuid="e9cdf629-cb74-4cc9-98c2-777fb8c2bbb0" x="4" y="69" width="55" height="20"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Policy No]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="d942ff9a-9ed8-41c5-a155-43edc2911a8a" x="63" y="69" width="220" height="20"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Customer Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="fad463ba-6b5f-4204-9b21-a3e2a96e10ac" x="287" y="69" width="75" height="20"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mode]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="ac8f9d96-af1e-417e-b214-93f3533c8d3d" x="366" y="69" width="79" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Premium]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="6a70fd8f-5cee-454d-8fbc-87bf616735a6" x="449" y="69" width="80" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MCFP]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="35049f90-b04c-4cf4-9f1d-2a933d80efb7" x="0" y="20" width="100" height="20"/>
 				<textElement>
-					<font fontName="Times New Roman" size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MCFP Report]]></text>
 			</staticText>
 			<textField>
 				<reportElement uuid="73c0cffa-2208-419e-b3b0-360a276a2196" x="0" y="0" width="525" height="20"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font fontName="DejaVu Sans" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sbu_name}]]></textFieldExpression>
 			</textField>
@@ -368,21 +368,21 @@ where c.loccod like $P{loccod}]]>
 			<textField>
 				<reportElement uuid="e03047da-00d6-4dcb-80dd-58350005289b" x="0" y="50" width="281" height="15"/>
 				<textElement>
-					<font fontName="Times New Roman"/>
+					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression><![CDATA["From   "  +$P{sdate}+   "  TO  "   +$P{edate}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="a327efdf-6bb4-47d0-ad7d-873f5af51832" x="416" y="10" width="80" height="20"/>
 				<textElement textAlignment="Right">
-					<font fontName="Times New Roman"/>
+					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement uuid="01d0b3b9-fba1-47f6-8045-73c43be91459" x="496" y="10" width="40" height="20"/>
 				<textElement>
-					<font fontName="Times New Roman"/>
+					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
@@ -396,21 +396,21 @@ where c.loccod like $P{loccod}]]>
 			<textField>
 				<reportElement uuid="06a8e171-3981-4e7c-9966-f9d9667f25f3" x="4" y="0" width="55" height="13"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8"/>
+					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{polnum}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="2271d2d9-7c6a-45aa-b8a6-a3cc8ce59f8f" x="63" y="0" width="220" height="13"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8"/>
+					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ppdini}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="ee5f25b2-566c-44a8-b441-bf0ec3d29a12" x="287" y="0" width="75" height="13"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8"/>
+					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pay_mod}.equalsIgnoreCase("1") ?  "MONTHLY" :
 $F{pay_mod}.equalsIgnoreCase("12") ? "YEARLY" :
@@ -421,14 +421,14 @@ $F{pay_mod}.equalsIgnoreCase("S")? "SINGLE" :""]]></textFieldExpression>
 			<textField pattern="#,##0.00">
 				<reportElement uuid="9b337e0f-040a-4fd3-af3a-9a0393590327" x="366" y="0" width="79" height="13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8"/>
+					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totprm}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement uuid="a3ff3c15-c04c-4d93-9985-0201976039de" x="449" y="0" width="80" height="13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8"/>
+					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{mcfp}]]></textFieldExpression>
 			</textField>
@@ -463,28 +463,28 @@ $F{pay_mod}.equalsIgnoreCase("S")? "SINGLE" :""]]></textFieldExpression>
 			<textField pattern="#,##0.00">
 				<reportElement uuid="e18c0b39-e179-472d-b7ae-13c15c21515c" x="366" y="2" width="79" height="17"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{gtotprm}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement uuid="b1f727dd-dac0-49cc-befb-57c0eb98cfab" x="449" y="2" width="80" height="17"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{gtotmcfp}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0">
 				<reportElement uuid="6ebc2625-3cde-462e-9a77-e02f16d4c614" x="177" y="2" width="30" height="17"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{gcupol}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="89c1e809-efaf-4b86-928b-8f898c064597" x="18" y="2" width="159" height="17"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman"/>
+					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Total No of Polices]]></text>
 			</staticText>
@@ -515,7 +515,7 @@ $F{pay_mod}.equalsIgnoreCase("S")? "SINGLE" :""]]></textFieldExpression>
 			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement uuid="f3904264-3541-47bb-a1b7-9f1afc5b1f6d" x="436" y="26" width="100" height="15"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8"/>
+					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
