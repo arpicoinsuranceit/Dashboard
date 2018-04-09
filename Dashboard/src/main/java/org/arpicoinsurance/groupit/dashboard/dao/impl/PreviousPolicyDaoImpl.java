@@ -27,7 +27,7 @@ public class PreviousPolicyDaoImpl implements PreviousPolicyDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return details;
+		return details!= null ? details : new HashMap<>();
 	}
 
 }
