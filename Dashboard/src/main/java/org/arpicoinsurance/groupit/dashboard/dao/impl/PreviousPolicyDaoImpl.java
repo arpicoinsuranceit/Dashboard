@@ -25,7 +25,7 @@ public class PreviousPolicyDaoImpl implements PreviousPolicyDao {
 					"and TIMESTAMPDIFF(YEAR,icpdat,sysdate()) <=  2 group by a.ppdnic", new Object[] { nic }, new PreviousPolicyRowMapper());
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return details!= null ? details : new HashMap<>();
 	}
