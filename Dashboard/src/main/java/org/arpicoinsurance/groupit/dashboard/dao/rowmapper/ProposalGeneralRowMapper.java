@@ -53,6 +53,9 @@ public class ProposalGeneralRowMapper implements RowMapper<ProposalGeneralDto> {
 		proposalGeneralDto.setTotalPremiun(rs.getDouble("totprm"));
 		proposalGeneralDto.setQuotationNum(rs.getString("quonum"));
 		
+		proposalGeneralDto.setProposalStatus(rs.getString("pprsta"));
+		proposalGeneralDto.setProposalDescription(rs.getString("stadsc"));
+		
 		return proposalGeneralDto;
 	}
 

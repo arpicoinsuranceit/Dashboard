@@ -235,14 +235,16 @@ public class InproposalDaoImpl implements InproposalsDao {
 	public ProposalGeneralDto getProposalGeneralDetails(String proposalNo) throws Exception {
 
 		ProposalGeneralDto proposalGeneralDto = jdbcTemplate.queryForObject(
-				"select pprnum, polnum, comdat, loccod, prdcod, prdnam, expdat, ppdsex, ppdnam, ppdini, ppdad1, ppdad2, ppdad3, ppdnic, ppdtel,\r\n" + 
-				"ppdmob, ppdeml, ppddob, ppdnag, ppdocu,ppdcst, ban_no,accnum,crmnum, sponam, spoini, sponic, spodob, spoocu, prpseq,\r\n" + 
-				"case when paytrm = 1 and (sinprm is null or sinprm='0')  then 'Yearly'" + 
-				"            when paytrm = 12 and (sinprm is null or sinprm='0') then 'Monthly'" + 
-				"            when paytrm = 4 and (sinprm is null or sinprm='0') then 'Quartaly'" + 
-				"            when paytrm = 2 and (sinprm is null or sinprm='0') then 'Half Yearly'" + 
-				"            when sinprm='1' then 'Single Premium' end as pay_term, trgprm, rlftrm , toptrm, bassum, premum, totprm, quonum "+ 
-				"from inproposals where pprnum = '" + proposalNo + "' and pprsta <> 'INAC'",
+				"select p.pprnum, p.polnum, p.comdat, p.loccod, p.prdcod, p.prdnam, p.expdat, p.ppdsex, p.ppdnam, p.ppdini, p.ppdad1, p.ppdad2, p.ppdad3, \r\n" + 
+				"p.ppdnic, p.ppdtel, p.ppdmob, p.ppdeml, p.ppddob, p.ppdnag, p.ppdocu, p.ppdcst, p.ban_no, p.accnum, p.crmnum, p.sponam, p.spoini, p.sponic, \r\n" + 
+				"p.spodob, p.spoocu, p.prpseq,\r\n" + 
+				"case when p.paytrm = 1 and (p.sinprm is null or p.sinprm='0')  then 'Yearly'\r\n" + 
+				"	when p.paytrm = 12 and (p.sinprm is null or p.sinprm='0') then 'Monthly'\r\n" + 
+				"	when p.paytrm = 4 and (p.sinprm is null or p.sinprm='0') then 'Quartaly'\r\n" + 
+				"	when p.paytrm = 2 and (p.sinprm is null or p.sinprm='0') then 'Half Yearly'\r\n" + 
+				"	when sinprm='1' then 'Single Premium' end as pay_term, p.trgprm, p.rlftrm , p.toptrm, p.bassum, p.premum, p.totprm, p.quonum, p.pprsta, st.stadsc\r\n" + 
+				"from inproposals p inner join smtrxnstatus st on st.statid = p.pprsta\r\n" + 
+				"where p.pprnum = '"+ proposalNo +"' and p.pprsta <> 'INAC'",
 				new ProposalGeneralRowMapper());
 
 		return proposalGeneralDto;

@@ -41,6 +41,8 @@ public class ProposalGeneralDto {
 	private Double totalPremiun;
 	
 	private String quotationNum;
+	private String proposalStatus;
+	private String proposalDescription;
 	
 	
 	
@@ -262,6 +264,19 @@ public class ProposalGeneralDto {
 	public void setQuotationNum(String quotationNum) {
 		this.quotationNum = quotationNum;
 	}
+	public String getProposalStatus() {
+		return proposalStatus;
+	}
+	public void setProposalStatus(String proposalStatus) {
+		this.proposalStatus = proposalStatus;
+	}
+	public String getProposalDescription() {
+		return proposalDescription;
+	}
+	public void setProposalDescription(String proposalDescription) {
+		this.proposalDescription = proposalDescription;
+	}
+	
 	@Override
 	public String toString() {
 		return "ProposalGeneralDto [proposalNo=" + proposalNo + ", policyNo=" + policyNo + ", commencementDate="
@@ -276,9 +291,9 @@ public class ProposalGeneralDto {
 				+ spouseNic + ", spouseDob=" + spouseDob + ", spouseocu=" + spouseocu + ", payTerm=" + payTerm
 				+ ", targetPremium=" + targetPremium + ", relTerm=" + relTerm + ", topTerm=" + topTerm + ", basicSum="
 				+ basicSum + ", premiumForBasicSum=" + premiumForBasicSum + ", totalPremiun=" + totalPremiun
-				+ ", quotationNum=" + quotationNum + "]";
+				+ ", quotationNum=" + quotationNum + ", proposalStatus=" + proposalStatus + ", proposalDescription="
+				+ proposalDescription + "]";
 	}
-
 	
 	
 }
