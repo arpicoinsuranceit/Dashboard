@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
 			hashMap.put("sponic", info.get_spouse().get_sNic());
 		}else {
 			hashMap.put("sponam", "");
-			hashMap.put("sagnxt", "");
+			hashMap.put("sagnxt", -1);
 			hashMap.put("spodob", null);
 			hashMap.put("sponic", "");
 		}
