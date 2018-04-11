@@ -22,6 +22,10 @@ public class PreviousPolicyController {
 		
 		System.out.println(nic);
 		
+		if(nic.length()> 10) {
+			nic = nic.substring(2);
+		}
+		
 		HashMap< String , Object> details = previousPolicyService.getSumAtRisk(nic);
 		
 		return details;
