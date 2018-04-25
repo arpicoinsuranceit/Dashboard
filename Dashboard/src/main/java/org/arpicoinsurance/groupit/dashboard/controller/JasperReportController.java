@@ -28,19 +28,19 @@ public class JasperReportController {
 		response.setContentType("application/pdf");
 		System.out.println(advisor + "," + branch);
 		try {
-			if (branch.equals("ALL")) {
+			if (branch.equalsIgnoreCase("ALL")) {
 				branch = "%";
-			} else if (branch.equals("undefined")) {
+			} else if (branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (advisor.equals("ALL")) {
+			if (advisor.equalsIgnoreCase("ALL")) {
 				advisor = "%";
 			}
 
 			jwtDecorder = new JwtDecoder();
 
-			if (status.equals("Y")) {
+			if (status.equalsIgnoreCase("Y")) {
 				advisor = jwtDecorder.generate(advisor);
 			}
 			return jasperReportService.mcfpReport(fromDate, toDate, advisor, branch);
@@ -58,25 +58,25 @@ public class JasperReportController {
 		System.out.println(
 				fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + unl + "," + frequency);
 		try {
-			if (unl.equals("ALL") || unl.equals("undefined")) {
+			if (unl.equalsIgnoreCase("ALL") || unl.equalsIgnoreCase("undefined")) {
 				unl = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
 			jwtDecorder = new JwtDecoder();
 
-			if (status.equals("Y")) {
+			if (status.equalsIgnoreCase("Y")) {
 				unl = jwtDecorder.generate(unl);
 			}
 
@@ -92,25 +92,25 @@ public class JasperReportController {
 			@PathVariable String region, @PathVariable String zone, @PathVariable String status) {
 		System.out.println(advisor + "," + branch + "," + region + "," + zone);
 		try {
-			if (advisor.equals("ALL") || advisor.equals("undefined")) {
+			if (advisor.equalsIgnoreCase("ALL") || advisor.equalsIgnoreCase("undefined")) {
 				advisor = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
 			jwtDecorder = new JwtDecoder();
 
-			if (status.equals("Y")) {
+			if (status.equalsIgnoreCase("Y")) {
 				advisor = jwtDecorder.generate(advisor);
 			}
 			return jasperReportService.pendingRequirements(advisor, branch, region, zone);
@@ -126,19 +126,19 @@ public class JasperReportController {
 			@PathVariable String branch, @PathVariable String unl) {
 		System.out.println(toDate + "," + zone + "," + region + "," + branch + "," + unl);
 		try {
-			if (unl.equals("ALL") || unl.equals("undefined")) {
+			if (unl.equalsIgnoreCase("ALL") || unl.equalsIgnoreCase("undefined")) {
 				unl = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
@@ -155,19 +155,19 @@ public class JasperReportController {
 			@PathVariable String branch, @PathVariable String code) {
 		System.out.println(date + "," + zone + "," + region + "," + branch + "," + code);
 		try {
-			if (code.equals("ALL") || code.equals("undefined")) {
+			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 			return jasperReportService.retentionCode(date, zone, region, branch, code);
@@ -184,15 +184,15 @@ public class JasperReportController {
 		System.out.println(date + "," + zone + "," + region + "," + branch);
 		try {
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
@@ -212,39 +212,39 @@ public class JasperReportController {
 		System.out.println(
 				fromDate + "," + toDate + "," + ic + "," + ul + "," + branch + "," + region + "," + zone + "," + sp);
 		try {
-			if (ic.equals("ALL")) {
+			if (ic.equalsIgnoreCase("ALL")) {
 				ic = "%";
-			} else if (ic.equals("undefined")) {
+			} else if (ic.equalsIgnoreCase("undefined")) {
 				ic = "%";
 			}
 
-			if (ul.equals("ALL")) {
+			if (ul.equalsIgnoreCase("ALL")) {
 				ul = "%";
-			} else if (ul.equals("undefined")) {
+			} else if (ul.equalsIgnoreCase("undefined")) {
 				ul = "%";
 			}
 
-			if (branch.equals("ALL")) {
+			if (branch.equalsIgnoreCase("ALL")) {
 				branch = "%";
-			} else if (branch.equals("undefined")) {
+			} else if (branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL")) {
+			if (region.equalsIgnoreCase("ALL")) {
 				region = "%";
-			} else if (region.equals("undefined")) {
+			} else if (region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
-			} else if (zone.equals("undefined")) {
+			} else if (zone.equalsIgnoreCase("undefined")) {
 				zone = "%";
 			}
 
-			if (sp.equals("ALL")) {
+			if (sp.equalsIgnoreCase("ALL")) {
 				sp = "%";
-			} else if (sp.equals("undefined")) {
+			} else if (sp.equalsIgnoreCase("undefined")) {
 				sp = "%";
 			}
 
@@ -263,19 +263,19 @@ public class JasperReportController {
 			@PathVariable String branchCode, @PathVariable String regionCode, @PathVariable String zone) {
 		System.out.println(asAtDate + "," + code + "," + branchCode + "," + regionCode + "," + zone);
 		try {
-			if (code.equals("ALL") || code.equals("undefined")) {
+			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
 			}
 
-			if (branchCode.equals("ALL") || branchCode.equals("undefined")) {
+			if (branchCode.equalsIgnoreCase("ALL") || branchCode.equalsIgnoreCase("undefined")) {
 				branchCode = "%";
 			}
 
-			if (regionCode.equals("ALL") || regionCode.equals("undefined")) {
+			if (regionCode.equalsIgnoreCase("ALL") || regionCode.equalsIgnoreCase("undefined")) {
 				regionCode = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 			return jasperReportService.premiumDueReportLive(asAtDate, code, branchCode, regionCode, zone);
@@ -292,23 +292,23 @@ public class JasperReportController {
 			@PathVariable String status) {
 		System.out.println(asAtDate + "," + code + "," + branchCode + "," + regionCode + "," + zone);
 		try {
-			if (code.equals("ALL") || code.equals("undefined")) {
+			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
 			}
 
-			if (branchCode.equals("ALL") || branchCode.equals("undefined")) {
+			if (branchCode.equalsIgnoreCase("ALL") || branchCode.equalsIgnoreCase("undefined")) {
 				branchCode = "%";
 			}
 
-			if (regionCode.equals("ALL") || regionCode.equals("undefined")) {
+			if (regionCode.equalsIgnoreCase("ALL") || regionCode.equalsIgnoreCase("undefined")) {
 				regionCode = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
-			if (status.equals("Y")) {
+			if (status.equalsIgnoreCase("Y")) {
 				code = jwtDecorder.generate(code);
 			}
 			return jasperReportService.premiumDueReport(asAtDate, code, branchCode, regionCode, zone);
@@ -325,19 +325,19 @@ public class JasperReportController {
 		System.out.println(branch + "," + year + "," + month + "," + code + "," + status);
 		try {
 
-			if (month.equals("ALL") || month.equals("undefined")) {
+			if (month.equalsIgnoreCase("ALL") || month.equalsIgnoreCase("undefined")) {
 				month = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (code.equals("ALL") || code.equals("undefined")) {
+			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
 			}
 
-			if (status.equals("ALL") || status.equals("undefined")) {
+			if (status.equalsIgnoreCase("ALL") || status.equalsIgnoreCase("undefined")) {
 				status = "%";
 			}
 
@@ -355,15 +355,15 @@ public class JasperReportController {
 		System.out.println(fromDate + "," + toDate + "," + zone + "," + region + "," + branch);
 		try {
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
@@ -382,13 +382,13 @@ public class JasperReportController {
 		try {
 
 			System.out.println("before" + month);
-			if (month.equals("ALL") || month.equals("undefined")) {
+			if (month.equalsIgnoreCase("ALL") || month.equalsIgnoreCase("undefined")) {
 				month = "%";
 				System.out.println("after" + month);
 
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
@@ -408,23 +408,23 @@ public class JasperReportController {
 				fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + frequency + "," + product);
 		try {
 
-			if (frequency.equals("ALL") || frequency.equals("undefined")) {
+			if (frequency.equalsIgnoreCase("ALL") || frequency.equalsIgnoreCase("undefined")) {
 				frequency = "%";
 			}
 
-			if (product.equals("ALL") || product.equals("undefined")) {
+			if (product.equalsIgnoreCase("ALL") || product.equalsIgnoreCase("undefined")) {
 				product = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 			return jasperReportService.salesPerfSummaryCode(fromDate, toDate, zone, region, branch, frequency, product);
@@ -442,31 +442,34 @@ public class JasperReportController {
 		System.out.println(fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + frequency + ","
 				+ product + "," + so);
 		try {
-			if (frequency == ("ALL") || frequency.equals("undefined")) {
+			if (frequency.equalsIgnoreCase("ALL") || frequency.equalsIgnoreCase("undefined")) {
 				frequency = "%";
 
 			}
 
-			if (product == ("ALL") || product.equals("undefined")) {
+			if (product.equalsIgnoreCase("ALL") || product.equalsIgnoreCase("undefined")) {
 				product = "%";
 
 			}
 
-			if (so == ("ALL") || so.equals("undefined")) {
+			if (so.equalsIgnoreCase("ALL") || so.equalsIgnoreCase("undefined")) {
 				so = "%";
 
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
+
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
+
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
+
 			}
 
 			return jasperReportService.salesPerfSummary(fromDate, toDate, zone, region, branch, frequency, product, so);
@@ -485,31 +488,31 @@ public class JasperReportController {
 		System.out.println(fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + unl + "," + type
 				+ "," + frequency + "," + product);
 		try {
-			if (unl.equals("ALL") || unl.equals("undefined")) {
+			if (unl.equalsIgnoreCase("ALL") || unl.equalsIgnoreCase("undefined")) {
 				unl = "%";
 			}
 
-			if (type.equals("ALL") || type.equals("undefined")) {
+			if (type.equalsIgnoreCase("ALL") || type.equalsIgnoreCase("undefined")) {
 				type = "%";
 			}
 
-			if (frequency.equals("ALL") || frequency.equals("undefined")) {
+			if (frequency.equalsIgnoreCase("ALL") || frequency.equalsIgnoreCase("undefined")) {
 				frequency = "%";
 			}
 
-			if (product.equals("ALL") || product.equals("undefined")) {
+			if (product.equalsIgnoreCase("ALL") || product.equalsIgnoreCase("undefined")) {
 				product = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
@@ -535,27 +538,27 @@ public class JasperReportController {
 		System.out.println(fromDate + "," + toDate + "," + code + "," + zone + "," + region + "," + branch + ","
 				+ product + "," + frequency);
 		try {
-			if (code.equals("ALL") || code.equals("undefined")) {
+			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
 			}
 
-			if (product.equals("ALL") || product.equals("undefined")) {
+			if (product.equalsIgnoreCase("ALL") || product.equalsIgnoreCase("undefined")) {
 				product = "%";
 			}
 
-			if (frequency.equals("ALL") || frequency.equals("undefined")) {
+			if (frequency.equalsIgnoreCase("ALL") || frequency.equalsIgnoreCase("undefined")) {
 				frequency = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
@@ -581,31 +584,31 @@ public class JasperReportController {
 		System.out.println(fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + unl + "," + type
 				+ "," + frequency + "," + product);
 		try {
-			if (unl.equals("ALL") || unl.equals("undefined")) {
+			if (unl.equalsIgnoreCase("ALL") || unl.equalsIgnoreCase("undefined")) {
 				unl = "%";
 			}
 
-			if (type.equals("ALL") || type.equals("undefined")) {
+			if (type.equalsIgnoreCase("ALL") || type.equalsIgnoreCase("undefined")) {
 				type = "%";
 			}
 
-			if (frequency.equals("ALL") || frequency.equals("undefined")) {
+			if (frequency.equalsIgnoreCase("ALL") || frequency.equalsIgnoreCase("undefined")) {
 				frequency = "%";
 			}
 
-			if (product.equals("ALL") || product.equals("undefined")) {
+			if (product.equalsIgnoreCase("ALL") || product.equalsIgnoreCase("undefined")) {
 				product = "%";
 			}
 
-			if (branch.equals("ALL") || branch.equals("undefined")) {
+			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
 				branch = "%";
 			}
 
-			if (region.equals("ALL") || region.equals("undefined")) {
+			if (region.equalsIgnoreCase("ALL") || region.equalsIgnoreCase("undefined")) {
 				region = "%";
 			}
 
-			if (zone.equals("ALL")) {
+			if (zone.equalsIgnoreCase("ALL")) {
 				zone = "%";
 			}
 
