@@ -60,7 +60,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 
 		Integer count = jdbcTemplate.queryForObject("SELECT " + "        count(*) as count" + "    FROM"
 				+ "        inproposals p" + "    WHERE" + "        p.sbucod = '450' and p.pprsta <> 'INAC'"
-				+ "	    and p.advcod = ?" + data + "        order by CAST(p.pprnum AS SIGNED)", Integer.class,
+				+ "	    and p.advcod = ?" + data + " order by CAST(p.pprnum AS SIGNED)", Integer.class,
 				args.toArray());
 
 		return count;
@@ -81,7 +81,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "        inproposals p" + "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod"
 						+ "        AND p.advcod = a.agncod" + "    WHERE"
 						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data
-						+ "	    and (a.agncod = ? OR a.unlcod = ?) limit ?,?",
+						+ "	    and (a.agncod = ? OR a.unlcod = ?) order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
 	
@@ -114,7 +114,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 				"SELECT" + "        p.pprnum, p.polnum, p.ppdnam, p.ppdnic, p.prdcod,p.pprsta,p.advcod" + "    FROM"
 						+ "        inproposals p" + "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod"
 						+ "        AND p.advcod = a.agncod" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and a.loccod = ? limit ?,?",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and a.loccod = ? order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
 
@@ -144,7 +144,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "        inproposals p" + "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod"
 						+ "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and l.rgncod =? limit ?,?",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and l.rgncod =? order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
 
@@ -177,7 +177,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code"
 						+ "    INNER JOIN inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod = ? limit ?,?",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod = ? order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
 
@@ -211,7 +211,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code"
 						+ "    INNER JOIN inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + " limit ?,?",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + " order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 		
 	}

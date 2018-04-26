@@ -28,7 +28,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 		if (para.getUsertype().equalsIgnoreCase("IC") || para.getUsertype().equalsIgnoreCase("UNL")) {
 			
 			return jdbcTemplate.query("select x.loccod,x.pprnum,x.polnum,x.stadsc,x.ppdini,x.ppdmob,x.amount premium,count(x.pprnum) nofarias,sum(x.amount) totarias from  "
-		            + "(select a.sbucod,p.loccod,p.pprnum,p.polnum,s.stadsc,p.ppdini,if(p.ppdmob is null,p.ppdtel,p.ppdmob) ppdmob,b.amount,b.txnyer,b.txnmth  "
+		            + "(select a.sbucod,p.loccod,p.pprnum,p.polnum,s.stadsc,p.ppdini,if(p.ppdmob is null,p.ppdtel,p.ppdmob) ppdmob,max(b.amount) amount,b.txnyer,b.txnmth  "
 		            + "from inproposals p inner join inbillingtransactions b on p.sbucod=b.sbucod and p.pprnum=b.pprnum "
 		            + "inner join inagentmast a on p.sbucod=a.sbucod and p.advcod=a.agncod "
 		            + "inner join smtrxnstatus s on p.sbucod=s.sbucod and p.pprsta=s.statid "
@@ -39,7 +39,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 		} else if (para.getUsertype().equalsIgnoreCase("BRANCH")) {
 			
 			return jdbcTemplate.query("select x.loccod,x.pprnum,x.polnum,x.stadsc,x.ppdini,x.ppdmob,x.amount premium,count(x.pprnum) nofarias,sum(x.amount) totarias from  "
-            + "(select p.sbucod,a.loccod,p.pprnum,p.polnum,s.stadsc,p.ppdini,if(p.ppdmob is null,p.ppdtel,p.ppdmob) ppdmob,b.amount,b.txnyer,b.txnmth  "
+            + "(select p.sbucod,a.loccod,p.pprnum,p.polnum,s.stadsc,p.ppdini,if(p.ppdmob is null,p.ppdtel,p.ppdmob) ppdmob,max(b.amount) amount,b.txnyer,b.txnmth  "
             + "from inproposals p inner join inbillingtransactions b on p.sbucod=b.sbucod and p.pprnum=b.pprnum "
             + "inner join inagentmast a on p.sbucod=a.sbucod and p.advcod=a.agncod "
             + "inner join smtrxnstatus s on p.sbucod=s.sbucod and p.pprsta=s.statid "
@@ -50,7 +50,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 		} else if (para.getUsertype().equalsIgnoreCase("REGION")) {
 			
 			return jdbcTemplate.query("select x.loccod,x.pprnum,x.polnum,x.stadsc,x.ppdini,x.ppdmob,x.amount premium,count(x.pprnum) nofarias,sum(x.amount) totarias from  "
-		            + "(select p.sbucod,a.loccod,p.pprnum,p.polnum,s.stadsc,p.ppdini,if(p.ppdmob is null,p.ppdtel,p.ppdmob) ppdmob,b.amount,b.txnyer,b.txnmth  "
+		            + "(select p.sbucod,a.loccod,p.pprnum,p.polnum,s.stadsc,p.ppdini,if(p.ppdmob is null,p.ppdtel,p.ppdmob) ppdmob,max(b.amount) amount,b.txnyer,b.txnmth  "
 		            + "from inproposals p inner join inbillingtransactions b on p.sbucod=b.sbucod and p.pprnum=b.pprnum "
 		            + "inner join inagentmast a on p.sbucod=a.sbucod and p.advcod=a.agncod "
 		            + "inner join rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code "
@@ -62,7 +62,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 		} else if (para.getUsertype().equalsIgnoreCase("ZONE")) {
 			
 			return jdbcTemplate.query("select x.loccod,x.pprnum,x.polnum,x.stadsc,x.ppdini,x.ppdmob,x.amount premium,count(x.pprnum) nofarias,sum(x.amount) totarias from  "
-		            + "(select p.sbucod,a.loccod,p.pprnum,p.polnum,s.stadsc,p.ppdini,if(p.ppdmob is null,p.ppdtel,p.ppdmob) ppdmob,b.amount,b.txnyer,b.txnmth  "
+		            + "(select p.sbucod,a.loccod,p.pprnum,p.polnum,s.stadsc,p.ppdini,if(p.ppdmob is null,p.ppdtel,p.ppdmob) ppdmob,max(b.amount) amount,b.txnyer,b.txnmth  "
 		            + "from inproposals p inner join inbillingtransactions b on p.sbucod=b.sbucod and p.pprnum=b.pprnum "
 		            + "inner join inagentmast a on p.sbucod=a.sbucod and p.advcod=a.agncod "
 		            + "inner join rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code "

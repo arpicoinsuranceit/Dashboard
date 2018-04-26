@@ -25,7 +25,7 @@ public class CustomerDaoImpl implements CustomerDao {
 						new SimpleDateFormat("dd-MM-yyyy").parse((String) details.get("ppddob")),
 						Integer.parseInt(details.get("ppdnag").toString()), (String) details.get("ppdsex"),
 						(String) details.get("ppdcst"), (String) details.get("ppdtel"), (String) details.get("sponam"),
-						Integer.parseInt(details.get("sagnxt").toString()), (String) details.get("ntitle"),
+						details.get("sagnxt") != null ? Integer.parseInt(details.get("sagnxt").toString()) : -1, (String) details.get("ntitle"),
 						details.get("spodob") != null ? new SimpleDateFormat("dd-MM-yyyy").parse((String) details.get("spodob")) : null,
 						Integer.parseInt(details.get("numchl").toString()), (String) details.get("ppdnic"),
 						(String) details.get("sponic")
