@@ -1,5 +1,8 @@
 package org.arpicoinsurance.groupit.dashboard.controller;
 
+import java.util.Base64;
+import java.util.Base64.Decoder;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.arpicoinsurance.groupit.dashboard.helper.JwtDecoder;
@@ -27,6 +30,26 @@ public class JasperReportController {
 		response.setHeader("Content-Disposition", "inline; filename=mcfpr.pdf");
 		response.setContentType("application/pdf");
 		System.out.println(advisor + "," + branch);
+
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(advisor);
+		advisor = new String(decodedByte);
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+
 		try {
 			if (branch.equalsIgnoreCase("ALL")) {
 				branch = "%";
@@ -57,6 +80,35 @@ public class JasperReportController {
 			@PathVariable String unl, @PathVariable String frequency, @PathVariable String status) {
 		System.out.println(
 				fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + unl + "," + frequency);
+
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(unl);
+		unl = new String(decodedByte);
+
+		decodedByte = decoder.decode(frequency);
+		frequency = new String(decodedByte);
+
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+
 		try {
 			if (unl.equalsIgnoreCase("ALL") || unl.equalsIgnoreCase("undefined")) {
 				unl = "%";
@@ -91,6 +143,26 @@ public class JasperReportController {
 	public byte[] pendingRequirements(@PathVariable String advisor, @PathVariable String branch,
 			@PathVariable String region, @PathVariable String zone, @PathVariable String status) {
 		System.out.println(advisor + "," + branch + "," + region + "," + zone);
+
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(advisor);
+		advisor = new String(decodedByte);
+
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+
 		try {
 			if (advisor.equalsIgnoreCase("ALL") || advisor.equalsIgnoreCase("undefined")) {
 				advisor = "%";
@@ -125,6 +197,26 @@ public class JasperReportController {
 	public byte[] retentionUnit(@PathVariable String toDate, @PathVariable String zone, @PathVariable String region,
 			@PathVariable String branch, @PathVariable String unl) {
 		System.out.println(toDate + "," + zone + "," + region + "," + branch + "," + unl);
+
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(unl);
+		unl = new String(decodedByte);
+
 		try {
 			if (unl.equalsIgnoreCase("ALL") || unl.equalsIgnoreCase("undefined")) {
 				unl = "%";
@@ -154,6 +246,26 @@ public class JasperReportController {
 	public byte[] retentionCode(@PathVariable String date, @PathVariable String zone, @PathVariable String region,
 			@PathVariable String branch, @PathVariable String code) {
 		System.out.println(date + "," + zone + "," + region + "," + branch + "," + code);
+
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(date);
+		date = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(code);
+		code = new String(decodedByte);
+
 		try {
 			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
@@ -182,6 +294,23 @@ public class JasperReportController {
 	public byte[] retentionBranch(@PathVariable String date, @PathVariable String zone, @PathVariable String region,
 			@PathVariable String branch) {
 		System.out.println(date + "," + zone + "," + region + "," + branch);
+
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(date);
+		date = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
 		try {
 
 			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
@@ -211,6 +340,34 @@ public class JasperReportController {
 			@PathVariable String zone, @PathVariable String sp) {
 		System.out.println(
 				fromDate + "," + toDate + "," + ic + "," + ul + "," + branch + "," + region + "," + zone + "," + sp);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(ul);
+		ul = new String(decodedByte);
+
+		decodedByte = decoder.decode(ic);
+		ic = new String(decodedByte);
+
+		decodedByte = decoder.decode(sp);
+		sp = new String(decodedByte);
 		try {
 			if (ic.equalsIgnoreCase("ALL")) {
 				ic = "%";
@@ -262,6 +419,27 @@ public class JasperReportController {
 	public byte[] premiumDueReportLive(@PathVariable String asAtDate, @PathVariable String code,
 			@PathVariable String branchCode, @PathVariable String regionCode, @PathVariable String zone) {
 		System.out.println(asAtDate + "," + code + "," + branchCode + "," + regionCode + "," + zone);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(asAtDate);
+		asAtDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+
+		decodedByte = decoder.decode(regionCode);
+		regionCode = new String(decodedByte);
+
+		decodedByte = decoder.decode(branchCode);
+		branchCode = new String(decodedByte);
+
+		decodedByte = decoder.decode(code);
+		code = new String(decodedByte);
+
+		
 		try {
 			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
@@ -291,6 +469,29 @@ public class JasperReportController {
 			@PathVariable String branchCode, @PathVariable String regionCode, @PathVariable String zone,
 			@PathVariable String status) {
 		System.out.println(asAtDate + "," + code + "," + branchCode + "," + regionCode + "," + zone);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(asAtDate);
+		asAtDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+
+		decodedByte = decoder.decode(regionCode);
+		regionCode = new String(decodedByte);
+
+		decodedByte = decoder.decode(branchCode);
+		branchCode = new String(decodedByte);
+
+		decodedByte = decoder.decode(code);
+		code = new String(decodedByte);
+		
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+		
 		try {
 			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
@@ -323,6 +524,26 @@ public class JasperReportController {
 	public byte[] grantStmtBranch(@PathVariable String branch, @PathVariable String year, @PathVariable String month,
 			@PathVariable String code, @PathVariable String status) {
 		System.out.println(branch + "," + year + "," + month + "," + code + "," + status);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(year);
+		year = new String(decodedByte);
+
+		decodedByte = decoder.decode(month);
+		month = new String(decodedByte);
+
+		decodedByte = decoder.decode(code);
+		code = new String(decodedByte);
+		
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+		
 		try {
 
 			if (month.equalsIgnoreCase("ALL") || month.equalsIgnoreCase("undefined")) {
@@ -353,6 +574,26 @@ public class JasperReportController {
 	public byte[] firstPremiumLapSummary(@PathVariable String fromDate, @PathVariable String toDate,
 			@PathVariable String zone, @PathVariable String region, @PathVariable String branch) {
 		System.out.println(fromDate + "," + toDate + "," + zone + "," + region + "," + branch);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+		
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+		
 		try {
 
 			if (branch.equalsIgnoreCase("ALL") || branch.equalsIgnoreCase("undefined")) {
@@ -379,6 +620,20 @@ public class JasperReportController {
 	public byte[] policyAcknowledgement(@PathVariable String branch, @PathVariable String year,
 			@PathVariable String month) {
 		System.out.println(branch + "," + year + "," + month);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(month);
+		month = new String(decodedByte);
+
+		decodedByte = decoder.decode(year);
+		year = new String(decodedByte);
+		
 		try {
 
 			System.out.println("before" + month);
@@ -406,6 +661,34 @@ public class JasperReportController {
 			@PathVariable String frequency, @PathVariable String product) {
 		System.out.println(
 				fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + frequency + "," + product);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+		
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+		
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(frequency);
+		frequency = new String(decodedByte);
+		
+		decodedByte = decoder.decode(product);
+		product = new String(decodedByte);
+
+		
 		try {
 
 			if (frequency.equalsIgnoreCase("ALL") || frequency.equalsIgnoreCase("undefined")) {
@@ -441,6 +724,36 @@ public class JasperReportController {
 			@PathVariable String frequency, @PathVariable String product, @PathVariable String so) {
 		System.out.println(fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + frequency + ","
 				+ product + "," + so);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+		
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+		
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(frequency);
+		frequency = new String(decodedByte);
+		
+		decodedByte = decoder.decode(product);
+		product = new String(decodedByte);
+		
+		decodedByte = decoder.decode(so);
+		so = new String(decodedByte);
+		
 		try {
 			if (frequency.equalsIgnoreCase("ALL") || frequency.equalsIgnoreCase("undefined")) {
 				frequency = "%";
@@ -487,6 +800,42 @@ public class JasperReportController {
 			@PathVariable String product, @PathVariable String status) {
 		System.out.println(fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + unl + "," + type
 				+ "," + frequency + "," + product);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+		
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+		
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(frequency);
+		frequency = new String(decodedByte);
+		
+		decodedByte = decoder.decode(product);
+		product = new String(decodedByte);
+		
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+		
+		decodedByte = decoder.decode(unl);
+		unl = new String(decodedByte);
+		
+		decodedByte = decoder.decode(type);
+		type = new String(decodedByte);
+		
+		
 		try {
 			if (unl.equalsIgnoreCase("ALL") || unl.equalsIgnoreCase("undefined")) {
 				unl = "%";
@@ -537,6 +886,39 @@ public class JasperReportController {
 			@PathVariable String product, @PathVariable String frequency, @PathVariable String status) {
 		System.out.println(fromDate + "," + toDate + "," + code + "," + zone + "," + region + "," + branch + ","
 				+ product + "," + frequency);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+		
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+		
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(frequency);
+		frequency = new String(decodedByte);
+		
+		decodedByte = decoder.decode(product);
+		product = new String(decodedByte);
+		
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+		
+		decodedByte = decoder.decode(code);
+		code = new String(decodedByte);
+		
+		
 		try {
 			if (code.equalsIgnoreCase("ALL") || code.equalsIgnoreCase("undefined")) {
 				code = "%";
@@ -583,6 +965,41 @@ public class JasperReportController {
 			@PathVariable String product, @PathVariable String status) {
 		System.out.println(fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + unl + "," + type
 				+ "," + frequency + "," + product);
+		
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(fromDate);
+		fromDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(toDate);
+		toDate = new String(decodedByte);
+
+		decodedByte = decoder.decode(zone);
+		zone = new String(decodedByte);
+		
+		decodedByte = decoder.decode(region);
+		region = new String(decodedByte);
+		
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(frequency);
+		frequency = new String(decodedByte);
+		
+		decodedByte = decoder.decode(product);
+		product = new String(decodedByte);
+		
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+		
+		decodedByte = decoder.decode(unl);
+		unl = new String(decodedByte);
+		
+		decodedByte = decoder.decode(type);
+		type = new String(decodedByte);
+		
 		try {
 			if (unl.equalsIgnoreCase("ALL") || unl.equalsIgnoreCase("undefined")) {
 				unl = "%";
