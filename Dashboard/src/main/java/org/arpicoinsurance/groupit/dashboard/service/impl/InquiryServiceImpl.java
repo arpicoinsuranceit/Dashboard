@@ -56,7 +56,11 @@ public class InquiryServiceImpl implements InquiryService {
 		String sqlData = "";
 
 		if (equality.equals("equal")) {
-			sqlData = "and p." + column + " = " + data;
+			if (column.equals("ppdini")) {
+				sqlData = "and p." + column + " = '" + data+"'";
+			} else {
+				sqlData = "and p." + column + " = " + data;
+			}
 		} else if (equality.equals("with")) {
 			sqlData = "and p." + column + " LIKE '%" + data + "%'";
 		}
@@ -109,7 +113,11 @@ public class InquiryServiceImpl implements InquiryService {
 		String sqlData = "";
 
 		if (equality.equals("equal")) {
-			sqlData = "and p." + column + " = " + data;
+			if (column.equals("ppdini")) {
+				sqlData = "and p." + column + " = '" + data+"'";
+			} else {
+				sqlData = "and p." + column + " = " + data;
+			}
 		} else if (equality.equals("with")) {
 			sqlData = "and p." + column + " LIKE '%" + data + "%'";
 		}
