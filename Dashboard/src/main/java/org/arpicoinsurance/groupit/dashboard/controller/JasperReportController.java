@@ -334,7 +334,7 @@ public class JasperReportController {
 		return null;
 	}
 
-	@RequestMapping(value = "/detailsOfPolicies/{fromDate}/{toDate}/{ic}/{ul}/{branch}/{region}/{zone}/{sp}", method = RequestMethod.GET, produces = "application/pdf")
+	@RequestMapping(value = "/detailsOfPolicies/{fromDate}/{toDate}/{ic}/{ul}/{branch}/{region}/{zone}/{sp}/{status}", method = RequestMethod.GET, produces = "application/pdf")
 	public byte[] detailsOfPolicies(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String ic,
 			@PathVariable String ul, @PathVariable String branch, @PathVariable String region,
 			@PathVariable String zone, @PathVariable String sp , @PathVariable String status) {
