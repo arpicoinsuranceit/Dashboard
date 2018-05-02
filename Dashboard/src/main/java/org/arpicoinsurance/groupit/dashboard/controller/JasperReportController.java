@@ -337,9 +337,9 @@ public class JasperReportController {
 	@RequestMapping(value = "/detailsOfPolicies/{fromDate}/{toDate}/{ic}/{ul}/{branch}/{region}/{zone}/{sp}", method = RequestMethod.GET, produces = "application/pdf")
 	public byte[] detailsOfPolicies(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String ic,
 			@PathVariable String ul, @PathVariable String branch, @PathVariable String region,
-			@PathVariable String zone, @PathVariable String sp) {
+			@PathVariable String zone, @PathVariable String sp , @PathVariable String status) {
 		System.out.println(
-				fromDate + "," + toDate + "," + ic + "," + ul + "," + branch + "," + region + "," + zone + "," + sp);
+				fromDate + "," + toDate + "," + ic + "," + ul + "," + branch + "," + region + "," + zone + "," + sp + "," + status);
 		
 		Decoder decoder = Base64.getDecoder();
 
@@ -403,6 +403,16 @@ public class JasperReportController {
 				sp = "%";
 			} else if (sp.equalsIgnoreCase("undefined")) {
 				sp = "%";
+			}
+			
+			jwtDecorder = new JwtDecoder();
+
+			if (status.equalsIgnoreCase("ic")) {
+				ic = jwtDecorder.generate(ic);
+			}
+			
+			if (status.equalsIgnoreCase("ul")) {
+				ul = jwtDecorder.generate(ul);
 			}
 
 			System.out.println(region + " , " + branch);
