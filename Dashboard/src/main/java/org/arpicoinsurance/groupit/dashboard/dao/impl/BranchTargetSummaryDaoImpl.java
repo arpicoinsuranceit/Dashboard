@@ -2,6 +2,8 @@ package org.arpicoinsurance.groupit.dashboard.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.arpicoinsurance.groupit.dashboard.common.CalculationUtils;
 import org.arpicoinsurance.groupit.dashboard.dao.BranchTargetSummaryDao;
 import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.BranchTargetSummaryRowMapper;
 import org.arpicoinsurance.groupit.dashboard.dto.BranchTargetSummaryDto;
@@ -31,16 +33,18 @@ public class BranchTargetSummaryDaoImpl implements BranchTargetSummaryDao {
 	@Override
 	public String getZoneCode(String loccode) throws Exception {
 		List<Object> args = new ArrayList<>();
-		args.add(loccode);
+		CalculationUtils calculationUtils = new CalculationUtils();
+		args.add(calculationUtils.getPara(loccode));
+		calculationUtils = null;
 		
-		String locCode= jdbcTemplate.queryForObject("select r.zoncod from inagentmast a " + 
+		String zoncod= jdbcTemplate.queryForObject("select r.zoncod from inagentmast a " + 
 				"inner join rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code " + 
 				"inner join inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod " + 
-				"where a.sbucod='450' and a.loccod=? and a.agnsta='ACT' and a.agncls='BRN'",
+				"where a.sbucod='450' and a.loccod IN(?) and a.agnsta='ACT' and a.agncls='BRN' limit 1",
 				String.class,args.toArray());
 		
-		System.out.println(locCode + " ----- ====");
-		return locCode;
+		//System.out.println(zoncod + " ----- ====");
+		return zoncod;
 		
 		
 	}
