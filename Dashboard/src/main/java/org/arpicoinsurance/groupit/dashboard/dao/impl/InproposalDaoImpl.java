@@ -38,6 +38,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	CalculationUtils calculationUtils = new CalculationUtils();
 	@Override
 	public List<InquiryLoad> getInquiriesIC(String advCode, Integer offset, Integer limit, String data)
 			throws Exception {
@@ -106,9 +107,9 @@ public class InproposalDaoImpl implements InproposalsDao {
 	@Override
 	public List<InquiryLoad> getInquiriesBranch(String branchCod, Integer offset, Integer limit, String data)
 			throws Exception {
-		CalculationUtils calculationUtils = new CalculationUtils();
+		
 		List<Object> args = new ArrayList<>();
-		args.add(calculationUtils.getPara(branchCod));
+		String branchCodePara = calculationUtils.getPara(branchCod);
 		args.add(offset);
 		args.add(limit);
 		calculationUtils = null;
@@ -116,23 +117,24 @@ public class InproposalDaoImpl implements InproposalsDao {
 				"SELECT" + "        p.pprnum, p.polnum, p.ppdnam, p.ppdnic, p.prdcod,p.pprsta,p.advcod" + "    FROM"
 						+ "        inproposals p" + "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod"
 						+ "        AND p.advcod = a.agncod" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and a.loccod IN(?) order by CAST(p.pprnum AS SIGNED) limit ?,?",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC' "+ data + " and a.loccod IN("+branchCodePara+") order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
 
 	@Override
 	public Integer getInquiryBranchCount(String branchCod, String data) throws Exception {
 		List<Object> args = new ArrayList<>();
+		String branchCodePara = calculationUtils.getPara(branchCod);
 		//System.out.println(branchCod);
 		CalculationUtils calculationUtils = new CalculationUtils();
-		args.add(calculationUtils.getPara(branchCod));
+		//args.add(calculationUtils.getPara(branchCod));
 		calculationUtils = null;
 		
 		//System.out.println("************************* "+calculationUtils.getPara(branchCod));
 		Integer count = jdbcTemplate.queryForObject("SELECT " + "        count(*) as count" + "    FROM"
 				+ "        inproposals p" + "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod"
 				+ "        AND p.advcod = a.agncod" + "    WHERE" + "        p.sbucod = '450' and p.pprsta <> 'INAC'"
-				+ data + "	    and a.loccod IN(?) ", Integer.class, args.toArray());
+				+ data + "	    and a.loccod IN("+branchCodePara+") ", Integer.class, args.toArray());
 
 		return count;
 	}
@@ -142,7 +144,8 @@ public class InproposalDaoImpl implements InproposalsDao {
 			throws Exception {
 		List<Object> args = new ArrayList<>();
 		CalculationUtils calculationUtils = new CalculationUtils();
-		args.add(calculationUtils.getPara(regionCod));
+		String regionCodePara = calculationUtils.getPara(regionCod);
+		//args.add(calculationUtils.getPara(regionCod));
 		args.add(offset);
 		args.add(limit);
 		calculationUtils = null;
@@ -151,7 +154,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "        inproposals p" + "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod"
 						+ "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and l.rgncod IN(?) order by CAST(p.pprnum AS SIGNED) limit ?,?",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and l.rgncod IN("+ regionCodePara +") order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
 
@@ -159,13 +162,14 @@ public class InproposalDaoImpl implements InproposalsDao {
 	public Integer getInquiryRegionCount(String regionCod, String data) throws Exception {
 		List<Object> args = new ArrayList<>();
 		CalculationUtils calculationUtils = new CalculationUtils();
-		args.add(calculationUtils.getPara(regionCod));
+		String regionCodePara = calculationUtils.getPara(regionCod);
+		//args.add(calculationUtils.getPara(regionCod));
 		calculationUtils = null;
 		Integer count = jdbcTemplate.queryForObject(
 				"SELECT " + "        count(*) as count" + "    FROM" + "        inproposals p"
 						+ "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod" + "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and l.rgncod IN(?) ",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and l.rgncod IN("+ regionCodePara +") ",
 				Integer.class, args.toArray());
 
 		return count;
@@ -176,7 +180,8 @@ public class InproposalDaoImpl implements InproposalsDao {
 			throws Exception {
 		List<Object> args = new ArrayList<>();
 		CalculationUtils calculationUtils = new CalculationUtils();
-		args.add(calculationUtils.getPara(zoneCod));
+		String zoneCodePara = calculationUtils.getPara(zoneCod);
+		//args.add(calculationUtils.getPara(zoneCod));
 		args.add(offset);
 		args.add(limit);
 		calculationUtils = null;
@@ -186,7 +191,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code"
 						+ "    INNER JOIN inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod = IN(?) order by CAST(p.pprnum AS SIGNED) limit ?,?",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod = IN("+ zoneCodePara +") order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
 
@@ -194,14 +199,15 @@ public class InproposalDaoImpl implements InproposalsDao {
 	public Integer getInquiryZoneCount(String zoneCod, String data) throws Exception {
 		List<Object> args = new ArrayList<>();
 		CalculationUtils calculationUtils = new CalculationUtils();
-		args.add(calculationUtils.getPara(zoneCod));
+		String zoneCodePara = calculationUtils.getPara(zoneCod);
+		//args.add(calculationUtils.getPara(zoneCod));
 		calculationUtils = null;
 		Integer count = jdbcTemplate.queryForObject(
 				"SELECT " + "        count(*) as count" + "    FROM" + "        inproposals p"
 						+ "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod" + "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code"
 						+ "    INNER JOIN inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod IN(?) ",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod IN("+ zoneCodePara +") ",
 				Integer.class, args.toArray());
 
 		return count;
