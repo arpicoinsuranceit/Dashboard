@@ -37,8 +37,6 @@ public class InproposalDaoImpl implements InproposalsDao {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-
-	CalculationUtils calculationUtils = new CalculationUtils();
 	@Override
 	public List<InquiryLoad> getInquiriesIC(String advCode, Integer offset, Integer limit, String data)
 			throws Exception {
@@ -107,8 +105,10 @@ public class InproposalDaoImpl implements InproposalsDao {
 	@Override
 	public List<InquiryLoad> getInquiriesBranch(String branchCod, Integer offset, Integer limit, String data)
 			throws Exception {
-		
+		CalculationUtils calculationUtils = new CalculationUtils();
 		List<Object> args = new ArrayList<>();
+		System.out.println(branchCod);
+		System.out.println(branchCod);
 		String branchCodePara = calculationUtils.getPara(branchCod);
 		args.add(offset);
 		args.add(limit);
@@ -123,10 +123,10 @@ public class InproposalDaoImpl implements InproposalsDao {
 
 	@Override
 	public Integer getInquiryBranchCount(String branchCod, String data) throws Exception {
+		CalculationUtils calculationUtils = new CalculationUtils();
 		List<Object> args = new ArrayList<>();
 		String branchCodePara = calculationUtils.getPara(branchCod);
 		//System.out.println(branchCod);
-		CalculationUtils calculationUtils = new CalculationUtils();
 		//args.add(calculationUtils.getPara(branchCod));
 		calculationUtils = null;
 		
@@ -397,9 +397,4 @@ public class InproposalDaoImpl implements InproposalsDao {
 
 		return acknowDto;
 	}
-
-	
-
-	
-
 }
