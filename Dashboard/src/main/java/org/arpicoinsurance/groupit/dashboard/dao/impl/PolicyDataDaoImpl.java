@@ -25,7 +25,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 	@Override
 	public List<DuePolicies> getDuePolicies(DashboardPara para) throws Exception {
 		CalculationUtils calculationUtils = new CalculationUtils();
-		System.out.println("********DuePolicies "+calculationUtils.getPara(para.getDashpara()));
+		//System.out.println("********DuePolicies "+calculationUtils.getPara(para.getDashpara()));
 		if (para.getUsertype().equalsIgnoreCase("IC") || para.getUsertype().equalsIgnoreCase("UNL")) {
 			
 			return jdbcTemplate.query("select x.loccod,x.pprnum,x.polnum,x.stadsc,x.ppdini,x.ppdmob,x.amount premium,count(x.pprnum) nofarias,sum(x.amount) totarias from  "
@@ -81,7 +81,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 	@Override
 	public Integer getCurrentMonthNOP(DashboardPara para) throws Exception {
 		CalculationUtils calculationUtils = new CalculationUtils();
-		System.out.println("********CurrentMonthNOP "+calculationUtils.getPara(para.getDashpara()));
+//		System.out.println("********CurrentMonthNOP "+calculationUtils.getPara(para.getDashpara()));
 		if (para.getUsertype().equalsIgnoreCase("IC") || para.getUsertype().equalsIgnoreCase("UNL")) {
 			
 			return jdbcTemplate.queryForObject("select count(p.polnum) nop from inproposals p inner join inagentmast a on p.sbucod=a.sbucod and p.advcod=a.agncod "
@@ -114,7 +114,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 	public List<PendingPolicies> getPendingPolicies(DashboardPara para) throws Exception {
 		//System.out.println(para.getDashpara()+" - "+para.getDashtype()+" - "+para.getUsertype());
 		CalculationUtils calculationUtils = new CalculationUtils();
-		System.out.println("********PendingPolicies "+calculationUtils.getPara(para.getDashpara()));
+//		System.out.println("********PendingPolicies "+calculationUtils.getPara(para.getDashpara()));
 		if (para.getUsertype().equalsIgnoreCase("IC") || para.getUsertype().equalsIgnoreCase("UNL")) {
 			
 			return jdbcTemplate.query("select a.loccod,p.pprnum,a.agncod,p.ppdini,p.totprm,group_concat(m.addnot) requirment from inproposals p  "
@@ -158,7 +158,7 @@ public class PolicyDataDaoImpl implements PolicyDataDao {
 	@Override
 	public PolicySummary getPolicySummary(DashboardPara para) throws Exception {
 		CalculationUtils calculationUtils = new CalculationUtils();
-		System.out.println("********Summary "+calculationUtils.getPara(para.getDashpara()));
+//		System.out.println("********Summary "+calculationUtils.getPara(para.getDashpara()));
 		if (para.getUsertype().equalsIgnoreCase("BRANCH")) {
 			
 			return jdbcTemplate.queryForObject("select sum(x.plisucount) plisucount, sum(x.plisuamount) plisuamount, "

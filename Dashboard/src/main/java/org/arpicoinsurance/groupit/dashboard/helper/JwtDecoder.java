@@ -12,12 +12,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JwtDecoder {
 	public String generate(String token) {
 		
+		String usercode = null;
+		
 		Jwt jwtToken =JwtHelper.decode(token);
 		String claims = jwtToken.getClaims();
 		try {
 			HashMap claimsMap = new ObjectMapper().readValue(claims, HashMap.class);
-			System.out.println(claimsMap.get("userCode").toString()+"///////");
-			return claimsMap.get("userCode").toString();
+			usercode = claimsMap.get("userCode").toString();
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -25,8 +26,6 @@ public class JwtDecoder {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(claims);
-		return null;
-		
+		return usercode;
 	}
 }

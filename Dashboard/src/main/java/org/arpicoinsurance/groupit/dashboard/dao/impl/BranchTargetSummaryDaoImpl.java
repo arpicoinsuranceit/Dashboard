@@ -84,7 +84,7 @@ public class BranchTargetSummaryDaoImpl implements BranchTargetSummaryDao {
 				,branchTargetSummaryDto.getDecCommitment(),branchTargetSummaryDto.getZoneCode(),branchTargetSummaryDto.getRegionCode(),
 				branchTargetSummaryDto.getLocationCode(),branchTargetSummaryDto.getYear(),branchTargetSummaryDto.getPara());
 		
-		System.out.println(result + " ----- ====");
+		//System.out.println(result + " ----- ====");
 		return result;
 	}
 

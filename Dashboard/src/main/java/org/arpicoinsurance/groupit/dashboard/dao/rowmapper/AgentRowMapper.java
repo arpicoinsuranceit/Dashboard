@@ -28,7 +28,7 @@ public class AgentRowMapper implements RowMapper<AgentDto>{
 		agent.setAgentSlii(rst.getString("agentSlii"));
 		}
 		else {
-			System.out.println("nullllllllllllllllllllllllllll");
+			//System.out.println("nullllllllllllllllllllllllllll");
 		}
 		return agent;
 	}

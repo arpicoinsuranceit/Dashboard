@@ -107,8 +107,8 @@ public class InproposalDaoImpl implements InproposalsDao {
 			throws Exception {
 		CalculationUtils calculationUtils = new CalculationUtils();
 		List<Object> args = new ArrayList<>();
-		System.out.println(branchCod);
-		System.out.println(branchCod);
+//		System.out.println(branchCod);
+//		System.out.println(branchCod);
 		String branchCodePara = calculationUtils.getPara(branchCod);
 		args.add(offset);
 		args.add(limit);

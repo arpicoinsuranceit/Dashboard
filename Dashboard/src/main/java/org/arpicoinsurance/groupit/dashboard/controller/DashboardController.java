@@ -12,6 +12,8 @@ import org.arpicoinsurance.groupit.dashboard.dto.PendingPolicies;
 import org.arpicoinsurance.groupit.dashboard.dto.Top3;
 import org.arpicoinsurance.groupit.dashboard.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,250 +27,258 @@ public class DashboardController {
 
 	@Autowired
 	private DashboardService dashboardService;
-	
+
 	@RequestMapping(value = "/dashboard/{id}", method = RequestMethod.GET)
-	public MainRespDto loadDashboardData(@PathVariable String id) {
+	public ResponseEntity<Object> loadDashboardData(@PathVariable String id) {
 		MainRespDto mainRespDto = null;
 		try {
 			mainRespDto = dashboardService.getDashboard(id);
+			return new ResponseEntity<Object>(mainRespDto, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return mainRespDto;
 	}
-	
+
 	@RequestMapping(value = "/getdashboardpara", method = RequestMethod.POST)
-	public DashboardPara getDashboardData(@RequestBody String userid) {
-		//System.out.println(userid);
+	public ResponseEntity<Object> getDashboardData(@RequestBody String userid) {
+		// System.out.println(userid);
 		DashboardPara dashboardPara = null;
 		try {
 			dashboardPara = dashboardService.getDashboardPara(userid);
+			return new ResponseEntity<Object>(dashboardPara, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return dashboardPara;
 	}
-	
+
 	@RequestMapping(value = "/getCurrentMonthTarget/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public MonthlyTarget getCurrentMonthTarget(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
+	public MonthlyTarget getCurrentMonthTarget(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
+
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/getCurrentMonthTargetGWP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public MonthlyTarget getCurrentMonthTargetGWP(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
+	public MonthlyTarget getCurrentMonthTargetGWP(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
+
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/getCurrentMonthTargetMCFP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public MonthlyTarget getCurrentMonthTargetMCFP(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
+	public MonthlyTarget getCurrentMonthTargetMCFP(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
+
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/getCurrentMonthTargetFYP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public MonthlyTarget getCurrentMonthTargetFYP(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
+	public MonthlyTarget getCurrentMonthTargetFYP(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
+
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/getCurrentMonthTargetNOP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public MonthlyTarget getCurrentMonthTargetNOP(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		
+	public MonthlyTarget getCurrentMonthTargetNOP(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
+
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/getCurrentMonthYearlyTarget/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<Object> getCurrentMonthYearlyTarget(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		//System.out.println(userid+" - "+dashpara+" - "+usertype);
+	public ResponseEntity<Object> getCurrentMonthYearlyTarget(@PathVariable String userid,
+			@PathVariable String dashpara, @PathVariable String usertype) {
+		// System.out.println(userid+" - "+dashpara+" - "+usertype);
 		List<Object> currentMonthYearlyTarget = null;
 		try {
 			currentMonthYearlyTarget = dashboardService.getCurrentMonthYearlyTarget(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(currentMonthYearlyTarget, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return currentMonthYearlyTarget;
 	}
-	
+
 	@RequestMapping(value = "/getCurrentMonthYearlyTargetUNL/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<Object> getCurrentMonthYearlyTargetUNL(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
-		//System.out.println(userid+" - "+dashpara+" - "+usertype);
+	public ResponseEntity<Object> getCurrentMonthYearlyTargetUNL(@PathVariable String userid,
+			@PathVariable String dashpara, @PathVariable String usertype) {
+		// System.out.println(userid+" - "+dashpara+" - "+usertype);
 		List<Object> currentMonthYearlyTarget = null;
 		try {
 			currentMonthYearlyTarget = dashboardService.getCurrentMonthYearlyTargetUNL(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(currentMonthYearlyTarget, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return currentMonthYearlyTarget;
 	}
-	
+
 	@RequestMapping(value = "/getPolicySummery/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameValuePair> getPolicySummery(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+	public ResponseEntity<Object> getPolicySummery(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
 		List<NameValuePair> nameValuePairs = null;
 		try {
 			nameValuePairs = dashboardService.getPolicySummery(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(nameValuePairs, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return nameValuePairs;
 	}
-	
+
 	@RequestMapping(value = "/getTopIC", method = RequestMethod.GET)
-	public List<Top3> getTopIC() {
+	public ResponseEntity<Object> getTopIC() {
 		List<Top3> top3IC = null;
 		try {
 			top3IC = dashboardService.getTopIC();
+			return new ResponseEntity<Object>(top3IC, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return top3IC;
+		
 	}
-	
+
 	@RequestMapping(value = "/getTopIS", method = RequestMethod.GET)
-	public List<Top3> getTopIS() {
+	public ResponseEntity<Object> getTopIS() {
 		List<Top3> top3IS = null;
 		try {
 			top3IS = dashboardService.getTopIS();
+			return new ResponseEntity<Object>(top3IS, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return top3IS;
 	}
-	
+
 	@RequestMapping(value = "/getTopUL", method = RequestMethod.GET)
-	public List<Top3> getTopUl() {
+	public ResponseEntity<Object> getTopUl() {
 		List<Top3> top3UL = null;
 		try {
 			top3UL = dashboardService.getTopUL();
+			return new ResponseEntity<Object>(top3UL, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return top3UL;
 	}
-	
+
 	@RequestMapping(value = "/getTopBranch", method = RequestMethod.GET)
-	public List<Top3> getTopBranch() {
+	public ResponseEntity<Object> getTopBranch() {
 		List<Top3> top3Branch = null;
 		try {
 			top3Branch = dashboardService.getTopBranch();
+			return new ResponseEntity<Object>(top3Branch, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return top3Branch;
 	}
-	
+
 	@RequestMapping(value = "/getTopRegion", method = RequestMethod.GET)
-	public List<Top3> getTopRegion() {
-		
+	public ResponseEntity<Object> getTopRegion() {
+
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/getTopZone", method = RequestMethod.GET)
 	public List<Top3> getTopZone() {
-		
+
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/getGWPAndGWPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<Object> getGWPAndGWPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+	public ResponseEntity<Object> getGWPAndGWPC(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
 		List<Object> GWPAndGWPC = null;
 		try {
 			GWPAndGWPC = dashboardService.getGWPAndGWPC(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(GWPAndGWPC, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return GWPAndGWPC;
 	}
-	
+
 	@RequestMapping(value = "/getMCFPAndMCFPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<Object> getMCFPAndMCFPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+	public ResponseEntity<Object> getMCFPAndMCFPC(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
 		List<Object> MCFPAndMCFPC = null;
 		try {
 			MCFPAndMCFPC = dashboardService.getMCFPAndMCFPC(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(MCFPAndMCFPC, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return MCFPAndMCFPC;
 	}
-	
+
 	@RequestMapping(value = "/getFYPAndFYPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<Object> getFYPAndFYPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+	public ResponseEntity<Object> getFYPAndFYPC(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
 		List<Object> FYPAndFYPC = null;
 		try {
 			FYPAndFYPC = dashboardService.getFYPAndFYPC(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(FYPAndFYPC, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return FYPAndFYPC;
 	}
-	
+
 	@RequestMapping(value = "/getNOPAndNOPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<Object> getNOPAndNOPC(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+	public ResponseEntity<Object> getNOPAndNOPC(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
 		List<Object> NOPAndNOPC = null;
 		try {
 			NOPAndNOPC = dashboardService.getNOPAndNOPC(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(NOPAndNOPC, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return NOPAndNOPC;
 	}
-	
+
 	@RequestMapping(value = "/getRINY/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<NameSeriasPair> getRINY(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+	public ResponseEntity<Object> getRINY(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
 		List<NameSeriasPair> RINY = null;
 		try {
 			RINY = dashboardService.getRINY(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(RINY, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return RINY;
 	}
-	
+
 	@RequestMapping(value = "/getDuePolicies/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<DuePolicies> getDuePolicies(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+	public ResponseEntity<Object> getDuePolicies(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
 		List<DuePolicies> duePolicies = null;
 		try {
 			duePolicies = dashboardService.getDuePolicies(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(duePolicies, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return duePolicies;
 	}
-	
-	
+
 	@RequestMapping(value = "/getPendingPolicies/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
-	public List<PendingPolicies> getPendingPolicies(@PathVariable String userid, @PathVariable String dashpara, @PathVariable String usertype) {
+	public ResponseEntity<Object> getPendingPolicies(@PathVariable String userid, @PathVariable String dashpara,
+			@PathVariable String usertype) {
 		List<PendingPolicies> pendingPolicies = null;
 		try {
 			pendingPolicies = dashboardService.getPendingPolicies(userid, dashpara, usertype);
+			return new ResponseEntity<Object>(pendingPolicies, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return pendingPolicies;
 	}
-	
-	
-	
-	
-	
 
 }

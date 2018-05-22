@@ -1,9 +1,10 @@
 package org.arpicoinsurance.groupit.dashboard.controller;
 
-import java.util.List;
 import org.arpicoinsurance.groupit.dashboard.dto.BranchTargetSummaryDto;
 import org.arpicoinsurance.groupit.dashboard.service.CommitmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,60 +20,52 @@ public class CommitmentController {
 	private CommitmentService commitmentService;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/targetsummaryz/{year}/{zoneCode}")
-	public List<BranchTargetSummaryDto> getTargetSummaryZonalM(@PathVariable String year,
+	public ResponseEntity<Object> getTargetSummaryZonalM(@PathVariable String year,
 			@PathVariable String zoneCode) {
 		
-		System.out.println(year + " ---- " + zoneCode);
+//		System.out.println(year + " ---- " + zoneCode);
 		try {
-			return commitmentService.getBranchTargetSummaryZonalM(year, zoneCode);
+			return new ResponseEntity<Object>(commitmentService.getBranchTargetSummaryZonalM(year, zoneCode) , HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return null;
-
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/targetsummaryb/{year}/{locCode}")
-	public List<BranchTargetSummaryDto> getTargetSummaryBranchM(@PathVariable String year,@PathVariable String locCode) {
+	public ResponseEntity<Object> getTargetSummaryBranchM(@PathVariable String year,@PathVariable String locCode) {
 		
-		System.out.println(year + " ---- " + locCode);
+//		System.out.println(year + " ---- " + locCode);
 		try {
-			return commitmentService.getBranchTargetSummaryBranchM(year, locCode);
+			return new ResponseEntity<Object>( commitmentService.getBranchTargetSummaryBranchM(year, locCode), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return null;
-
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/zonecode/{loccode}")
-	public String getZoneCode(@PathVariable String loccode) {
+	public ResponseEntity<Object> getZoneCode(@PathVariable String loccode) {
 		
-		System.out.println(loccode + " ---- ");
+//		System.out.println(loccode + " ---- ");
 		try {
-			return commitmentService.getZoneCode(loccode);
+			return new ResponseEntity<Object> (commitmentService.getZoneCode(loccode) , HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return null;
-
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/updatecommitment")
-	public Integer updateCommitment(@RequestBody BranchTargetSummaryDto targetSummary) {
+	public ResponseEntity<Object> updateCommitment(@RequestBody BranchTargetSummaryDto targetSummary) {
 		
-		System.out.println(targetSummary.getJanCommitment() + " ---- ");
+//		System.out.println(targetSummary.getJanCommitment() + " ---- ");
 		try {
-			return commitmentService.updateCommitment(targetSummary);
+			return new ResponseEntity<Object>(commitmentService.updateCommitment(targetSummary), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return null;
-
 	}
 
 	

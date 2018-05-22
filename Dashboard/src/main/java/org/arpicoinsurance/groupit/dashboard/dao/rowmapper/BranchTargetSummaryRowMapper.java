@@ -34,7 +34,7 @@ public class BranchTargetSummaryRowMapper implements RowMapper<BranchTargetSumma
 			target.setDecCommitment(rst.getDouble("dec"));
 			
 		}else {
-			System.out.println("nullllllllllllllllllllllllllll");
+			//System.out.println("nullllllllllllllllllllllllllll");
 		}
 		
 		return target;

@@ -15,7 +15,7 @@ public class AgentDaoImpl implements AgentDao {
 
 	@Override
 	public AgentDto getAgent(String agentCode) throws Exception {
-		System.out.println(agentCode);
+		//System.out.println(agentCode);
 		/*String sql = "select i.agnnam as agentFirstName, i.midnam as agentMidName,"
 				+ " i.lasnam as agentLastName, i.shrtnm as agentShortName, i.agnnic "
 				+ "as agentNic, i.sliirg as agentSlii, i.appdat as agentAppoinmentDate,"

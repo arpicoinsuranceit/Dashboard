@@ -15,19 +15,17 @@ public class PreviousPolicyDaoImpl implements PreviousPolicyDao {
 	JdbcTemplate jdbcTemplate;
 
 	@Override
-	public HashMap< String , Object> getsumAtRisk(String nic) {
-		System.out.println(nic);
-		HashMap< String , Object> details = null;
-		try {
-			details = jdbcTemplate.queryForObject("select sum(sumrkm) as sumAtRisk, max(cscode) as custCode from inproposals a \r\n" + 
-					"where a.sbucod='450' and a.pprsta <> 'INAC' and pprsta in ('PLISU','LAMD') \r\n" + 
-					"and (a.polnum is not null or polnum <> '') and TRIM(a.ppdnic)= ? \r\n" + 
-					"and TIMESTAMPDIFF(YEAR,icpdat,sysdate()) <=  2 group by a.ppdnic", new Object[] { nic }, new PreviousPolicyRowMapper());
+	public HashMap<String, Object> getsumAtRisk(String nic) throws Exception {
+		// System.out.println(nic);
+		HashMap<String, Object> details = null;
+		details = jdbcTemplate.queryForObject(
+				"select sum(sumrkm) as sumAtRisk, max(cscode) as custCode from inproposals a \r\n"
+						+ "where a.sbucod='450' and a.pprsta <> 'INAC' and pprsta in ('PLISU','LAMD') \r\n"
+						+ "and (a.polnum is not null or polnum <> '') and TRIM(a.ppdnic)= ? \r\n"
+						+ "and TIMESTAMPDIFF(YEAR,icpdat,sysdate()) <=  2 group by a.ppdnic",
+				new Object[] { nic }, new PreviousPolicyRowMapper());
 
-		} catch (Exception e) {
-			//e.printStackTrace();
-		}
-		return details!= null ? details : new HashMap<>();
+		return details != null ? details : new HashMap<>();
 	}
 
 }

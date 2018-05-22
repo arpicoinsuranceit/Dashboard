@@ -9,9 +9,10 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.arpicoinsurance.groupit.dashboard.dto.AgentDto;
 import org.arpicoinsurance.groupit.dashboard.service.AgentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,24 +35,24 @@ public class AgentController {
 	private static String UPLOADED_FOLDER = "F://temp//";
 
 	@RequestMapping(method = RequestMethod.GET, value = "/getagent/{agentCode}")
-	public AgentDto getAgent(@PathVariable String agentCode) {
-		System.out.println(agentCode);
+	public ResponseEntity<Object> getAgent(@PathVariable String agentCode) {
+//		System.out.println(agentCode);
 		try {
-			return agentService.getAgent(agentCode);
+			return new ResponseEntity<Object>(agentService.getAgent(agentCode), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return null;
 
 	}
 
 	@PostMapping("/uploadProf") // //new annotation since 4.3
-	public String singleFileUpload(@RequestParam("image") MultipartFile file, RedirectAttributes redirectAttributes) {
+	public ResponseEntity<Object> singleFileUpload(@RequestParam("image") MultipartFile file, RedirectAttributes redirectAttributes) {
 
-		System.out.println("called");
+//		System.out.println("called");
 
 		if (file.isEmpty()) {
-			return "noFile";
+			return new ResponseEntity<Object>("noFile", HttpStatus.OK);
 		}
 
 		try {
@@ -67,13 +68,14 @@ public class AgentController {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return "redirect:/uploadStatus";
+		return new ResponseEntity<Object>("redirect:/uploadStatus", HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/downloadProfPic", method = RequestMethod.GET)
-	public @ResponseBody Map<String, String> getImage() throws IOException {
+	public @ResponseBody ResponseEntity<Object> getImage() throws IOException {
 
 		File file = new File("F://temp//Lighthouse.jpg");
 
@@ -82,8 +84,7 @@ public class AgentController {
 		Map<String, String> jsonMap = new HashMap<>();
 
 		jsonMap.put("content", encodeImage);
-
-		return jsonMap;
+		return new ResponseEntity<Object>(jsonMap, HttpStatus.OK);
 	}
 
 	/*

@@ -17,7 +17,7 @@ public class PreviousPolicyServceImpl implements PreviousPolicyService{
 	private PreviousPolicyDao previousPolicyDao;
 	
 	@Override
-	public HashMap< String , Object> getSumAtRisk(String nic) {
+	public HashMap< String , Object> getSumAtRisk(String nic) throws Exception{
 		HashMap< String , Object> details = previousPolicyDao.getsumAtRisk(nic);
 		return details;
 	}
