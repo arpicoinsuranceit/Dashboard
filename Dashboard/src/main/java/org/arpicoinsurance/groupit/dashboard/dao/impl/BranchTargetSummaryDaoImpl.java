@@ -33,9 +33,15 @@ public class BranchTargetSummaryDaoImpl implements BranchTargetSummaryDao {
 	@Override
 	public String getZoneCode(String loccode) throws Exception {
 		List<Object> args = new ArrayList<>();
+<<<<<<< HEAD
 		//CalculationUtils calculationUtils = new CalculationUtils();
 		//args.add(calculationUtils.getPara(loccode));
 		//calculationUtils = null;
+=======
+		CalculationUtils calculationUtils = new CalculationUtils();
+		//args.add(calculationUtils.getPara(loccode));
+		calculationUtils = null;
+>>>>>>> refs/remotes/origin/branch-36
 		
 		String zoncod= jdbcTemplate.queryForObject("select r.zoncod from inagentmast a " + 
 				"inner join rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code " + 
@@ -84,7 +90,7 @@ public class BranchTargetSummaryDaoImpl implements BranchTargetSummaryDao {
 				,branchTargetSummaryDto.getDecCommitment(),branchTargetSummaryDto.getZoneCode(),branchTargetSummaryDto.getRegionCode(),
 				branchTargetSummaryDto.getLocationCode(),branchTargetSummaryDto.getYear(),branchTargetSummaryDto.getPara());
 		
-		System.out.println(result + " ----- ====");
+		//System.out.println(result + " ----- ====");
 		return result;
 	}
 

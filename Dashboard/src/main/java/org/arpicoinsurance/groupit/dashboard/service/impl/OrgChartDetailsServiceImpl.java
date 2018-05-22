@@ -24,7 +24,7 @@ public class OrgChartDetailsServiceImpl implements OrgChartDetailsService {
 
 		String exp = "";
 
-		System.out.println(location);
+//		System.out.println(location);
 		
 		if (userType.equals("ZONE")) {
 			exp = "r.zoncod = '" + location + "'";
@@ -50,7 +50,7 @@ public class OrgChartDetailsServiceImpl implements OrgChartDetailsService {
 			return new ArrayList<OrgChartDto>(); 
 		}
 
-		System.out.println(exp);
+//		System.out.println(exp);
 		
 		List<OrgChartDetailsDto> chartDetailsDtos = orgChartDao.getOrgChartList(exp);
 

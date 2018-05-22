@@ -1,19 +1,10 @@
 package org.arpicoinsurance.groupit.dashboard.controller;
 
-import java.util.List;
-
-import org.arpicoinsurance.groupit.dashboard.dto.BenefictInquiryDto;
-import org.arpicoinsurance.groupit.dashboard.dto.ChildDto;
 import org.arpicoinsurance.groupit.dashboard.dto.DataTableResponse;
-import org.arpicoinsurance.groupit.dashboard.dto.MedicalReqDto;
-import org.arpicoinsurance.groupit.dashboard.dto.NomineeInquiryDao;
-import org.arpicoinsurance.groupit.dashboard.dto.PaymentHistoryDto;
-import org.arpicoinsurance.groupit.dashboard.dto.PolicyDispatchAcknowDto;
-import org.arpicoinsurance.groupit.dashboard.dto.ProposalGeneralDto;
-import org.arpicoinsurance.groupit.dashboard.dto.SettlementDto;
-import org.arpicoinsurance.groupit.dashboard.dto.TransferHistoryDto;
 import org.arpicoinsurance.groupit.dashboard.service.InquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,193 +20,201 @@ public class InquiryController {
 	private InquiryService inquiryService;
 
 	@RequestMapping(value = "/getallinquiries/{userType}/{dashpara}/{advcod}/{offset}/{limit}/{equality}/{column}", method = RequestMethod.GET)
-	public DataTableResponse getAllInquiriesByUser(@PathVariable String userType, @PathVariable String dashpara,
+	public ResponseEntity<Object> getAllInquiriesByUser(@PathVariable String userType, @PathVariable String dashpara,
 			@PathVariable String advcod, @PathVariable Integer offset, @PathVariable Integer limit) {
-		
-		
+
 		DataTableResponse dataTableResponse = new DataTableResponse();
 		try {
-			System.out.println(userType);
-			System.out.println(dashpara);
-			System.out.println(advcod);
-			System.out.println(offset);
-			System.out.println(limit);
+			// System.out.println(userType);
+			// System.out.println(dashpara);
+			// System.out.println(advcod);
+			// System.out.println(offset);
+			// System.out.println(limit);
 			dataTableResponse.setData(inquiryService.inquiryLoad(userType, dashpara, advcod, offset, limit).toArray());
 			dataTableResponse.setRecordsFiltered(limit);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return dataTableResponse;
+		return new ResponseEntity<Object>(dataTableResponse, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/getallinquiries/{userType}/{dashpara}/{advcod}/{offset}/{limit}/{equality}/{column}/{data}", method = RequestMethod.GET)
-	public DataTableResponse getAllInquiriesByUserFilterd(@PathVariable String userType, @PathVariable String dashpara,
-			@PathVariable String advcod, @PathVariable Integer offset, @PathVariable Integer limit,
-			@PathVariable String equality, @PathVariable String column, @PathVariable String data) {
+	public ResponseEntity<Object> getAllInquiriesByUserFilterd(@PathVariable String userType,
+			@PathVariable String dashpara, @PathVariable String advcod, @PathVariable Integer offset,
+			@PathVariable Integer limit, @PathVariable String equality, @PathVariable String column,
+			@PathVariable String data) {
 
-		data =data.trim();
-		
+		data = data.trim();
+
 		DataTableResponse dataTableResponse = new DataTableResponse();
 		try {
-			dataTableResponse.setData(inquiryService.inquiryLoadFilterd(userType, dashpara, advcod, offset, limit, column, data, equality).toArray());
+			dataTableResponse.setData(inquiryService
+					.inquiryLoadFilterd(userType, dashpara, advcod, offset, limit, column, data, equality).toArray());
 			dataTableResponse.setRecordsFiltered(limit);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return dataTableResponse;
+		return new ResponseEntity<Object>(dataTableResponse, HttpStatus.OK);
 
 	}
 
 	@RequestMapping(value = "/getCount/{userType}/{dashpara}/{advcod}/{offset}/{limit}/{equality}/{column}", method = RequestMethod.GET)
-	public Integer getAllCountByUser(@PathVariable String userType, @PathVariable String dashpara,
+	public ResponseEntity<Object> getAllCountByUser(@PathVariable String userType, @PathVariable String dashpara,
 			@PathVariable String advcod, @PathVariable Integer offset, @PathVariable Integer limit) {
 
 		try {
 			Integer pageCount = inquiryService.inquiryLoadCount(userType, dashpara, "3857");
 
-
-			return pageCount;
+			return new ResponseEntity<Object>(pageCount, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return -1;
 
 	}
 
 	@RequestMapping(value = "/getCount/{userType}/{dashpara}/{advcod}/{offset}/{limit}/{equality}/{column}/{data}", method = RequestMethod.GET)
-	public Integer getAllCountByUserFilterd(@PathVariable String userType, @PathVariable String dashpara,
+	public ResponseEntity<Object> getAllCountByUserFilterd(@PathVariable String userType, @PathVariable String dashpara,
 			@PathVariable String advcod, @PathVariable Integer offset, @PathVariable Integer limit,
 			@PathVariable String equality, @PathVariable String column, @PathVariable String data) {
 
-		data =data.trim();
-		
+		data = data.trim();
+
 		try {
-			return inquiryService.inquiryLoadCountFilterd(userType, dashpara, advcod, column, data, equality);
+			return new ResponseEntity<Object>(
+					inquiryService.inquiryLoadCountFilterd(userType, dashpara, advcod, column, data, equality),
+					HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return -1;
 
 	}
-	
+
 	@RequestMapping(value = "/getGeneral", method = RequestMethod.POST)
-	public ProposalGeneralDto getProposalGeneralInfo(@RequestBody String proposalNo) {
+	public ResponseEntity<Object> getProposalGeneralInfo(@RequestBody String proposalNo) {
 
 		try {
-			return inquiryService.getProposalGeneralInfo(proposalNo);
+			return new ResponseEntity<Object>(inquiryService.getProposalGeneralInfo(proposalNo), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
-	
+
 	@RequestMapping(value = "/getChildren", method = RequestMethod.POST)
-	public List<ChildDto> getChildInfo(@RequestBody String data) {
+	public ResponseEntity<Object> getChildInfo(@RequestBody String data) {
 
 		String dataArr[] = data.split("&");
-		
+
 		try {
-			return inquiryService.getChildrenList(dataArr[0], dataArr[1], dataArr[2]);
+			return new ResponseEntity<Object>(inquiryService.getChildrenList(dataArr[0], dataArr[1], dataArr[2]),
+					HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
-	
+
 	@RequestMapping(value = "/getNominee", method = RequestMethod.POST)
-	public List<NomineeInquiryDao> getNomineeInfo(@RequestBody String data) {
+	public ResponseEntity<Object> getNomineeInfo(@RequestBody String data) {
 
 		String dataArr[] = data.split("&");
-		
-		for (String string : dataArr) {
-			System.out.println(string);
-		}
-		
+
+		// for (String string : dataArr) {
+		// System.out.println(string);
+		// }
+
 		try {
-			return inquiryService.getNomineeList(dataArr[0], dataArr[1], dataArr[2]);
+			return new ResponseEntity<Object>(inquiryService.getNomineeList(dataArr[0], dataArr[1], dataArr[2]),
+					HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
-	
+
 	@RequestMapping(value = "/getBenefict", method = RequestMethod.POST)
-	public List<BenefictInquiryDto> getBenefictInfo(@RequestBody String data) {
+	public ResponseEntity<Object> getBenefictInfo(@RequestBody String data) {
 
 		String dataArr[] = data.split("&");
-		
+
 		try {
-			return inquiryService.getBenefictList(dataArr[0], dataArr[1], dataArr[2]);
+			return new ResponseEntity<Object>(inquiryService.getBenefictList(dataArr[0], dataArr[1], dataArr[2]),
+					HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
-	
+
 	@RequestMapping(value = "/getMedQry", method = RequestMethod.POST)
-	public List<MedicalReqDto> getMedicalReqInfo(@RequestBody String data) {
+	public ResponseEntity<Object> getMedicalReqInfo(@RequestBody String data) {
 
 		String dataArr[] = data.split("&");
-		
+
 		try {
-			return inquiryService.getMedicalReqList(dataArr[0], dataArr[1], dataArr[2]);
+			return new ResponseEntity<Object>(inquiryService.getMedicalReqList(dataArr[0], dataArr[1], dataArr[2]),
+					HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
-	
+
 	@RequestMapping(value = "/getTransferDetails", method = RequestMethod.POST)
-	public List<TransferHistoryDto> getTransferHistoryInfo(@RequestBody String proposalNo) {
+	public ResponseEntity<Object> getTransferHistoryInfo(@RequestBody String proposalNo) {
 
 		try {
-			return inquiryService.getTransferHistoryList(proposalNo);
+			return new ResponseEntity<Object>(inquiryService.getTransferHistoryList(proposalNo), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
-	
+
 	@RequestMapping(value = "/getSettlementDetails", method = RequestMethod.POST)
-	public List<SettlementDto> getSettlementInfo(@RequestBody String proposalNo) {
+	public ResponseEntity<Object> getSettlementInfo(@RequestBody String proposalNo) {
 
 		try {
-			return inquiryService.getSettlementList(proposalNo);
+			return new ResponseEntity<Object>(inquiryService.getSettlementList(proposalNo), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
-	
+
 	@RequestMapping(value = "/getPaymentHistory", method = RequestMethod.POST)
-	public List<PaymentHistoryDto> getPaymentInfo(@RequestBody String data) {
+	public ResponseEntity<Object> getPaymentInfo(@RequestBody String data) {
 
 		String dataArr[] = data.split("&");
 		try {
-			return inquiryService.getPaymentHistory(dataArr[0], dataArr[1]);
+			return new ResponseEntity<Object>(inquiryService.getPaymentHistory(dataArr[0], dataArr[1]), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
-	
+
 	@RequestMapping(value = "/getPolicyDisAch", method = RequestMethod.POST)
-	public PolicyDispatchAcknowDto getPolicyAch(@RequestBody String policyNo) {
+	public ResponseEntity<Object> getPolicyAch(@RequestBody String policyNo) {
 
 		try {
-			return inquiryService.getPolicyDispatch(policyNo);
+			return new ResponseEntity<Object>(inquiryService.getPolicyDispatch(policyNo), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return null;
 	}
 }

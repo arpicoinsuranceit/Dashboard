@@ -4,6 +4,6 @@ import java.util.HashMap;
 
 public interface PreviousPolicyService {
 
-	HashMap< String , Object> getSumAtRisk(String nic);
+	HashMap< String , Object> getSumAtRisk(String nic) throws Exception;
 
 }
