@@ -39,7 +39,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 	@Override
 	public byte[] mcfpReport(String fromDate, String toDate, String advisor, String branch) throws Exception {
-		System.out.println(fromDate + "," + toDate + "," + advisor + "," + branch);
+		System.out.println(fromDate + " -fromDate " + toDate + " -toDate " + advisor + " -advisor " + branch + " -branch");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
@@ -100,6 +100,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		System.out.println(
 				fromDate + "," + toDate + "," + zone + "," + region + "," + branch + "," + unl + "," + frequency);
+		
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
 
@@ -166,8 +167,6 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("agncod", advisor);
 		params.put("loccod", branch);
 		params.put("rgncod", region);
-		params.put("rgncod", region);
-		params.put("loccod", branch);
 		params.put("zoncod", zone);
 
 		Resource resource = new ClassPathResource("Pend_req_advi.jrxml");
@@ -272,7 +271,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 	public byte[] retentionCode(String date, String zone, String region, String branch, String code) throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(date + " -date " + zone + " -zone " + region + " -region " + branch + " -branch" + code + " -code");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("loccod", branch);
@@ -326,7 +325,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 	public byte[] retentionBranch(String date, String zone, String region, String branch) throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(date + " -date " + zone + " -zone " + region + " -region " + branch + " -branch");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("loccod", branch);
@@ -383,6 +382,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
 
+		System.out.println(fromDate + " -fromDate" + toDate +" -toDate"+ branch + " -branch" + region + " -region" + zone +" -zone"+ sp + " -sp" + ic + " -ic" + ul + " -ul");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
@@ -441,7 +441,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(asAtDate + " -asAtDate" + code +" -code"+ branchCode + " -branchCode" + regionCode + " -regionCode" + zone +" -zone");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("pdate", asAtDate);
@@ -497,7 +497,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(asAtDate + " -asAtDate" + code +" -code"+ branchCode + " -branchCode" + regionCode + " -regionCode" + zone +" -zone");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("pdate", asAtDate);
@@ -553,7 +553,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(branch + " -branch" + year +" -year"+ month + " -month" + code + " -code" + status +" -status");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("year", year);
@@ -609,7 +609,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(fromDate + " -fromDate" + toDate +" -toDate"+ zone + " -zone" + region + " -region" + branch +" -branch");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
@@ -665,7 +665,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			String frequency, String product) throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(branch + " -branch" + fromDate +" -fromDate"+ toDate + " -toDate" + zone + " -zone" + region +" -region" + branch + " -branch"  + frequency + " -frequency" +  product + " -product");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
@@ -723,7 +723,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			String frequency, String product, String so) throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(branch + " -branch" + fromDate +" -fromDate"+ toDate + " -toDate" + zone + " -zone" + region +" -region" + branch + " -branch" + so + " -so" + frequency + " -frequency" +  product + " -product");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
@@ -782,7 +782,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			String unl, String type, String frequency, String product) throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(branch + " -branch" + fromDate +" -fromDate"+ toDate + " -toDate" + zone + " -zone" + region +" -region" + branch + " -branch" + unl + " -unl" + type + " -type" + frequency + " -frequency" +  product + " -product");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
@@ -843,7 +843,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			String branch, String product, String frequency) throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(branch + " -branch" + fromDate +" -fromDate"+ toDate + " -toDate" + zone + " -zone" + region +" -region" + branch + " -branch" + frequency + " -frequency" +  product + " -product");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
@@ -902,7 +902,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 			String unl, String type, String frequency, String product) throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(branch + " -branch" + fromDate +" -fromDate"+ toDate + " -toDate" + zone + " -zone" + region +" -region" + branch + " -branch" + unl + " -unl" + type + " -type" + frequency + " -frequency" +  product + " -product");
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
@@ -961,7 +961,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 	public byte[] policyAcknowledgement(String branch, String year, String month) throws Exception {
 		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
 		response.setContentType("application/pdf");
-
+		System.out.println(branch + " -branch" + year +" -year"+ month + " -month" );
 		Map<String, Object> params = new HashMap<>();
 		params.put("sbucod", "450");
 		params.put("year", year);

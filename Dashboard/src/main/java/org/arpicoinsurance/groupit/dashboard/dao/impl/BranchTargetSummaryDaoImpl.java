@@ -34,13 +34,13 @@ public class BranchTargetSummaryDaoImpl implements BranchTargetSummaryDao {
 	public String getZoneCode(String loccode) throws Exception {
 		List<Object> args = new ArrayList<>();
 		CalculationUtils calculationUtils = new CalculationUtils();
-		args.add(calculationUtils.getPara(loccode));
+		//args.add(calculationUtils.getPara(loccode));
 		calculationUtils = null;
 		
 		String zoncod= jdbcTemplate.queryForObject("select r.zoncod from inagentmast a " + 
 				"inner join rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code " + 
 				"inner join inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod " + 
-				"where a.sbucod='450' and a.loccod IN(?) and a.agnsta='ACT' and a.agncls='BRN' limit 1",
+				"where a.sbucod='450' and a.loccod IN('"+loccode+"') and a.agnsta='ACT' and a.agncls='BRN' limit 1",
 				String.class,args.toArray());
 		
 		//System.out.println(zoncod + " ----- ====");
