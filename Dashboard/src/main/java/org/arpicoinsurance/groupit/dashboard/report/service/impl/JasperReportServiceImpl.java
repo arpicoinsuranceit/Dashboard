@@ -280,11 +280,11 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("rgncod", region);
 		params.put("pprsta", code);
 
-		Resource resource = new ClassPathResource("pre_bas_persi_sum.jrxml");
+		Resource resource = new ClassPathResource("pre_bas_persi_sum_ag_new.jrxml");
 		File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "pre_bas_persi_sum.jrxml";
+		String REPORT = "pre_bas_persi_sum_ag_new.jrxml";
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

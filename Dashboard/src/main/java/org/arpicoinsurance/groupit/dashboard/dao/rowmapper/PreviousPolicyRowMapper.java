@@ -15,9 +15,9 @@ public class PreviousPolicyRowMapper implements RowMapper<HashMap< String , Obje
 		detailsMap.put("sumAtRisk", rs.getInt("sumAtRisk"));
 		detailsMap.put("custCode", rs.getString("custCode"));
 		
-		Object[] details = new Object [2];
-		details[0]= rs.getInt("sumAtRisk");
-		details[1]= rs.getString("custCode");
+		//Object[] details = new Object [2];
+		//details[0]= rs.getInt("sumAtRisk");
+		//details[1]= rs.getString("custCode");
 		return detailsMap;
 	}
 
