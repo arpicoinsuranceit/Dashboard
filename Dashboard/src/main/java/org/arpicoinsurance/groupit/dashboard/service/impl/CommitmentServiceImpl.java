@@ -37,4 +37,9 @@ public class CommitmentServiceImpl implements CommitmentService{
 		return summaryDao.updateCommitment(branchTargetSummaryDto);
 	}
 
+	@Override
+	public List<String> getAllZoneCode() throws Exception {
+		return summaryDao.getAllZoneCode();
+	}
+
 }

@@ -9,6 +9,7 @@ import org.arpicoinsurance.groupit.dashboard.dao.rowmapper.BranchTargetSummaryRo
 import org.arpicoinsurance.groupit.dashboard.dto.BranchTargetSummaryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -101,6 +102,15 @@ public class BranchTargetSummaryDaoImpl implements BranchTargetSummaryDao {
 				"and i.year=? and i.loccod=? and i.type='Commitment' and l.loc_code=i.loccod " + 
 				"order by i.loccod,i.disord,i.disort",
 				args.toArray(), new BranchTargetSummaryRowMapper());
+	}
+
+	@Override
+	public List<String> getAllZoneCode() throws Exception {
+		
+		List<String> zoncodes= jdbcTemplate.queryForList("select zoncod from inzonemast where sbucod='450'", String.class);
+		
+		System.out.println(zoncodes.size() + " ----- ====");
+		return zoncodes;
 	}
 
 }
