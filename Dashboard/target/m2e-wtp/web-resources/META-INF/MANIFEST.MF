@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: Infosys
-Implementation-Version: 1.3.2
+Implementation-Version: 1.4.0
 Built-By: DSPChathuranga
 Implementation-Vendor-Id: org.arpicoinsurance.groupit
 Build-Jdk: 1.8.0_171
