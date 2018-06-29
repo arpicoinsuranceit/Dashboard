@@ -28,7 +28,7 @@ public class DashboardController {
 	@Autowired
 	private DashboardService dashboardService;
 
-	@RequestMapping(value = "/dashboard/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/dashboard/{id:.+}", method = RequestMethod.GET)
 	public ResponseEntity<Object> loadDashboardData(@PathVariable String id) {
 		MainRespDto mainRespDto = null;
 		try {
@@ -42,10 +42,11 @@ public class DashboardController {
 
 	@RequestMapping(value = "/getdashboardpara", method = RequestMethod.POST)
 	public ResponseEntity<Object> getDashboardData(@RequestBody String userid) {
-		// System.out.println(userid);
+		//System.out.println(userid +"getDashboardData////");
 		DashboardPara dashboardPara = null;
 		try {
 			dashboardPara = dashboardService.getDashboardPara(userid);
+			//System.out.println(dashboardPara +"getDashboardData");
 			return new ResponseEntity<Object>(dashboardPara, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,42 +54,42 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getCurrentMonthTarget/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCurrentMonthTarget/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public MonthlyTarget getCurrentMonthTarget(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 
 		return null;
 	}
 
-	@RequestMapping(value = "/getCurrentMonthTargetGWP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCurrentMonthTargetGWP/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public MonthlyTarget getCurrentMonthTargetGWP(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 
 		return null;
 	}
 
-	@RequestMapping(value = "/getCurrentMonthTargetMCFP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCurrentMonthTargetMCFP/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public MonthlyTarget getCurrentMonthTargetMCFP(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 
 		return null;
 	}
 
-	@RequestMapping(value = "/getCurrentMonthTargetFYP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCurrentMonthTargetFYP/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public MonthlyTarget getCurrentMonthTargetFYP(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 
 		return null;
 	}
 
-	@RequestMapping(value = "/getCurrentMonthTargetNOP/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCurrentMonthTargetNOP/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public MonthlyTarget getCurrentMonthTargetNOP(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 
 		return null;
 	}
 
-	@RequestMapping(value = "/getCurrentMonthYearlyTarget/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCurrentMonthYearlyTarget/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getCurrentMonthYearlyTarget(@PathVariable String userid,
 			@PathVariable String dashpara, @PathVariable String usertype) {
 		// System.out.println(userid+" - "+dashpara+" - "+usertype);
@@ -102,7 +103,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getCurrentMonthYearlyTargetUNL/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCurrentMonthYearlyTargetUNL/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getCurrentMonthYearlyTargetUNL(@PathVariable String userid,
 			@PathVariable String dashpara, @PathVariable String usertype) {
 		// System.out.println(userid+" - "+dashpara+" - "+usertype);
@@ -116,7 +117,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getPolicySummery/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPolicySummery/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getPolicySummery(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 		List<NameValuePair> nameValuePairs = null;
@@ -190,7 +191,7 @@ public class DashboardController {
 		return null;
 	}
 
-	@RequestMapping(value = "/getGWPAndGWPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getGWPAndGWPC/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getGWPAndGWPC(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 		List<Object> GWPAndGWPC = null;
@@ -203,7 +204,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getMCFPAndMCFPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getMCFPAndMCFPC/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getMCFPAndMCFPC(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 		List<Object> MCFPAndMCFPC = null;
@@ -216,7 +217,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getFYPAndFYPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getFYPAndFYPC/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getFYPAndFYPC(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 		List<Object> FYPAndFYPC = null;
@@ -229,7 +230,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getNOPAndNOPC/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getNOPAndNOPC/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getNOPAndNOPC(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 		List<Object> NOPAndNOPC = null;
@@ -242,7 +243,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getRINY/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getRINY/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getRINY(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 		List<NameSeriasPair> RINY = null;
@@ -255,7 +256,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getDuePolicies/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getDuePolicies/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getDuePolicies(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 		List<DuePolicies> duePolicies = null;
@@ -268,7 +269,7 @@ public class DashboardController {
 		}
 	}
 
-	@RequestMapping(value = "/getPendingPolicies/{userid}/{dashpara}/{usertype}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPendingPolicies/{userid:.+}/{dashpara}/{usertype}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getPendingPolicies(@PathVariable String userid, @PathVariable String dashpara,
 			@PathVariable String usertype) {
 		List<PendingPolicies> pendingPolicies = null;

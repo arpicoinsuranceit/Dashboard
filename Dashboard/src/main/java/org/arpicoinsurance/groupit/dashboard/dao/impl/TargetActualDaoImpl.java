@@ -63,6 +63,7 @@ public class TargetActualDaoImpl implements TargetActualDao {
 
 	@Override
 	public AgentAchievement getAgentAchievement(DashboardPara para) throws Exception {
+		//System.out.println(para.getDashpara());
 		if (para.getUsertype().equalsIgnoreCase("UNL")) {
 			return jdbcTemplate.queryForObject("SELECT "
             + "    0.0 trgamt, "
