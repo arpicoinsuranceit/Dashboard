@@ -67,6 +67,17 @@ public class CommitmentController {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/getAllZone")
+	public ResponseEntity<Object> getAllZone() {
+		
+		try {
+			return new ResponseEntity<Object>(commitmentService.getAllZoneCode(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 	
 }

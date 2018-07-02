@@ -12,4 +12,6 @@ public interface CommitmentService {
 	public String getZoneCode(String agnCode)throws Exception;
 	
 	public Integer updateCommitment(BranchTargetSummaryDto branchTargetSummaryDto)throws Exception;
+	
+	public List<String> getAllZoneCode()throws Exception;
 }
