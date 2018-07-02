@@ -34,9 +34,9 @@ public class AgentController {
 	// Save the uploaded file to this folder
 	private static String UPLOADED_FOLDER = "F://temp//";
 
-	@RequestMapping(method = RequestMethod.GET, value = "/getagent/{agentCode}")
+	@RequestMapping(method = RequestMethod.GET, value = "/getagent/{agentCode:.+}")
 	public ResponseEntity<Object> getAgent(@PathVariable String agentCode) {
-//		System.out.println(agentCode);
+	   //System.out.println(agentCode + "Get agent");
 		try {
 			return new ResponseEntity<Object>(agentService.getAgent(agentCode), HttpStatus.OK);
 		} catch (Exception e) {
