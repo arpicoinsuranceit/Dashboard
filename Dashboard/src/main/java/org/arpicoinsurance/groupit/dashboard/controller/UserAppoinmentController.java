@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @CrossOrigin(origins = "*")
 public class UserAppoinmentController {
@@ -21,7 +20,6 @@ public class UserAppoinmentController {
 	@RequestMapping(value = "/AppoinmentPrint/{id}", method = RequestMethod.GET, produces = "application/pdf")
 	public ResponseEntity<Object> getAppoinmentByUserCod(@PathVariable Integer id) {
 
-		System.out.println("called travell..." + id);
 		try {
 
 			ResponseEntity<Object> responseEntity = null;
@@ -47,7 +45,7 @@ public class UserAppoinmentController {
 	@RequestMapping(value = "/AppoinmentTravellingPrint/{id}", method = RequestMethod.GET, produces = "application/pdf")
 	public ResponseEntity<Object> getAppoinmentTravellingByUserCod(@PathVariable Integer id) {
 
-		System.out.println("called..." + id);
+		System.out.println("called travell..." + id);
 		try {
 
 			ResponseEntity<Object> responseEntity = null;

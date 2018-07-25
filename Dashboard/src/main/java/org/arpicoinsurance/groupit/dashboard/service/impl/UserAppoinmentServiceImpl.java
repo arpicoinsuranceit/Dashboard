@@ -28,7 +28,6 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.VerticalAlignment;
 
-
 @Service
 public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
