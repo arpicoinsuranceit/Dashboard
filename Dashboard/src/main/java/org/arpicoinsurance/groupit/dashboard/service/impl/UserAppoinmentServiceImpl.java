@@ -1005,7 +1005,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		// document.setBottomMargin(20);
 		document.setMargins(70, 70, 70, 70);
 
-		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy - MM - dd");
+		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate currentDate = LocalDate.now();
 
 		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(11).setFont(font));
