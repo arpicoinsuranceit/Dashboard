@@ -20,6 +20,8 @@ public class UserAppoinmentController {
 	@RequestMapping(value = "/AppoinmentPrint/{id}", method = RequestMethod.GET, produces = "application/pdf")
 	public ResponseEntity<Object> getAppoinmentByUserCod(@PathVariable Integer id) {
 
+		 System.out.println("called appoinment..." + id);
+
 		try {
 
 			ResponseEntity<Object> responseEntity = null;
@@ -37,7 +39,7 @@ public class UserAppoinmentController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			// System.out.println("Controller Error : "+e.getMessage());
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -45,7 +47,7 @@ public class UserAppoinmentController {
 	@RequestMapping(value = "/AppoinmentTravellingPrint/{id}", method = RequestMethod.GET, produces = "application/pdf")
 	public ResponseEntity<Object> getAppoinmentTravellingByUserCod(@PathVariable Integer id) {
 
-		System.out.println("called travell..." + id);
+		 System.out.println("called travell..." + id);
 		try {
 
 			ResponseEntity<Object> responseEntity = null;

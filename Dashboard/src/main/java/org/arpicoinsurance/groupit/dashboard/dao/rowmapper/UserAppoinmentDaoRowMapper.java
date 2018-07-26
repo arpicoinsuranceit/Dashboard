@@ -11,6 +11,7 @@ public class UserAppoinmentDaoRowMapper implements RowMapper<UserAppoinmentHelpe
 
 	@Override
 	public UserAppoinmentHelper mapRow(ResultSet resultSet, int arg1) throws SQLException {
+		// System.out.println("Row Mapper Coloums Set Called");
 		UserAppoinmentHelper appoinInfo = new UserAppoinmentHelper();
 		appoinInfo.setAddress1(resultSet.getString("agnad1"));
 		appoinInfo.setAddress2(resultSet.getString("agnad2"));

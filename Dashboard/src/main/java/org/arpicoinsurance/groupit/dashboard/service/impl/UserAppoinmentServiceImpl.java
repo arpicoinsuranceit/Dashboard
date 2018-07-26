@@ -36,6 +36,8 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 	@Override
 	public byte[] createAppoinment(Integer usrCode) throws Exception {
+		// System.out.println("Service Impl Called : "+usrCode);
+		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		final String FONTNORMAL = "./src/main/resources/FONTDIR/times.ttf";
@@ -965,7 +967,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 	@Override
 	public byte[] createTravelling(Integer usrCode) throws Exception {
-
+//		System.out.println("Service Impl createTravelling Called : "+usrCode);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		DecimalFormat formatter = new DecimalFormat("###,###.00");

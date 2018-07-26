@@ -32,6 +32,8 @@ public class UserAppoinmentDaoImpl implements UserAppoinmentDao {
 
 	@Override
 	public UserAppoinmentHelper findByAgtCod(Integer usrCod) throws Exception {
+		
+		// System.out.println("Dao Impl Called : " +usrCod);
 
 		UserAppoinmentHelper userAppoinmentHelper = null;
 		try {
@@ -47,6 +49,7 @@ public class UserAppoinmentDaoImpl implements UserAppoinmentDao {
 					new UserAppoinmentDaoRowMapper(), args.toArray());
 			return userAppoinmentHelper;
 		} catch (Exception e) {
+			System.out.println("DAO IMPL Error");
 			return null;
 		}
 
