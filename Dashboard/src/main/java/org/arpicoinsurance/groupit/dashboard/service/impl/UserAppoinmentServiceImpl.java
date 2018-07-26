@@ -1,6 +1,9 @@
 package org.arpicoinsurance.groupit.dashboard.service.impl;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -10,6 +13,8 @@ import org.arpicoinsurance.groupit.dashboard.dao.UserAppoinmentDao;
 import org.arpicoinsurance.groupit.dashboard.helper.UserAppoinmentHelper;
 import org.arpicoinsurance.groupit.dashboard.service.UserAppoinmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.io.font.PdfEncodings;
@@ -40,14 +45,20 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-		final String FONTNORMAL = "./src/main/resources/FONTDIR/times.ttf";
+		Resource FontResource1 = new ClassPathResource("FONTDIR/times.ttf");
+		File FONTNORMAL = FontResource1.getFile();
+
+		Resource FontResource2 = new ClassPathResource("FONTDIR/timesbd.ttf");
+		File FONTBOLD = FontResource2.getFile();
+
+		// final String FONTNORMAL = "./src/main/resources/FONTDIR/times.ttf";
 
 		// final String FONTBOLDITALIC = "./src/main/resources/FONTDIR/timesbi.ttf";
 
-		final String FONTBOLD = "./src/main/resources/FONTDIR/timesbd.ttf";
+		// final String FONTBOLD = "./src/main/resources/FONTDIR/timesbd.ttf";
 
-		PdfFont font = PdfFontFactory.createFont(FONTNORMAL, PdfEncodings.IDENTITY_H);
-		PdfFont fontB = PdfFontFactory.createFont(FONTBOLD, PdfEncodings.IDENTITY_H);
+		PdfFont font = PdfFontFactory.createFont(FONTNORMAL.getPath(), PdfEncodings.IDENTITY_H);
+		PdfFont fontB = PdfFontFactory.createFont(FONTBOLD.getPath(), PdfEncodings.IDENTITY_H);
 		// PdfFont fontBI = PdfFontFactory.createFont(FONTBOLDITALIC,
 		// PdfEncodings.IDENTITY_H);
 
@@ -967,19 +978,25 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 	@Override
 	public byte[] createTravelling(Integer usrCode) throws Exception {
-//		System.out.println("Service Impl createTravelling Called : "+usrCode);
+
+
+		Resource FontResource1 = new ClassPathResource("FONTDIR/times.ttf");
+		File FONTNORMAL = FontResource1.getFile();
+
+		Resource FontResource2 = new ClassPathResource("FONTDIR/timesbd.ttf");
+		File FONTBOLD = FontResource2.getFile();
+
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		DecimalFormat formatter = new DecimalFormat("###,###.00");
 
 		// final String DEST = "./src/main/resources/traveling.pdf";
 
-		final String FONTNORMAL = "./src/main/resources/FONTDIR/times.ttf";
+		// final String FONTNORMAL = "./src/main/resources/FONTDIR/times.ttf";
+		// final String FONTBOLD = "./src/main/resources/FONTDIR/timesbd.ttf";
 
-		final String FONTBOLD = "./src/main/resources/FONTDIR/timesbd.ttf";
-
-		PdfFont font = PdfFontFactory.createFont(FONTNORMAL, PdfEncodings.IDENTITY_H);
-		PdfFont fontB = PdfFontFactory.createFont(FONTBOLD, PdfEncodings.IDENTITY_H);
+		PdfFont font = PdfFontFactory.createFont(FONTNORMAL.getPath(), PdfEncodings.IDENTITY_H);
+		PdfFont fontB = PdfFontFactory.createFont(FONTBOLD.getPath(), PdfEncodings.IDENTITY_H);
 
 		PdfWriter writer = new PdfWriter(baos);
 		PdfDocument pdf = new PdfDocument(writer);
