@@ -67,7 +67,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		document.setBottomMargin(20);
 
 		SimpleDateFormat patt = new SimpleDateFormat("dd-MM-yyyy");
-		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy - MM - dd");
+		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate currentDate = LocalDate.now();
 
 		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(11).setFont(font));
@@ -86,73 +86,35 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		String designation = "";
 		String appointDate = "";
 
-		System.out.println("agent code : " + usrCode);
+		// System.out.println("agent code : " + usrCode);
 
 		UserAppoinmentHelper userAppoinmentHelper = userAppoinmentDao.findByAgtCod(usrCode);
 
-		try {
-			title = userAppoinmentHelper.getAgentTitle();
-		} catch (Exception e) {
-		}
-		try {
-			address1 = userAppoinmentHelper.getAddress1();
+		title = userAppoinmentHelper.getAgentTitle() != null ? userAppoinmentHelper.getAgentTitle() : "";
 
-		} catch (Exception e) {
-		}
+		address1 = userAppoinmentHelper.getAddress1() != null ? userAppoinmentHelper.getAddress1() : "";
 
-		try {
-			address2 = userAppoinmentHelper.getAddress2();
+		address2 = userAppoinmentHelper.getAddress2() != null ? userAppoinmentHelper.getAddress2() : "";
 
-		} catch (Exception e) {
-		}
+		lastName = userAppoinmentHelper.getLastName() != null ? userAppoinmentHelper.getLastName().toUpperCase() : "";
 
-		try {
-			lastName = userAppoinmentHelper.getLastName();
+		midName = userAppoinmentHelper.getMiddleName() != null ? userAppoinmentHelper.getMiddleName().toUpperCase()
+				: "";
 
-		} catch (Exception e) {
-		}
+		shortName = userAppoinmentHelper.getShortName() != null ? userAppoinmentHelper.getShortName() : "";
 
-		try {
-			midName = userAppoinmentHelper.getMiddleName();
+		agentCode = userAppoinmentHelper.getAgtCod() != null ? userAppoinmentHelper.getAgtCod() : "";
 
-		} catch (Exception e) {
-		}
+		name = userAppoinmentHelper.getAgentName() != null ? userAppoinmentHelper.getAgentName().toUpperCase() : "";
 
-		try {
-			shortName = userAppoinmentHelper.getShortName();
+		nic = userAppoinmentHelper.getAgentNic() != null ? userAppoinmentHelper.getAgentNic().toUpperCase() : "";
 
-		} catch (Exception e) {
-		}
+		designation = userAppoinmentHelper.getDesignation() != null
+				? userAppoinmentHelper.getDesignation().toUpperCase()
+				: "";
 
-		try {
-			agentCode = userAppoinmentHelper.getAgtCod();
-
-		} catch (Exception e) {
-		}
-
-		try {
-			name = userAppoinmentHelper.getAgentName();
-
-		} catch (Exception e) {
-		}
-
-		try {
-			nic = userAppoinmentHelper.getAgentNic();
-
-		} catch (Exception e) {
-		}
-
-		try {
-			designation = userAppoinmentHelper.getDesignation();
-
-		} catch (Exception e) {
-		}
-
-		try {
-			appointDate = patt.format(userAppoinmentHelper.getAppoinmentDate());
-
-		} catch (Exception e) {
-		}
+		appointDate = patt.format(
+				userAppoinmentHelper.getAppoinmentDate() != null ? userAppoinmentHelper.getAppoinmentDate() : "");
 
 		document.add(new Paragraph(title + " . " + shortName).setFontSize(11).setFixedLeading(1).setFont(font));
 		document.add(new Paragraph(address1).setFontSize(11).setFixedLeading(1).setFont(font));
@@ -160,15 +122,14 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 		document.add(new Paragraph(""));
 
-		document.add(new Paragraph("AGREEMENT – " + designation.toUpperCase() + " (Code No." + agentCode + ")")
-				.setFontSize(11).setCharacterSpacing(1).setFont(fontB));
+		document.add(new Paragraph("AGREEMENT – " + designation + " (Code No." + agentCode + ")").setFontSize(11)
+				.setCharacterSpacing(1).setFont(fontB));
 
 		document.add(new Paragraph("Further to your written request and the subsequent interview, "
 				+ "Arpico Insurance PLC, (hereinafter called the “Company”) is pleased to enter into this agreement with "
-				+ name.toUpperCase() + " " + midName.toUpperCase() + " " + lastName.toUpperCase() + " holder of NIC No "
-				+ nic.toUpperCase() + " as a/an " + designation.toUpperCase() + " "
-				+ "(which bears the same meaning as a/an " + designation.toUpperCase()
-				+ " and hereinafter referred to as ‘Agent’) with effect from " + appointDate.toUpperCase()
+				+ name + " " + midName + " " + lastName + " holder of NIC No " + nic + " as a/an " + designation + " "
+				+ "(which bears the same meaning as a/an " + designation
+				+ " and hereinafter referred to as ‘Agent’) with effect from " + appointDate
 				+ " subject to the following agreed terms and conditions to procure Life Insurance. "
 				+ "Your code number indicated above should be stated in all the documents as required by the Company.")
 						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10)
@@ -1019,19 +980,17 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 		UserAppoinmentHelper userAppoinmentHelper = userAppoinmentDao.findByAgtCod(usrCode);
 
-		try {
-
-			title = userAppoinmentHelper.getAgentTitle();
-			shortName = userAppoinmentHelper.getShortName();
-			address1 = userAppoinmentHelper.getAddress1();
-			address2 = userAppoinmentHelper.getAddress2();
-			agentCode = userAppoinmentHelper.getAgtCod();
-			designation = userAppoinmentHelper.getDesignation();
-			allowance = userAppoinmentHelper.getAgentAllowance();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		title = userAppoinmentHelper.getAgentTitle() != null ? userAppoinmentHelper.getAgentTitle() : "";
+		shortName = userAppoinmentHelper.getShortName() != null ? userAppoinmentHelper.getShortName().toUpperCase()
+				: "";
+		address1 = userAppoinmentHelper.getAddress1() != null ? userAppoinmentHelper.getAddress1() : "";
+		address2 = userAppoinmentHelper.getAddress2() != null ? userAppoinmentHelper.getAddress2() : "";
+		agentCode = userAppoinmentHelper.getAgtCod() != null ? userAppoinmentHelper.getAgtCod() : "";
+		designation = userAppoinmentHelper.getDesignation() != null
+				? userAppoinmentHelper.getDesignation().toUpperCase()
+				: "";
+		allowance = userAppoinmentHelper.getAgentAllowance() != null ? userAppoinmentHelper.getAgentAllowance()
+				: allowance;
 
 		document.add(new Paragraph(title + " . " + shortName).setFontSize(12).setFixedLeading(1).setFont(font));
 		document.add(new Paragraph(address1).setFontSize(12).setFixedLeading(1).setFont(font));
@@ -1039,9 +998,9 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 		document.add(new Paragraph(""));
 
-		document.add(new Paragraph("ANNEXURE TO AGREEMENT – " + designation.toUpperCase() + " (Code No." + agentCode
-				+ ") DATED " + currentDate.format(datePattern)).setFontSize(11).setCharacterSpacing(1)
-						.setFixedLeading(10).setFont(fontB));
+		document.add(new Paragraph("ANNEXURE TO AGREEMENT – " + designation + " (Code No." + agentCode + ") DATED "
+				+ currentDate.format(datePattern)).setFontSize(11).setCharacterSpacing(1).setFixedLeading(10)
+						.setFont(fontB));
 
 		document.add(new Paragraph(
 				"In addition to the terms and conditions stated in the above referred agreement, you will be reimbursed with the following amount until further notice, subject to minimum level of performance of Incentive Objective as indicated in the challenge sheet.")
