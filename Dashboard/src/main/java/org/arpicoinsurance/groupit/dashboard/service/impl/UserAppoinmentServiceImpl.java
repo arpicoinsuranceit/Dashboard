@@ -128,9 +128,8 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		document.add(new Paragraph("Further to your written request and the subsequent interview, "
 				+ "Arpico Insurance PLC, (hereinafter called the “Company”) is pleased to enter into this agreement with "
 				+ name + " " + midName + " " + lastName + " holder of NIC No " + nic + " as a/an " + designation + " "
-				+ "(which bears the same meaning as a/an " + designation
-				+ " and hereinafter referred to as ‘Agent’) with effect from " + appointDate
-				+ " subject to the following agreed terms and conditions to procure Life Insurance. "
+				+ "(which bears the same meaning as an Insurance Agent and hereinafter referred to as ‘Agent’) with effect from "
+				+ appointDate + " subject to the following agreed terms and conditions to procure Life Insurance. "
 				+ "Your code number indicated above should be stated in all the documents as required by the Company.")
 						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10)
 						.setFixedPosition(37, 615, 520).setFont(font));
@@ -963,7 +962,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		// document.setBottomMargin(20);
 		document.setMargins(70, 70, 70, 70);
 
-		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy - MM - dd");
+		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate currentDate = LocalDate.now();
 
 		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(11).setFont(font));
