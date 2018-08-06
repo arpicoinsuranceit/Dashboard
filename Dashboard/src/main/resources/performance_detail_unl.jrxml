@@ -132,7 +132,7 @@ inner join inagentmast i    on x.sbucod=i.sbucod and x.unlcod=i.agncod
 inner join rms_sbu sbu on x.sbucod=sbu.sbu_code
 
 where e.zoncod like $P{zoncod} and d.rgncod like $P{rgncod} and c.loccod like $P{loccod}
-and x.prdcod in ('INVP','ATRM','ASFP','END1','ARP') and x.paytrm like $P{catcod} and x.unlcod like $P{agncod} and i.subtyp like $P{subtyp}
+and x.prdcod like $P{prdcod} and x.paytrm like $P{catcod} and x.unlcod like $P{agncod} and i.subtyp like $P{subtyp}
 
 group by x.sbucod,e.zoncod,d.rgncod,c.loccod,x.unlcod,x.advcod,x.pprnum,x.polnum
 order by x.sbucod,e.zoncod,d.rgncod,c.loccod,x.unlcod,x.advcod,x.txndat]]>
