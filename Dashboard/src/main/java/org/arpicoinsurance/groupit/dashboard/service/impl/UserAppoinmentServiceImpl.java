@@ -2,8 +2,6 @@ package org.arpicoinsurance.groupit.dashboard.service.impl;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -63,17 +61,17 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		PdfWriter writer = new PdfWriter(baos);
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf, PageSize.A4);
-		document.setTopMargin(45);
+		document.setTopMargin(70);
 		document.setBottomMargin(20);
 
 		SimpleDateFormat patt = new SimpleDateFormat("dd-MM-yyyy");
 		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate currentDate = LocalDate.now();
 
-		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(11).setFont(font));
+		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(10).setFont(font));
 
-		document.add(new Paragraph("\n"));
-
+//		document.add(new Paragraph(""));
+ 
 		String title = "";
 		String shortName = "";
 		String address1 = "";
@@ -116,13 +114,13 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		appointDate = patt.format(
 				userAppoinmentHelper.getAppoinmentDate() != null ? userAppoinmentHelper.getAppoinmentDate() : "");
 
-		document.add(new Paragraph(title + " . " + shortName).setFontSize(11).setFixedLeading(1).setFont(font));
-		document.add(new Paragraph(address1).setFontSize(11).setFixedLeading(1).setFont(font));
-		document.add(new Paragraph(address2).setFontSize(11).setFixedLeading(1).setFont(font));
+		document.add(new Paragraph(title + " . " + shortName).setFontSize(10).setFixedLeading(1).setFont(font));
+		document.add(new Paragraph(address1).setFontSize(10).setFixedLeading(1).setFont(font));
+		document.add(new Paragraph(address2).setFontSize(10).setFixedLeading(1).setFont(font));
 
 		document.add(new Paragraph(""));
 
-		document.add(new Paragraph("AGREEMENT – " + designation + " (Code No." + agentCode + ")").setFontSize(11)
+		document.add(new Paragraph("AGREEMENT – " + designation + " (Code No." + agentCode + ")").setFontSize(10)
 				.setCharacterSpacing(1).setFont(fontB));
 
 		document.add(new Paragraph("Further to your written request and the subsequent interview, "
@@ -132,7 +130,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 				+ appointDate + " subject to the following agreed terms and conditions to procure Life Insurance. "
 				+ "Your code number indicated above should be stated in all the documents as required by the Company.")
 						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10)
-						.setFixedPosition(37, 615, 520).setFont(font));
+						.setFixedPosition(37, 620, 520).setFont(font));
 
 		document.add(new Paragraph("\n"));
 		document.add(new Paragraph("\n"));
@@ -925,7 +923,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 				20, n, TextAlignment.CENTER, VerticalAlignment.BOTTOM, 0);
 
 		document.showTextAligned(new Paragraph(String.format("page %s of %s", 2, n)).setFontSize(9).setFont(fontB), 280,
-				20, n1, TextAlignment.CENTER, VerticalAlignment.BOTTOM, 0);
+				10, n1, TextAlignment.CENTER, VerticalAlignment.BOTTOM, 0);
 
 		//
 
@@ -959,15 +957,15 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf, PageSize.A4);
 		// document.setTopMargin(45);
-		// document.setBottomMargin(20);
-		document.setMargins(70, 70, 70, 70);
+		// document.setBottomMargin(20); 
+		document.setMargins(80, 70, 70, 70);
 
 		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate currentDate = LocalDate.now();
 
 		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(11).setFont(font));
 
-		document.add(new Paragraph("\n"));
+		document.add(new Paragraph(""));
 
 		String title = "";
 		String shortName = "";
