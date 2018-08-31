@@ -728,7 +728,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
 		params.put("edate", toDate);
-		params.put("zoncod", zone);
+		params.put("zoncod", zone);  
 		params.put("rgncod", region);
 		params.put("loccod", branch);
 		params.put("prdcod", product);

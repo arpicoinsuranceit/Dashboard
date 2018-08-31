@@ -41,9 +41,9 @@
 
 from
 
-(SELECT sbucod,loccod,max(quonum) quonum,pprnum,min(txndat) txndat,concat(paymod,chqrel) as chrel,reldat,sum(totprm) amtpid
+(SELECT sbucod,loccod,max(quonum) quonum,pprnum,min(txndat) txndat,concat(if(paymod<>'CQ','CS',paymod),chqrel) as chrel,reldat,sum(totprm) amtpid
 FROM intransactions where sbucod=$P{sbucod} and doccod<>'RCPL' and If(polnum is null,"N","Y")=$P{catcod}
-group by sbucod,pprnum,paymod,chqrel) a
+group by sbucod,pprnum,if(paymod<>'CQ','CS',paymod)) a
 
 left outer join (select sbucod,pprnum,max(prpseq) prpseq,max(polnum) polnum,max(ppdini),sinprm,max(poldat) poldat, ppdini,prdcod,toptrm,paytrm,totprm,polfee,pprsta,max(advcod) advcod
             from inproposals where sbucod=$P{sbucod} and pprsta not in ('INAC','PRCAN')
@@ -92,9 +92,9 @@ if(a.pprnum is not null,1,0) as pprnum1,a.reldat,a.chrel,b.poldat,b.toptrm,
 
 from
 
-(SELECT sbucod,loccod,max(quonum) quonum,pprnum,(txndat) txndat,concat(paymod,chqrel) as chrel,reldat,sum(totprm) amtpid
-FROM intransactions where If(polnum is null,"N","Y")=$P{catcod} and doccod<>'RCPL'
-group by sbucod,loccod,pprnum,paymod,chqrel) a
+(SELECT sbucod,loccod,max(quonum) quonum,pprnum,min(txndat) txndat,concat(if(paymod<>'CQ','CS',paymod),chqrel) as chrel,reldat,sum(totprm) amtpid
+FROM intransactions where sbucod=$P{sbucod} and doccod<>'RCPL' and If(polnum is null,"N","Y")=$P{catcod} 
+group by sbucod,pprnum,if(paymod<>'CQ','CS',paymod)) a
 
 left outer join (select sbucod,pprnum,max(prpseq) prpseq,max(polnum) polnum,max(ppdini),sinprm,max(poldat) poldat, ppdini,prdcod,toptrm,paytrm,totprm,polfee,pprsta,max(advcod) advcod
             from inproposals where pprsta not in ('INAC','PRCAN')
