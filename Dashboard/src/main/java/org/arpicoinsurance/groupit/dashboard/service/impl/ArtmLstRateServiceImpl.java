@@ -16,10 +16,16 @@ public class ArtmLstRateServiceImpl implements ArtmLstRateService {
 
 	@Override
 	public Double getLstYerRate(String quoCreDate) throws Exception {
-
 		Double artmRate = artmLstRateDao.getLstYerRate(quoCreDate);
+		Double artmRateDefault = 9.5;
 
-		return artmRate;
+		if (artmRate != null) {
+			return artmRate;
+		} else {
+
+			return artmRateDefault;
+		}
+
 	}
 
 }

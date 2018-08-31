@@ -39,6 +39,8 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 	@Override
 	public byte[] createAppoinment(Integer usrCode) throws Exception {
+		// System.out.println("Service Impl Called : "+usrCode);
+
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		Resource FontResource1 = new ClassPathResource("FONTDIR/times.ttf");
@@ -48,9 +50,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		File FONTBOLD = FontResource2.getFile();
 
 		// final String FONTNORMAL = "./src/main/resources/FONTDIR/times.ttf";
-
 		// final String FONTBOLDITALIC = "./src/main/resources/FONTDIR/timesbi.ttf";
-
 		// final String FONTBOLD = "./src/main/resources/FONTDIR/timesbd.ttf";
 
 		PdfFont font = PdfFontFactory.createFont(FONTNORMAL.getPath(), PdfEncodings.IDENTITY_H);
@@ -58,7 +58,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		// PdfFont fontBI = PdfFontFactory.createFont(FONTBOLDITALIC,
 		// PdfEncodings.IDENTITY_H);
 
-		PdfWriter writer = new PdfWriter(baos);
+		PdfWriter writer = new PdfWriter(baos);  
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf, PageSize.A4);
 		document.setTopMargin(70);
@@ -70,8 +70,8 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(10).setFont(font));
 
-//		document.add(new Paragraph(""));
- 
+		// document.add(new Paragraph(""));
+
 		String title = "";
 		String shortName = "";
 		String address1 = "";
@@ -156,9 +156,9 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 		Cell cell3 = new Cell(0, 2);
 		cell3.setBorder(Border.NO_BORDER);
-		cell3.add(new Paragraph("Your contract as a/an " + designation.toUpperCase()
-				+ " (Agent) is subject to the conditions hereafter stated :-").setFontSize(11)
-						.setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+		cell3.add(new Paragraph(
+				"Your contract as a/an " + designation + " (Agent) is subject to the conditions hereafter stated :-")
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
 		info.addCell(cell3);
 
 		info.startNewRow();
@@ -170,7 +170,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 		Cell cell5 = new Cell();
 		cell5.setBorder(Border.NO_BORDER);
-		cell5.add(new Paragraph("Your contract as a/an " + designation.toUpperCase()
+		cell5.add(new Paragraph("Your contract as a/an " + designation
 				+ " (Agent) will come into force on the effective date of this letter or the date on which you qualify the pre-recruitment test conducted by the Sri Lanka Insurance Institute (SLII) or any other body approved by the Insurance Board of Sri Lanka, which ever is later.")
 						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
 		info.addCell(cell5);
@@ -957,7 +957,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf, PageSize.A4);
 		// document.setTopMargin(45);
-		// document.setBottomMargin(20); 
+		// document.setBottomMargin(20);
 		document.setMargins(80, 70, 70, 70);
 
 		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -1032,7 +1032,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 
 		Cell cell3 = new Cell();
 		cell3.setBorder(Border.NO_BORDER);
-		cell3.add(new Paragraph(" In your capacity as a/an " + designation.toUpperCase()
+		cell3.add(new Paragraph(" In your capacity as a/an " + designation
 				+ " you are required to identify and recommend suitable individuals to be recruited as Insurance Consultants / Agents as applicable. As their Unit Leader you shall direct, motivate, lead and control a unit of the required manpower at any given month.")
 						.setFontSize(12).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
 		info.addCell(cell3);
