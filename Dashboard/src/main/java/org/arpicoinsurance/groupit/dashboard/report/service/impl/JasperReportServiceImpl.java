@@ -60,7 +60,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("mcfpr.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -123,7 +123,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("prop_register.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -180,7 +180,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("Pend_req_advi.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -237,7 +237,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("reten_unl_sum.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -292,7 +292,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("pre_bas_persi_sum_ag_new.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -347,7 +347,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("pre_bas_persi_sum.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -408,7 +408,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("detai_pol_list.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -465,7 +465,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("Premium_due_rep_live.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -522,7 +522,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("Premium_due_rep.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -579,7 +579,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("comm_agnt_bra.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -636,7 +636,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("first_prm_lap.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -695,7 +695,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("performance_agn.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -755,7 +755,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("performance_brn.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -817,7 +817,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("performance_summ_unl.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -938,7 +938,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("performance_detail_unl.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -992,7 +992,7 @@ public class JasperReportServiceImpl implements JasperReportService {
 
 		try {
 			try {
-				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
+				InputStream input = new ClassPathResource("biz_gra_sub.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
