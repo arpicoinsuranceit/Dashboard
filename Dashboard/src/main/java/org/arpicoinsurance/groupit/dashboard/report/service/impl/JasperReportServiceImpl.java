@@ -1,20 +1,16 @@
 package org.arpicoinsurance.groupit.dashboard.report.service.impl;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 import org.arpicoinsurance.groupit.dashboard.report.service.JasperReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -48,21 +44,23 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("agncod", advisor);
 		params.put("loccod", branch);
 
-		Resource resource = new ClassPathResource("mcfpr.jrxml");
-		File file = resource.getFile();
-
-		System.out.println(file.getPath());
-		System.out.println(file.getName());
-		System.out.println(file.getCanonicalPath());
+//		Resource resource = new ClassPathResource("mcfpr.jrxml");
+//		File file = resource.getFile();
+//		
+//		System.out.println(file.getPath());
+//		System.out.println(file.getName());
+//		System.out.println(file.getCanonicalPath());
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "mcfpr.jrxml";
+		//String REPORT = "mcfpr.jrxml";
+		
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -114,17 +112,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("agncod", unl);
 		params.put("catcod", frequency);
 
-		Resource resource = new ClassPathResource("prop_register.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("prop_register.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "prop_register.jrxml";
+		//String REPORT = "prop_register.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -169,18 +168,19 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("rgncod", region);
 		params.put("zoncod", zone);
 
-		Resource resource = new ClassPathResource("Pend_req_advi.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("Pend_req_advi.jrxml");
+		//File file = resource.getFile();
 
-		System.out.println(file.getPath() + " Path.....");
+		//System.out.println(file.getPath() + " Path.....");
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "Pend_req_advi.jrxml";
+		//String REPORT = "Pend_req_advi.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -226,17 +226,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("rgncod", region);
 		params.put("agncod", unl);
 
-		Resource resource = new ClassPathResource("reten_unl_sum.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("reten_unl_sum.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "reten_unl_sum.jrxml";
+		//String REPORT = "reten_unl_sum.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -280,17 +281,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("rgncod", region);
 		params.put("pprsta", code);
 
-		Resource resource = new ClassPathResource("pre_bas_persi_sum_ag_new.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("pre_bas_persi_sum_ag_new.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "pre_bas_persi_sum_ag_new.jrxml";
+		//String REPORT = "pre_bas_persi_sum_ag_new.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -334,17 +336,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("rgncod", region);
 		params.put("pprsta", "%");
 
-		Resource resource = new ClassPathResource("pre_bas_persi_sum.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("pre_bas_persi_sum.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "pre_bas_persi_sum.jrxml";
+		//String REPORT = "pre_bas_persi_sum.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -394,17 +397,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("agncod", ic);
 		params.put("unlcod", ul);
 
-		Resource resource = new ClassPathResource("detai_pol_list.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("detai_pol_list.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "detai_pol_list.jrxml";
+		//String REPORT = "detai_pol_list.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -450,17 +454,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("agncod", code);
 		params.put("zoncod", zone);
 
-		Resource resource = new ClassPathResource("Premium_due_rep_live.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("Premium_due_rep_live.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "Premium_due_rep_live.jrxml";
+		//String REPORT = "Premium_due_rep_live.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -506,17 +511,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("agncod", code);
 		params.put("zoncod", zone);
 
-		Resource resource = new ClassPathResource("Premium_due_rep.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("Premium_due_rep.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "Premium_due_rep.jrxml";
+		//String REPORT = "Premium_due_rep.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -562,17 +568,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("agncod", code);
 		params.put("loccod", branch);
 
-		Resource resource = new ClassPathResource("comm_agnt_bra.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("comm_agnt_bra.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "comm_agnt_bra.jrxml";
+		//String REPORT = "comm_agnt_bra.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -618,17 +625,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("rgncod", region);
 		params.put("loccod", branch);
 
-		Resource resource = new ClassPathResource("first_prm_lap.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("first_prm_lap.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "first_prm_lap.jrxml";
+		//String REPORT = "first_prm_lap.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -676,17 +684,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("prdcod", product);
 		params.put("catcod", frequency);
 
-		Resource resource = new ClassPathResource("performance_agn.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("performance_agn.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "performance_agn.jrxml";
+		//String REPORT = "performance_agn.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -728,24 +737,25 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("sbucod", "450");
 		params.put("sdate", fromDate);
 		params.put("edate", toDate);
-		params.put("zoncod", zone);  
+		params.put("zoncod", zone);
 		params.put("rgncod", region);
 		params.put("loccod", branch);
 		params.put("prdcod", product);
 		params.put("catcod", frequency);
 		params.put("sinprm", so);
 
-		Resource resource = new ClassPathResource("performance_brn.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("performance_brn.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "performance_brn.jrxml";
+		//String REPORT = "performance_brn.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -796,17 +806,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("subtyp", type);
 		params.put("unlcod", unl);
 
-		Resource resource = new ClassPathResource("performance_summ_unl.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("performance_summ_unl.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "performance_summ_unl.jrxml";
+		//String REPORT = "performance_summ_unl.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -855,17 +866,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("catcod", frequency);
 		params.put("agncod", code);
 
-		Resource resource = new ClassPathResource("performance_detail.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("performance_detail.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "performance_detail.jrxml";
+		//String REPORT = "performance_detail.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -915,17 +927,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("agncod", unl);
 		params.put("subtyp", type);
 
-		Resource resource = new ClassPathResource("performance_detail_unl.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("performance_detail_unl.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "performance_detail_unl.jrxml";
+		//String REPORT = "performance_detail_unl.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
@@ -968,17 +981,18 @@ public class JasperReportServiceImpl implements JasperReportService {
 		params.put("loccod", branch);
 		params.put("period", month);
 
-		Resource resource = new ClassPathResource("biz_gra_sub.jrxml");
-		File file = resource.getFile();
+		//Resource resource = new ClassPathResource("biz_gra_sub.jrxml");
+		//File file = resource.getFile();
 
 		// String OUT_PUT = "D:\\performance_detail.pdf";
-		String REPORT = "biz_gra_sub.jrxml";
+		//String REPORT = "biz_gra_sub.jrxml";
+		
 		JasperReport jr = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		try {
 			try {
-				InputStream input = new FileInputStream(file.getPath());
+				InputStream input = new ClassPathResource("performance_detail.jrxml").getInputStream();
 				JasperDesign jasperDesign = JRXmlLoader.load(input);
 				jr = JasperCompileManager.compileReport(jasperDesign);
 
