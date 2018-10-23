@@ -192,7 +192,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code"
 						+ "    INNER JOIN inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod = IN("+ zoneCodePara +") order by CAST(p.pprnum AS SIGNED) limit ?,?",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod IN ("+ zoneCodePara +") order by CAST(p.pprnum AS SIGNED) limit ?,?",
 				args.toArray(), new InquiryLoadRowMapper());
 	}
 
@@ -208,7 +208,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 						+ "    INNER JOIN inagentmast a ON p.sbucod = a.sbucod" + "        AND p.advcod = a.agncod"
 						+ "	INNER JOIN rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code"
 						+ "    INNER JOIN inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod" + "    WHERE"
-						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod IN("+ zoneCodePara +") ",
+						+ "        p.sbucod = '450' and p.pprsta <> 'INAC'" + data + "	    and r.zoncod IN ("+ zoneCodePara +") ",
 				Integer.class, args.toArray());
 
 		return count;
