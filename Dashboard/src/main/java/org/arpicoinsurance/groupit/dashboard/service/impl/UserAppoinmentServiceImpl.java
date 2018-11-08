@@ -68,7 +68,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate currentDate = LocalDate.now();
 
-		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(10).setFont(font));
+		document.add(new Paragraph(currentDate.format(datePattern)).setFontSize(10).setFixedLeading(1).setFont(font));
 
 		// document.add(new Paragraph(""));
 
@@ -118,7 +118,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		document.add(new Paragraph(address1).setFontSize(10).setFixedLeading(1).setFont(font));
 		document.add(new Paragraph(address2).setFontSize(10).setFixedLeading(1).setFont(font));
 
-		document.add(new Paragraph(""));
+		document.add(new Paragraph("").setFixedLeading(1));
 
 		document.add(new Paragraph("AGREEMENT – " + designation + " (Code No." + agentCode + ")").setFontSize(10)
 				.setCharacterSpacing(1).setFont(fontB));
@@ -172,7 +172,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cell5.setBorder(Border.NO_BORDER);
 		cell5.add(new Paragraph("Your contract as a/an " + designation
 				+ " (Agent) will come into force on the effective date of this letter or the date on which you qualify the pre-recruitment test conducted by the Sri Lanka Insurance Institute (SLII) or any other body approved by the Insurance Board of Sri Lanka, which ever is later.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cell5);
 
 		info.startNewRow();
@@ -186,7 +186,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cell7.setBorder(Border.NO_BORDER);
 		cell7.add(new Paragraph(
 				"You are required to achieve the objectives set out in the attached sheet  in each agency year. The objectives can be re-set by the Company from time to time.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cell7);
 
 		info.startNewRow();
@@ -200,7 +200,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cell9.setBorder(Border.NO_BORDER);
 		cell9.add(new Paragraph(
 				"The agency year will be a period of 12 months commencing 1st January provided however, that where your appointment is made during a year, your target will be pro-rata.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cell9);
 
 		info.startNewRow();
@@ -226,7 +226,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cellD.setBorder(Border.NO_BORDER);
 		cellD.add(new Paragraph(
 				"If you fail to complete the requisite volume and value of business and other objectives specified in clause 1 (b) above, in any agency year, your agency will stand automatically terminated from the beginning of  the agency year following, provided  however, that if you show valid cause for your failure to complete the requisite volume of business to our satisfaction (of which the Company shall be the sole judge), the agency will stand renewed.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cellD);
 
 		info.startNewRow();
@@ -240,7 +240,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cellF.setBorder(Border.NO_BORDER);
 		cellF.add(new Paragraph(
 				"In computing your business for purposes of Clause 1 or 2 (a) above, all business done by you will be taken into account. However, the basis of such reckoning will be decided by the Management of the company")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cellF);
 
 		info.startNewRow();
@@ -266,7 +266,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cellJ.setBorder(Border.NO_BORDER);
 		cellJ.add(new Paragraph(
 				"As remuneration for services rendered by you to the Company with regard to your agency, you will be paid commission as per rates applicable and in force from time to time. The company reserves the absolute right to change the rates of commission at will and not be liable to notify in writing. The Company also reserves the right and authority to withdraw payment of commission any time it considers it is advisable to do so.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cellJ);
 
 		info.startNewRow();
@@ -280,7 +280,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cellL.setBorder(Border.NO_BORDER);
 		cellL.add(new Paragraph(
 				"The Agent shall immediately refund to the Company or grant authority to recover any commission paid in respect of any premium returned to the insured by the Company.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cellL);
 
 		info.startNewRow();
@@ -307,7 +307,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cellP.setBorder(Border.NO_BORDER);
 		cellP.add(new Paragraph(
 				"As an Agent you are not authorized to collect moneys, accept risks or bind the Company in any way, nor are you authorized or allowed to advance premiums to the company on behalf of policyholders or to become an assignee, except with the prior permission in writing of the Manager in Charge, under policies on the lives of persons other than your own or your very near relatives such as wife or minor children if they are members of a family, or to get assigned to such very near relatives policies on the lives of persons other than near relatives.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cellP);
 
 		info.startNewRow();
@@ -321,7 +321,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cellR.setBorder(Border.NO_BORDER);
 		cellR.add(new Paragraph(
 				"You are also not authorized to collect or to issue receipts for moneys paid towards premia, in respect of which remittances should be made to the Company and receipt in the Company’s Official form obtained.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cellR);
 
 		Cell cellS = new Cell(0, 2);
@@ -333,7 +333,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cellT.setBorder(Border.NO_BORDER);
 		cellT.add(new Paragraph(
 				"You are also not authorized to grant credit, except strictly in accordance with instructions that you may be issued with. In respect of any unauthorized collections, you will be acting as an Agent of the party concerned and not as an Agent of the Company and you alone will be answerable to the party for the consequences of such unauthorized action.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cellT);
 
 		info.startNewRow();
@@ -347,7 +347,7 @@ public class UserAppoinmentServiceImpl implements UserAppoinmentService {
 		cellV.setBorder(Border.NO_BORDER);
 		cellV.add(new Paragraph(
 				"Further, you are prohibited from allowing or offering to allow either directly or indirectly as an inducement to any person to effect or renew a policy of insurance any rebate of the whole or part of the commission payable.")
-						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(10).setFont(font));
+						.setFontSize(11).setTextAlignment(TextAlignment.JUSTIFIED).setFixedLeading(8).setFont(font));
 		info.addCell(cellV);
 
 		info.startNewRow();
