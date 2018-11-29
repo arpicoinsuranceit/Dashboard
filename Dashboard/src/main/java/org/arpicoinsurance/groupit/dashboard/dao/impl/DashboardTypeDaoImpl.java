@@ -18,8 +18,8 @@ public class DashboardTypeDaoImpl implements DashboardTypeDao {
 		//System.out.println(userCode);
 		return jdbcTemplate.queryForObject("SELECT  " +
 				"    CASE " +
-				"        WHEN ac.alsnam = 'agncod' THEN (select agncls from inagentmast where agncod=ac.frmval) " +
-				"        WHEN ac.alsnam = 'unlcod' THEN (select agncls from inagentmast where agncod=ac.frmval) " +
+				"        WHEN ac.alsnam = 'agncod' THEN (select agncls from inagentmast where agncod=ac.userid) " +
+				"        WHEN ac.alsnam = 'unlcod' THEN (select agncls from inagentmast where agncod=ac.userid) " +
 				"        WHEN ac.alsnam = 'loccod' THEN 'BRANCH' " +
 				"        WHEN ac.alsnam = 'rgncod' THEN 'REGION' " +
 				"        WHEN ac.alsnam = 'zoncod' THEN 'ZONE' " +
@@ -30,9 +30,9 @@ public class DashboardTypeDaoImpl implements DashboardTypeDao {
 				//"    IF(ac.alsnam IN('agncod','unlcod'),(select IF(ag.appdat < DATE_ADD(now(), INTERVAL -1 YEAR) AND ag.agncls='UNL','DB2','DB1') from inagentmast ag where ag.sbucod=ac.sbucod and ag.agncod=ac.frmval),'DB2') dashtype, "+
 				"    YEAR(curdate()) dashyear, MONTH(curdate()) dashmonth " +
 				"FROM " +
-				"    smaccesscontrol ac inner join rms_users u on ac.sbucod=u.SBU_CODE and ac.userid=u.USER_ID " +
+				"    smaccesscontrol ac inner join quotation.users u on ac.userid=u.user_code  " +
 				"WHERE " +
-				"    ac.sbucod = ? AND ac.userid = ? and u.active='1' order by CRE_DATE DESC limit 1 ", new Object[] { "450",userCode}, new DashboardParaRowMapper());
+				"    ac.sbucod = ? AND ac.userid = ? and u.user_active='1' order by createdate DESC limit 1 ", new Object[] { "450",userCode}, new DashboardParaRowMapper());
 	}
 
 	@Override
