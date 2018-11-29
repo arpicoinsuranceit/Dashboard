@@ -1024,4 +1024,58 @@ public class JasperReportServiceImpl implements JasperReportService {
 		return baos.toByteArray();
 	}
 
+	@Override
+	public byte[] productInsentive(String loccode, String agentCode, String date) throws Exception {
+		response.setHeader("Content-Disposition", "inline; filename=performance_detail.pdf");
+		response.setContentType("application/pdf");
+		System.out.println(loccode + " -loccode" + agentCode +" -agentCode"+ date + " -date" );
+		Map<String, Object> params = new HashMap<>();
+		params.put("sbucod", "450");
+		params.put("agncod", agentCode);
+		params.put("date", date);
+		params.put("loccod", loccode);
+
+		//Resource resource = new ClassPathResource("biz_gra_sub.jrxml");
+		//File file = resource.getFile();
+
+		// String OUT_PUT = "D:\\performance_detail.pdf";
+		//String REPORT = "biz_gra_sub.jrxml";
+		
+		JasperReport jr = null;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+		try {
+			try {
+				InputStream input = new ClassPathResource("prod_ince.jrxml").getInputStream();
+				JasperDesign jasperDesign = JRXmlLoader.load(input);
+				jr = JasperCompileManager.compileReport(jasperDesign);
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.out.println("Exception...");
+			}
+
+			try {
+				JasperPrint jp;
+
+				jp = JasperFillManager.fillReport(jr, params, dataSource.getConnection());
+
+				JRPdfExporter export = new JRPdfExporter();
+				export.setExporterInput(new SimpleExporterInput(jp));
+				export.setExporterOutput(new SimpleOutputStreamExporterOutput(baos));
+				export.exportReport();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		} catch (JRException ex) {
+			ex.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return baos.toByteArray();
+	}
+
 }

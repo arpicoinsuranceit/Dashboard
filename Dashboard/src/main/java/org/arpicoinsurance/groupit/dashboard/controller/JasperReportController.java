@@ -1051,5 +1051,53 @@ public class JasperReportController {
 		}
 		return null;
 	}
+	
+	@RequestMapping(value = "/productIncentive/{agent}/{date}/{branch}/{status}", method = RequestMethod.GET, produces = "application/pdf")
+	public byte[] productInsentive(@PathVariable String agent, @PathVariable String date,
+			@PathVariable String branch, @PathVariable String status, HttpServletResponse response) {
+		System.out.println(date);
+		response.setHeader("Content-Disposition", "inline; filename=prod_ince.pdf");
+		response.setContentType("application/pdf");
+		System.out.println(agent + "," + branch);
+
+		Decoder decoder = Base64.getDecoder();
+
+		byte[] decodedByte = null;
+
+		decodedByte = decoder.decode(date);
+		date = new String(decodedByte);
+
+		decodedByte = decoder.decode(branch);
+		branch = new String(decodedByte);
+
+		decodedByte = decoder.decode(agent);
+		agent = new String(decodedByte);
+
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+
+		try {
+			if (branch.equalsIgnoreCase("ALL")) {
+				branch = "%";
+			} else if (branch.equalsIgnoreCase("undefined")) {
+				branch = "%";
+			}
+
+			if (agent.equalsIgnoreCase("ALL")) {
+				agent = "%";
+			}
+
+			jwtDecorder = new JwtDecoder();
+
+			if (status.equalsIgnoreCase("Y")) {
+				agent = jwtDecorder.generate(agent);
+			}
+			return jasperReportService.productInsentive(branch, agent, date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 
 }
