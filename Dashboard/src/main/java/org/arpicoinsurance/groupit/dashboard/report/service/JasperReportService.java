@@ -35,6 +35,8 @@ public interface JasperReportService {
 	public byte[]  salesPerfDetail(String fromDate,String toDate,String code,String zone,String region,String branch,String product, String frequency)throws Exception;
 
 	public byte[]  unitIsPerfDetails(String fromDate,String toDate,String zone,String region,String branch,String unl, String type,String frequency,String product)throws Exception;
+	
+	public byte[]  productInsentive(String loccode,String agentCode,String date)throws Exception;
 
 	
 	
