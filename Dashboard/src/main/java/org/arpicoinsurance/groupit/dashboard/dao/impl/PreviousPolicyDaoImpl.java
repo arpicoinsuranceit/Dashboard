@@ -21,8 +21,8 @@ public class PreviousPolicyDaoImpl implements PreviousPolicyDao {
 		try {
 			details = jdbcTemplate.queryForObject(
 					"select sum(sumrkm) as sumAtRisk, max(cscode) as custCode from inproposals a \r\n"
-							+ "where a.sbucod='450' and a.pprsta <> 'INAC' and pprsta in ('PLISU','LAMD') \r\n"
-							+ "and (a.polnum is not null or polnum <> '') and TRIM(a.ppdnic)= ? \r\n"
+							+ "where a.sbucod='450' and a.pprsta <> 'INAC' and pprsta in ('PLISU','PLAPS','LAMD','L0','L1','L2','L3') \r\n"
+							+ "and TRIM(a.ppdnic)= ? \r\n"
 							+ "and TIMESTAMPDIFF(YEAR,icpdat,sysdate()) <=  2 group by a.ppdnic",
 					new Object[] { nic }, new PreviousPolicyRowMapper());
 		} catch (Exception e) {
