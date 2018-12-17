@@ -368,6 +368,10 @@ public class JasperReportController {
 
 		decodedByte = decoder.decode(sp);
 		sp = new String(decodedByte);
+		
+		decodedByte = decoder.decode(status);
+		status = new String(decodedByte);
+		
 		try {
 			if (ic.equalsIgnoreCase("ALL")) {
 				ic = "%";
