@@ -20,7 +20,7 @@ public class PreviousPolicyDaoImpl implements PreviousPolicyDao {
 		HashMap<String, Object> details = null;
 		try {
 			details = jdbcTemplate.queryForObject(
-					"select sum(sumrkm) as sumAtRisk, max(cscode) as custCode from inproposals a \r\n"
+					"select max(sumrkm) as sumAtRisk, max(cscode) as custCode from inproposals a \r\n"
 							+ "where a.sbucod='450' and a.pprsta <> 'INAC' and pprsta in ('PLISU','PLAPS','LAMD','L0','L1','L2','L3') \r\n"
 							+ "and TRIM(a.ppdnic)= ? \r\n"
 							+ "and TIMESTAMPDIFF(YEAR,icpdat,sysdate()) <=  2 group by a.ppdnic",
