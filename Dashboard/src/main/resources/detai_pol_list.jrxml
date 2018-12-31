@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detai_pol_list" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a1d618c-6a0e-424a-add5-3a74f8a94043">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="208"/>
+	<property name="ireport.y" value="99"/>
 	<parameter name="sbucod" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -31,22 +31,22 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select a.sbucod,a.advcod,a.polnum,a.prdcod,a.poldat,a.pprsta,a.prpseq,a.paytrm,ifnull(a.sinprm,"0") as sinprm,a.totprm,
-       a.bassum,a.icpdat,a.ntitle,a.ppdini,a.ppdad1,a.ppdad2,a.ppdad3,a.ppdtel,a.ppdmob,
-       (if(a.sinprm='1',0,(floor((b.totprm-a.polfee)/a.totprm)))) as payprm,
-       max(b.txndat) txndat,
-       f.sbu_name,e.zoncod,e.zonnam,d.rgncod,d.rgnnam,g.loccod,c.locnam,
-       max(case when a.sinprm='1' then 'S' else 12/a.paytrm end) frequency,
-       sum(l.amount) due,sum(l.depost)*-1 dep,if(l.unlcod is null,l.advcod,l.unlcod) unlcod,l.advcod,
-       j.agncod as ulcod,j.shrtnm as ulnam,(case when j.subdcd is null then j.agncls else j.subdcd end) as subdcd,
-       g.shrtnm as agnnam,(case when g.subdcd is null then g.agncls else g.subdcd end) as subdcd_agn,
-(select max(concat(txnyer,"-",if(length(txnmth)=1,concat('0',txnmth),txnmth)))
-from inbillingtransactions x where x.sbucod=a.sbucod and x.pprnum=a.pprnum and x.doccod<>'PRMI' and x.amount<0) daid_upto,
-(select sum(y.amount)
-from inbillingtransactions y where y.sbucod=a.sbucod and y.pprnum=a.pprnum
-and concat(y.txnyer,"-",(if(length(y.txnmth)=1,concat(0,y.txnmth),y.txnmth)))<=  date_format($P{edate},'%Y-%m')) due_upto,
-(select sum(z.depost)*-1
-from inbillingtransactions z where z.sbucod=a.sbucod and z.pprnum=a.pprnum) depost
+		<![CDATA[select
+a.sbucod,a.advcod,a.polnum,a.prdcod,a.poldat,a.pprsta,a.prpseq,a.paytrm,ifnull(a.sinprm,"0")
+as sinprm,a.totprm,
+a.bassum,a.icpdat,a.ntitle,a.ppdini,a.ppdad1,a.ppdad2,a.ppdad3,a.ppdtel,a.ppdmob,
+        (if(a.sinprm='1',0,(floor((b.totprm-a.polfee)/a.totprm)))) as payprm,
+        max(b.txndat) txndat,
+f.sbu_name,e.zoncod,e.zonnam,d.rgncod,d.rgnnam,g.loccod,c.locnam,
+        max(case when a.sinprm='1' then 'S' else 12/a.paytrm end) frequency,
+        sum(l.amount) due,sum(l.depost)*-1 dep,if(l.unlcod is
+null,l.advcod,l.unlcod) unlcod,l.advcod,
+        j.agncod as ulcod,j.shrtnm as ulnam,(case when j.subdcd is null then j.agncls else j.subdcd end) as subdcd,
+        g.shrtnm as agnnam,(case when g.subdcd is null then g.agncls else g.subdcd end) as subdcd_agn, (select
+max(concat(txnyer,"-",if(length(txnmth)=1,concat('0',txnmth),txnmth)))
+from inbillingtransactions x where x.sbucod=a.sbucod and x.pprnum=a.pprnum and x.doccod<>'PRMI' and x.amount<0) daid_upto, (select sum(y.amount) from inbillingtransactions y where y.sbucod=a.sbucod and y.pprnum=a.pprnum and concat(y.txnyer,"-",(if(length(y.txnmth)=1,concat(0,y.txnmth),y.txnmth)))<=
+date_format($P{edate},'%Y-%m')) due_upto, (select sum(z.depost)*-1 from inbillingtransactions z where z.sbucod=a.sbucod and
+z.pprnum=a.pprnum) depost
 
 
 from inproposals a
@@ -55,24 +55,26 @@ inner join intransactions b on a.sbucod=b.sbucod and a.pprnum=b.pprnum
 inner join rms_sbu f        on a.sbucod=f.sbu_code
 inner join inproducts h     on a.sbucod=h.sbucod and a.prdcod=h.prdcod
 inner join inbillingtransactions l on a.sbucod=l.sbucod and a.pprnum=l.pprnum and a.pprsta<>'INAC' and a.polnum is not null
-inner join inagentmast j    on a.sbucod=j.sbucod and if(l.unlcod is null,l.advcod,l.unlcod)=j.agncod
+inner join inagentmast j    on a.sbucod=j.sbucod and if(l.unlcod is
+null,l.advcod,l.unlcod)=j.agncod
 inner join inagentmast g    on a.sbucod=g.sbucod and l.advcod=g.agncod
 inner join rms_locations c  on a.sbucod=c.sbucod and g.loccod=c.loccod
 inner join inregion d       on a.sbucod=d.sbucod and c.rgncod=d.rgncod
 inner join inzonemast e     on a.sbucod=e.sbucod and d.zoncod=e.zoncod
 
 where a.sbucod= $P{sbucod}
-      and a.pprsta not in ('INAC','PRCAN','PCAN') and a.polnum is not null
-      and a.poldat between $P{sdate} and $P{edate}
-      and c.loccod like $P{loccod}
-      and d.rgncod like $P{rgncod}
-      and e.zoncod like $P{zoncod}
-      and ifnull(a.sinprm,"0") like $P{sinprm}
-      and a.advcod like $P{agncod}
-      and if(l.unlcod is null,l.advcod,l.unlcod) like $P{unlcod}
+       and a.pprsta not in ('INAC','PRCAN','PCAN') and a.polnum is not null
+       and a.poldat between $P{sbucod} and $P{edate}
+       and c.loccod like $P{loccod}
+       and d.rgncod like $P{rgncod}
+       and e.zoncod like $P{zoncod}
+       and ifnull(a.sinprm,"0") like $P{sinprm}
+       and a.advcod like $P{agncod}
+       and (if(l.unlcod is null,l.advcod,l.unlcod) like $P{unlcod} or a.advcod like $P{unlcod})
 
 group by a.sbucod,e.zoncod,d.rgncod,c.loccod,j.agncod,a.advcod,a.polnum
-order by a.sbucod,e.zoncod,d.rgncod,c.loccod,j.agncod,a.advcod]]>
+order by a.sbucod,e.zoncod,d.rgncod,c.loccod,j.agncod,a.advcod
+]]>
 	</queryString>
 	<field name="sbucod" class="java.lang.String"/>
 	<field name="advcod" class="java.lang.String"/>
