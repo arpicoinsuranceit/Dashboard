@@ -18,7 +18,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public String save(HashMap<String, Object> details) throws Exception {
 
 		jdbcTemplate.update(
-				"insert into marksys.incustomers (sbucod, cscode, ppdnam, ppddob, ppdnag, ppdsex, \r\n"
+				"insert into incustomers (sbucod, cscode, ppdnam, ppddob, ppdnag, ppdsex, \r\n"
 						+ "ppdcst, ppdtel, sponam, sagnxt, ntitle, spodob, numchl, ppdnic, sponic) \r\n"
 						+ "value ('450',?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 				new Object[] { (String) details.get("cscode"), (String) details.get("ppdnam"),

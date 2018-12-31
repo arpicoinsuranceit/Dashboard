@@ -19,11 +19,11 @@ public class OrgChartDaoimpl implements OrgChartDao{
 	@Override
 	public List<OrgChartDetailsDto> getOrgChartList(String exp) throws Exception {
 		return jdbcTemplate.query(
-				"select a.agncod, a.shrtnm,l.loc_name,d.subdes,d.subdcd,a.agncls, l.loc_code, r.rgncod, r.zoncod, a.unlcod from inagentmast a inner join insubdesignation d \r\n" + 
-				"on a.agncls=d.descod and a.subdcd=d.subdcd and a.subtyp=d.subtyp\r\n" + 
-				"inner join rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code\r\n" + 
-				"inner join inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod\r\n" + 
-				"where a.sbucod='450' and "+ exp +" and a.agnsta in ('ACT', 'INAC');", new OrgChartDetailsRowMapper());
+				"select a.agncod, a.shrtnm,l.loc_name,d.subdes,d.subdcd,a.agncls, l.loc_code, r.rgncod, r.zoncod, a.unlcod from inagentmast a inner join insubdesignation d " + 
+				"on a.agncls=d.descod and a.subdcd=d.subdcd and a.subtyp=d.subtyp " + 
+				"inner join rms_locations l on a.sbucod=l.sbu_code and a.loccod=l.loc_code " + 
+				"inner join inregion r on l.sbu_code=r.sbucod and l.rgncod=r.rgncod " + 
+				"where a.sbucod='450' and "+ exp +" a.agnsta in ('ACT', 'INAC');", new OrgChartDetailsRowMapper());
 	}
 
 }
