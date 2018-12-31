@@ -48,7 +48,7 @@ public class BenefictHistoryDaoImpl implements BenefictHistoryDao {
 				"WHERE  " + 
 				"    p.sbucod = '450'  " + 
 				"        AND (p.ppdnic = '"+nic+"' OR p.sponic = '"+nic+"')  " + 
-				"        AND p.pprsta IN ('PLISU' , 'PLAPS', 'LAMD', 'L0','L1','L2','L3')  " + 
+				"        AND p.pprsta IN ('PLISU' , 'PLAPS', 'LAMD')  " + 
 				"        AND b.ridcod IN ('HCBF' , 'HCBFC',  " + 
 				"        'HCBFS',  " + 
 				"        'HCBI',  " + 
