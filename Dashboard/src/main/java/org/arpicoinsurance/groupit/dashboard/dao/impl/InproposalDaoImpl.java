@@ -252,7 +252,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 	public ProposalGeneralDto getProposalGeneralDetails(String proposalNo) throws Exception {
 
 		ProposalGeneralDto proposalGeneralDto = jdbcTemplate.queryForObject(
-				"select p.pprnum, p.polnum, p.comdat, p.loccod, p.prdcod, p.prdnam, p.expdat, p.ppdsex, p.ppdnam, p.ppdini, p.ppdad1, p.ppdad2, p.ppdad3, \r\n" + 
+				"select p.sumrkm, p.sumrks, p.pprnum, p.polnum, p.comdat, p.loccod, p.prdcod, p.prdnam, p.expdat, p.ppdsex, p.ppdnam, p.ppdini, p.ppdad1, p.ppdad2, p.ppdad3, \r\n" + 
 				"p.ppdnic, p.ppdtel, p.ppdmob, p.ppdeml, p.ppddob, p.ppdnag, p.ppdocu, p.ppdcst, p.ban_no, p.accnum, p.crmnum, p.sponam, p.spoini, p.sponic, \r\n" + 
 				"p.spodob, p.spoocu, p.prpseq,\r\n" + 
 				"case when p.paytrm = 1 and (p.sinprm is null or p.sinprm='0')  then 'Yearly'\r\n" + 
@@ -350,7 +350,7 @@ public class InproposalDaoImpl implements InproposalsDao {
 		args.add(proposalNo);
 
 		return jdbcTemplate.query(
-				"select a.docnum,a.ppdnam,b.totprm,a.doccod,a.loccod,a.chqrel,a.paymod from intransactions a inner join (select sbucod,doccod,docnum,sum(depost*-1) totprm from inbillingtransactions \r\n"
+				"select a.docnum,a.ppdnam,b.totprm,a.doccod,a.loccod,if(a.paymod = 'CS', 'not applicable ( N/A )',a.chqrel) as chqrel,a.paymod from intransactions a inner join (select sbucod,doccod,docnum,sum(depost*-1) totprm from inbillingtransactions \r\n"
 						+ "where sbucod='450' and pprnum= ? group by sbucod,doccod,docnum having sum(depost*-1) > 0) b \r\n"
 						+ "on a.sbucod=b.sbucod and a.doccod=b.doccod and a.docnum=b.docnum \r\n"
 						+ "where a.sbucod='450' and a.pprnum= ? and a.linnum=0 ",
