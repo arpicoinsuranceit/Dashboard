@@ -56,6 +56,8 @@ public class ProposalGeneralRowMapper implements RowMapper<ProposalGeneralDto> {
 		proposalGeneralDto.setProposalStatus(rs.getString("pprsta"));
 		proposalGeneralDto.setProposalDescription(rs.getString("stadsc"));
 		
+		proposalGeneralDto.setMainLifeSumAtRisk(rs.getDouble("sumrkm"));
+		proposalGeneralDto.setSpouseSumAtRisk(rs.getDouble("sumrks"));
 		return proposalGeneralDto;
 	}
 
