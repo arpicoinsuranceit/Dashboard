@@ -50,9 +50,9 @@ left outer join (select sbucod,pprnum,max(prpseq) prpseq,max(polnum) polnum,max(
            group by sbucod,pprnum ) b on a.sbucod=b.sbucod and a.pprnum=b.pprnum
 
 left outer join (select a.sbucod,a.loccod,a.pprnum,a.prpseq,a.tessta,medcod3,
-(case when med1='AD' then addnot else group_concat(medcod separator ',') end) as medcod2
+(case when med1='AD' then if(medcod='AD-CT',mednam,addnot) else group_concat(medcod separator ',') end) as medcod2
 from
-(select a.sbucod,b.loccod,a.pprnum,a.tessta,b.prpseq,left(a.medcod,2) med1,a.medcod,a.addnot,b.pprsta,
+(select a.sbucod,b.loccod,a.pprnum,a.tessta,b.prpseq,left(a.medcod,2) med1,a.medcod,a.addnot,b.pprsta,a.mednam,
 if(a.medcod like 'AD%',a.medcod,0) as medcod3
 from inpropmedicalreq a
 inner join inproposals b on a.sbucod=b.sbucod and a.loccod=b.loccod and a.pprnum=b.pprnum and a.prpseq=b.prpseq
@@ -744,7 +744,7 @@ $F{paytrm}.equalsIgnoreCase("S")? "S" :""]]></textFieldExpression>
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="10" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="b375a57f-2321-4937-83bc-17401a96f714" x="602" y="0" width="195" height="10">
 					<printWhenExpression><![CDATA[$P{catcod} !="Y"]]></printWhenExpression>
@@ -755,7 +755,7 @@ $F{paytrm}.equalsIgnoreCase("S")? "S" :""]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{medcod2}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="b5f3204d-102f-4223-9ea6-38558bc92d42" x="605" y="0" width="192" height="10">
+				<reportElement uuid="b5f3204d-102f-4223-9ea6-38558bc92d42" x="605" y="9" width="192" height="10">
 					<printWhenExpression><![CDATA[$P{catcod}=="Y"]]></printWhenExpression>
 				</reportElement>
 				<textElement>
