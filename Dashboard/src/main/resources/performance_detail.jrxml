@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="performance_summ" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="815" leftMargin="20" rightMargin="7" topMargin="14" bottomMargin="14" uuid="67175115-c0c6-4689-9661-ff96ecf4c9a9">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="32"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="sbucod" class="java.lang.String">
 		<defaultValueExpression><![CDATA["450"]]></defaultValueExpression>
 	</parameter>
@@ -106,9 +106,9 @@ from inbillingtransactions a
 inner join inproposals b on a.sbucod=b.sbucod and a.pprnum=b.pprnum and b.pprsta not in ('INAC')
 left outer join inrevivaltransactions c on a.sbucod=c.sbucod and a.pprnum=c.pprnum and a.doccod=c.doccod and a.docnum=c.docnum and a.linnum=c.linnum
 
-where a.sbucod=$P{sbucod} and a.txndat between $P{sdate} and $P{edate} and a.doccod<>'PRMI' and a.amount<>0
+where a.sbucod=$P{sbucod} and date(a.txndat) between $P{sdate} and $P{edate} and a.doccod<>'PRMI' and a.amount<>0
 
-group by a.sbucod,a.pprnum,a.txnyer,a.txnmth,a.advcod
+group by a.sbucod,a.pprnum,a.txnyer,a.txnmth
 having sum(if(a.amount<>0,a.amount*-1,0))<>0
 
 ) x
