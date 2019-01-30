@@ -121,7 +121,7 @@ from inbillingtransactions a
 inner join inproposals b on a.sbucod=b.sbucod and a.pprnum=b.pprnum and b.pprsta not in ('INAC')
 left outer join inrevivaltransactions c on a.sbucod=c.sbucod and a.pprnum=c.pprnum and a.doccod=c.doccod and a.docnum=c.docnum and a.linnum=c.linnum
 
-where a.sbucod=$P{sbucod} and a.txndat between $P{sdate} and $P{edate} and a.amount <> 0
+where a.sbucod=$P{sbucod} and date(a.txndat) between $P{sdate} and $P{edate} and a.amount <> 0
 and a.doccod not in('PRMI')
 group by a.sbucod,a.brncod,a.pprnum,a.txnyer,a.txnmth) x
 
