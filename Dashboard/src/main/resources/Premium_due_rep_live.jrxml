@@ -6,8 +6,8 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<import value="net.sf.jasperreports.engine.*"/>
-	<import value="net.sf.jasperreports.engine.data.*"/>
 	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
 	<parameter name="pdate" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -52,7 +52,7 @@ from
 			group by a.sbucod,a.pprnum,a.txnyer,a.txnmth
 			having sum(a.amount) > 0)a
 where a.sbucod='450' and a.zoncod like $P{zoncod} and a.rgncod like $P{rgncod} and a.brncod like $P{loccod} and a.advcod like $P{agncod}
-group by sbu_name,polnam
+group by sbu_name,zoncod,rgncod,brncod,advcod,polnam
 having sum(insnum) <=4
 order by sbu_name,zoncod,rgncod,brncod,advcod,sum(insnum)]]>
 	</queryString>
