@@ -6,8 +6,8 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<import value="net.sf.jasperreports.engine.*"/>
-	<import value="net.sf.jasperreports.engine.data.*"/>
 	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
 	<parameter name="pdate" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -39,7 +39,7 @@ case when prdmth='1' then "Current Month"
 from induerep a
 
 where a.sbucod='450' and a.zoncod like $P{zoncod} and a.rgncod like $P{rgncod} and a.loccod like $P{loccod} and a.advcod like $P{agncod}
-
+      and a.pprsta in ('PLNRV','PLISU','PLAPP','PLAPS','LAMD')
 having a.insnum<>0
 order by sbucod,zoncod,rgncod,loccod,prdmth,a.advcod]]>
 	</queryString>
